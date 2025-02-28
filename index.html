@@ -23,7 +23,11 @@
 		 
 		 <link rel="preload" as="style" href="https://chadrackkanza.dev/build/assets/app-9Fb9qrmg.css" /><link rel="modulepreload" href="https://chadrackkanza.dev/build/assets/app-z-Rg4TxU.js" /><link rel="stylesheet" href="https://chadrackkanza.dev/build/assets/app-9Fb9qrmg.css" data-navigate-track="reload" /><script type="module" src="https://chadrackkanza.dev/build/assets/app-z-Rg4TxU.js" data-navigate-track="reload"></script>	
 		 
-		 
+		   
+    <!-- ✅ CONTENU MASQUÉ AU DÉBUT -->
+    
+        <br> </br>
+        
 		
 		 <script type="module" src="https://chadrackkanza.dev/build/assets/app-z-Rg4TxU.js" data-navigate-track="reload"></script>		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 	</head>
@@ -32,16 +36,10 @@
 		<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-xl z-50 border-b border-zinc-100">
 			<div class="max-w-screen-xl mx-auto px-8">
 				<div class="flex items-center justify-between h-20">
-					<a href="#" class="text-2xl font-bold tracking-tight">
+					<e href="#" class="text-blue-600">
 					𝑫𝑨𝑽𝑰𝑫 𝑴𝑷𝑶𝑵𝑮𝑶<span class="text-blue-600">.𝑫𝑨𝑽𝑩𝑶𝑻🌿</span>
 					</a>
-					<div class="hidden md:flex space-x-12">
-						<a href="#accueil" class="text-zinc-600 hover:text-blue-600 transition-colors font-medium">Accueil</a>
-						<a href="#projets" class="text-zinc-600 hover:text-blue-600 transition-colors font-medium">Projets</a>
-						<a href="#experiences" class="text-zinc-600 hover:text-blue-600 transition-colors font-medium">Expériences professionnelles</a>
-						<a href="#competences" class="text-zinc-600 hover:text-blue-600 transition-colors font-medium">Compétences</a>
-						<a href="#contact" class="text-zinc-600 hover:text-blue-600 transition-colors font-medium">Contact</a>
-					</div>
+					
 				</div>
 			</div>
 		</nav>
@@ -52,7 +50,7 @@
 				<div class="grid md:grid-cols-2 gap-16 items-center">
 					<div class="space-y-8">
 					
-						<!-- Titre principal avec animation -->
+				
 						<h1 class="text-5xl md:text-6xl font-bold text-zinc-900 leading-tight">
 							<span class="block mb-2">𝑩𝑰𝑬𝑵𝑽𝑬𝑵𝑼𝑬 𝑫𝑨𝑵𝑺 𝑳𝑬 𝑷𝑶𝑹𝑻𝑭𝑶𝑳𝑰𝑶 𝑫𝑬</span>
 							<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> 𝑫𝑨𝑽𝑰𝑫 𝑴𝑷𝑶𝑵𝑮𝑶
@@ -65,12 +63,126 @@
 					
 						</p>
 						<!-- Boutons d'action -->
-						<div class="flex flex-wrap gap-4">
-							<a href="#contact" 
-								class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 font-medium">
-							Démarrer un projet
+				
+					
 							</a>
-							<br><br>
+							
+							
+							
+							  
+  <section id="home" class="hero">
+    <div class="content">
+      
+      <p>Découvrez mon parcours, mes projets et mon expertise.</p>
+      <button onclick="showProjects()" class ="button">Explorer projets</button>
+    </div>
+  </section>
+ 
+  <a href="con.html" class="button"> contact moi</a>
+  
+        
+  <script>
+    // Toggle menu visibility
+    function toggleMenu() {
+      const menu = document.querySelector('.menu');
+      const hamburger = document.querySelector('.hamburger');
+      menu.classList.toggle('active');
+      hamburger.classList.toggle('open');
+    }
+
+    // Close menu when a link is clicked
+    function closeMenu() {
+      const menu = document.querySelector('.menu');
+      const hamburger = document.querySelector('.hamburger');
+      menu.classList.remove('active');
+      hamburger.classList.remove('open');
+    }
+
+    // Hide navbar on scroll down, show on scroll up
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > lastScrollY) {
+        navbar.classList.add('hidden');
+      } else {
+        navbar.classList.remove('hidden');
+      }
+      lastScrollY = window.scrollY;
+    });
+
+    // Show the Projects section when 'Explore More' is clicked
+    function showProjects() {
+      const projectsSection = document.getElementById('projects');
+      projectsSection.style.display = 'block'; // Make projects visible
+      projectsSection.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the section
+    }
+
+    // Interactive Button Animation (Optional)
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('mouseover', () => {
+        button.style.transform = 'scale(1.1)';
+      });
+      button.addEventListener('mouseout', () => {
+        button.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+
+  
+  
+							
+							<style>body {
+    
+    background: #0d1117;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+ 
+    
+}
+
+h1 {
+    color: skyblue;
+}
+
+a{
+    background: #ff0088;
+
+    color: #ff0088;
+}
+.container {
+    background: linear-gradient(13deg, #1f2937, #374151);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid rgba(0, 217, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    width: 80%;
+    max-width: 400px;
+    margin: 4px 0;
+}
+
+.btn {
+    padding: 12px 20px;
+    background: #00d9ff;
+    color: #0d1117;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    display: inline-block;
+    text-decoration: none;
+    margin: 10px 5px;
+}
+
+.btn:hover {
+    background: #00b3cc;
+    transform: scale(1.05);
+
+        }</style>
+							<br></br>
 							
 							
 								
@@ -115,13 +227,23 @@
 				</div>
 			</div>
 		</section>
+		<br></br>
 		<!-- Projets Section -->
-		<section id="projets" class="py-32 bg-zinc-50">
-			<div class="max-w-screen-xl mx-auto px-8">
-				<div class="flex justify-between items-end mb-16">
-					<div>
+		<style>body {
+    
+      background: linear-gradient(135deg, #6a40fc, #ff3e3e);
+     
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+  
+ 
+    }
+    </style>
+    <section id="projects" class="projects" style="display: none;">
+        
 						<h2 class="text-4xl lg:text-5xl font-bold text-zinc-900 mb-4">𝑴𝑬𝑺 𝑷𝑹𝑶𝑱𝑬𝑻</h2>
-						<p class="text-zinc-600">Une sélection de mes dernières réalisations</p>
+						<p class="text-zinc-60">Une sélection de mes dernières réalisations</p>
 					</div>
 					
 				</div>
@@ -145,6 +267,7 @@
       
       <h1>_______________________________</h1>
       <h1>_______________________________</h1>
+				
 										<h3 class="text-xl font-bold text-zinc-900 mb-2">Davbot application</h3>
 						<p class="text-zinc-600"><p>voici l'application davbot 😒 le deuxième bloc de la construction la réussite obtenu après des nombreux échec </p></p>
 					</div><div class="project">
@@ -152,7 +275,7 @@
         <img src="https://i.imgur.com/naY3qiQ.jpeg" alt="mini bot" width="200px" height="100px">
         <p>.</p>
         
-       					<a target="_blank" href="https://files.appsgeyser.com/Davbot%20App_18522058.apk" class="button">
+       					<a target="_blank" href="https://apkfab.com/davbot-app/com.wDavbotApp_18522058/apk?h=04b73efa7d2cba68f97c53df0bdbd8ae2cc274f86c8aac466f54b29c129858a6" class="button">
 				𝑫𝑨𝑽𝑩𝑶𝑻. 𝑨𝑷𝑲
 								</a>
       </div>		
@@ -291,10 +414,32 @@
 				</div>
 			</div>
 		</section>
+		
+		<br></br> <br></br>
+				<style>body {
+    
+    background: #0f0;
+    color: #0f0;
+    margin: 0;
+    padding: 20px;
+ 
+    
+}
+</style>
+		<p>.</p>
+		<b href="#" class="text-2xl font-bold tracking-tight">
+				🌿𝑫𝑨𝑽𝑰𝑫 𝑴𝑷𝑶𝑵𝑮𝑶<span class="text-blue-600">.𝑫𝑨𝑽𝑩𝑶𝑻🌿</span>
+					</a>
 		<!-- Expérience Section -->
-		<section id="experiences" class="py-32 bg-white">
+	
 			<div class="max-w-screen-xl mx-auto px-8">
+			      
+			       
 				<!-- En-tête de section -->
+				
+			
+   
+        <div>
 				<div class="text-center mb-16">
 					<h2 class="text-4xl lg:text-5xl font-bold text-zinc-900 mb-4">Expérience Professionnelle</h2>
 					<div class="flex justify-center mb-4">
@@ -302,7 +447,16 @@
 					</div>
 					<p class="text-zinc-600 max-w-2xl mx-auto">
 						Plus de 2 années d'expérience dans le développement d'applications web et mobiles
+						et plus d'une année d'expérience sur la création de site et des intelligences artificiel 
 					</p>
+					<ul class="list-disc list-inside text-zinc-600 space-y-2">
+							
+					<h2 class="text-4xl lg:text-5xl font-bold text-zinc-900 mb-4">Compétences </h2>
+					<li>HTML 90%</li>
+					<li>CSS 60</p>
+					<li>JavaScript 50%</p>
+					<li>PHP 40%</li>
+					
 				</div>
 				<div class="relative">
 					<!-- Timeline pour desktop -->
@@ -331,6 +485,8 @@
 										<li>Mise en place d'un système de monitoring en temps réel des différents opérations </li>
 										<li>Assister davbot dans l'analyse et mise en place des futurs dévéloppements</li>
 										<li> lien du site davbot https://davi-10.onrender.com/</li> 
+										
+										
 									</ul>
 								</div>
 							</div>
@@ -344,91 +500,51 @@
 							</div>
 						</div>
 					</div>
-					<section id="contact">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <form id="contactForm">
-        <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Your Name" required>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Your Email" required>
-        </div>
-        <div>
-          <label for="message">Message</label>
-          <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
-        </div>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
+					
 
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      // Collect form data
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      
-      // WhatsApp API URL
-      const phoneNumber = '+243846064543'; // Replace with your WhatsApp number
-      const whatsappURL = `https://wa.me/${phoneNumber}?text=Hello,%20My%20Name%20is%20${encodeURIComponent(name)}.%0AEmail:%20${encodeURIComponent(email)}.%0AMessage:%20${encodeURIComponent(message)}`;
-      
-      // Redirect user to WhatsApp chat
-      window.open(whatsappURL, '_blank');
-    });
-  </script>
-  <script>
-    // Toggle menu visibility
-    function toggleMenu() {
-      const menu = document.querySelector('.menu');
-      const hamburger = document.querySelector('.hamburger');
-      menu.classList.toggle('active');
-      hamburger.classList.toggle('open');
-    }
+  <script>  
+    const menuToggle = document.querySelector('.menu-toggle');  
+    const navLinks = document.querySelector('.nav-links');  
+    const navbar = document.querySelector('nav');  
 
-    // Close menu when a link is clicked
-    function closeMenu() {
-      const menu = document.querySelector('.menu');
-      const hamburger = document.querySelector('.hamburger');
-      menu.classList.remove('active');
-      hamburger.classList.remove('open');
-    }
+    // Gestion du menu burger  
+    menuToggle.addEventListener('click', () => {  
+        menuToggle.classList.toggle('active');  
+        navLinks.classList.toggle('active');  
+    });  
 
-    // Hide navbar on scroll down, show on scroll up
-    let lastScrollY = window.scrollY;
+    // Fermeture du menu au clic externe  
+    document.addEventListener('click', (e) => {  
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {  
+            menuToggle.classList.remove('active');  
+            navLinks.classList.remove('active');  
+        }  
+    });  
 
-    window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > lastScrollY) {
-        navbar.classList.add('hidden');
-      } else {
-        navbar.classList.remove('hidden');
-      }
-      lastScrollY = window.scrollY;
-    });
+    // Effet de scroll sur la navbar  
+    window.addEventListener('scroll', () => {  
+        if (window.scrollY > 50) {  
+            navbar.classList.add('scrolled');  
+        } else {  
+            navbar.classList.remove('scrolled');  
+        }  
+    });  
 
-    // Show the Projects section when 'Explore More' is clicked
-    function showProjects() {
-      const projectsSection = document.getElementById('projects');
-      projectsSection.style.display = 'block'; // Make projects visible
-      projectsSection.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the section
-    }
+    // Génération de particules dynamiques  
+    function createParticles() {  
+        for (let i = 0; i < 30; i++) {  
+            const particle = document.createElement('div');  
+            particle.classList.add('particle');  
+            particle.style.left = `${Math.random() * 100}vw`;  
+            particle.style.top = `${Math.random() * 100}vh`;  
+            particle.style.animationDuration = `${Math.random() * 5 + 3}s`;  
+            document.body.appendChild(particle);  
+        }  
+    }  
 
-    // Interactive Button Animation (Optional)
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('mouseover', () => {
-        button.style.transform = 'scale(1.1)';
-      });
-      button.addEventListener('mouseout', () => {
-        button.style.transform = 'scale(1)';
-      });
-    });
-  </script>
+    createParticles();  
+</script>
+  
 <script src="app.js"></script>
   <script src="sw.js"></script>
 		<footer class="py-12 bg-zinc-50">
@@ -437,23 +553,7 @@
 			</div>
 		</footer>
 	</body>
-	<script>
-		    document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      // Collect form data
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      
-      // WhatsApp API URL
-      const phoneNumber = '+243846064543'; // Replace with your WhatsApp number
-           const whatsappURL = `https://wa.me/${phoneNumber}?text=%0AMessage:%20${encodeURIComponent(message)}`;
-      
-      // Redirect user to WhatsApp chat
-      window.open(whatsappURL, '_blank');
-    });
-	</script>
+	
 	<style>     /* Animation */
         @keyframes fadeIn {
             0% { opacity: 0; transform: scale(0.9); }
