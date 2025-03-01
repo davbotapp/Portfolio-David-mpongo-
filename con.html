@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700" rel="stylesheet">
+    
+    <style>     /* Animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Formulaire */
+        form {
+            width: 70%;
+            max-width: 300px;
+            margin: 50px auto;
+  background: linear-gradient(135deg, #4a4a9e, #ff5757);
+            padding: 30px;
+            font-size:10px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 4s forwards;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Style des labels */
+        label {
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+            color: #fff;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Inputs et textareas */
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border 0.3s ease, background 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #6a40fc;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Boutons */
+        button {
+            background: linear-gradient(135deg, #6a40fc, #ff3e3e);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #bc48fc, #6a40fc);
+        }
+
+        /* Conteneur principal */
+        main {
+            font-family: georgia;
+            color: black;
+            background: #121212;
+            padding: 20px;
+            line-height: 1.6;
+            border-radius:30px;
+        }
+
+        /* Section hero */
+        #hero {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        #hero h1, 
+        #hero h2, 
+        #hero h3, 
+        #hero h4 {
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        /* Images stylisées */
+        img {
+            border-radius: 15px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections */
+        .section-margin {
+            margin: 40px 0;
+        }
+
+        .section-margin h4 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+        text-align:center;
+}
+        /* Liens */
+        a.button {
+            
+            background: linear-gradient(135deg,red,purple);
+            color: white;
+            text-decoration: none;
+            padding: 10px 10px;
+            border-radius: 10px;
+         
+            font-size: 10px;
+            
+            text-transform: uppercase;
+            transition: background 0.3s ease, transform 0.3s ease;
+           
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+        }
+
+        a.button:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #bc48fc, #ff3e3e);
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            background: #1a1a1a;
+            text-align: center;
+        }
+
+        footer h1 {
+            color: #fff;
+            font-family: 'Georgia', serif;
+        }
+
+        footer p {
+            color: lightgray;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* Clients */
+        .client1,
+        .client2,
+        .client3 {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Vidéos */
+        video {
+            border-radius: 15px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        p,h1,h3 {
+            text-align:center;
+            font-size:georgia;
+        }
+        
+          </style>
+
+    <style>
+        
+        body {
+            background: #7040ff;
+        }
+            box-shadow: 0 4px 15px #00000066;
+            width: 90%;
+            max-width: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1, h2 {
+            color: #00d9ff;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        p {
+            font-size: 14px;
+            opacity: .8;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 15px;
+            background: #00d9;
+            color: #0d1117;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all .3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .btn:hover {
+            background: #00b3cc;
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px #00d9ff);
+        }
+
+     
+            
+        }
+
+        label {
+            
+            text-align:center;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            opacity: 0.7;
+            font-size: 16px;
+            color: #00d9ff;
+        }
+
+        #contactForm input, #contactForm textarea {
+            padding: 10px;
+            width: 90%;
+            border: 2px solid #00d9ff;
+            border-radius: 5px;
+            font-size: 14px;
+            background: #1f2937;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #contactForm input:focus, #contactForm textarea:focus {
+            border-color: #00d9ff;
+        }
+
+        #contactForm button {
+            padding: 10px 20px;
+            background: #00d9ff;
+            color: #0d1117;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #00d9ff, #00b3cc);
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(45deg, #00b3cc, #0099b3);
+            box-shadow: 0 0 25px #00d9ff66;
+        }
+
+        input:valid:not(:placeholder-shown),
+        textarea:valid:not(:placeholder-shown) {
+            border-color: #00ff8866;
+        }
+
+        input:invalid:not(:placeholder-shown),
+        textarea:invalid:not(:placeholder-shown) {
+            border-color: #ff005566;
+        }
+
+        .whatsapp-link {
+            margin-top: 15px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1 data-aos="zoom-in">Contactez-moi</h1>
+    <p data-aos="zoom-in" data-aos-delay="100">Joignez-moi via WhatsApp ou le formulaire</p>
+    
+    <div class="container" data-aos="fade-up">
+        <h2 data-aos="fade-right">Me Contacter</h2>
+        <form id="contactForm">
+            <div>         <label for="name">Nom</label>
+            
+                <input id="name" type="text" required placeholder=" ">
+                   </div>
+            <div>
+                 <label for="email">Email</label>
+                <input id="email" type="email" required placeholder=" ">
+               
+            </div>
+            <div>                <label for="phone">Téléphone</label>
+                <input id="phone" type="tel" placeholder=" ">
+
+            </div>
+            <div>
+                <label for="message">message </label>
+                <textarea id="message" required placeholder=" "></textarea>
+                        </div>
+            <button type="submit" class="btn">Envoyer sur WhatsApp</button>
+        </form>
+        
+        <div class="whatsapp-link">
+            <a href="https://www.facebook.com/profile.php?id=100092277325670" class="btn">Facebook</a>
+            <a href="index.html" class="btn" 
+         >Retour</a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true });
+        
+        document.getElementById("contactForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const message = encodeURIComponent(document.getElementById("message").value);
+            window.open(`https://wa.me/+243846064543?text=%0ANom: ${encodeURIComponent(document.getElementById("name").value)}%0AEmail: ${encodeURIComponent(document.getElementById("email").value)}%0ATéléphone: ${encodeURIComponent(document.getElementById("phone").value)}%0AMessage: ${message}`, "_blank");
+        });
+    </script>
+</body>
+</html>
