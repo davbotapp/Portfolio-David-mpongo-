@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte d'élève</title>
+    <style>
+    body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #1e3c72, #2a5298); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; } .container { background-color: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); width: 500px; max-height: 80vh; overflow-y: auto; text-align: center; } h1 { font-size: 24px; margin-bottom: 20px; color: #6200ea; } .form-group { background: linear-gradient(135deg, #46ff15); padding: 20px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); } input, select, textarea { width: calc(100% - 20px); padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; } textarea { resize: vertical; height: 80px; } button { background-color: #6200ea; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; font-size: 16px; transition: background-color 0.3s ease; } button:hover { background-color: #3700b3; } .card { background: linear-gradient(135deg, #6200ea, #3700b3); border-radius: 15px; padding: 20px; margin-top: 20px; display: none; text-align: left; display: flex; align-items: center; gap: 20px; color: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden; width: 100%; } .card::before { content: "Carte d'élève"; position: absolute; top: 0; left: 0; right: 0; background: #15ff62; color: #000; padding: 10px; border-radius: 15px 15px 0 0; font-size: 18px; font-weight: bold; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1; } .card img { width: 70px; height: 80px; border-radius: 15px; object-fit: cover; border: 3px solid #ffd700; z-index: 1; } .card-content { flex: 1; z-index: 1; margin-top: 40px; /* Ajouter une marge pour éviter que le contenu ne soit caché sous la banderole */ } .card h2 { font-size: 20px; margin: 0 0 10px 0; color: #fff; } .card p { margin: 5px 0; font-size: 14px; color: #f0f0f0; } .card p strong { color: #ffd700; } .card .quote { font-style: italic; margin-top: 10px; color: #ffd700; } .card .qr-code { width: 40px; height: 40px; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 2px solid #ffd700; position: absolute; bottom: 10px; right: 10px; z-index: 1; } .card .qr-code img { width: 30px; height: 30px; border-radius: 10px; } .card .photo-id { display: flex; flex-direction: column; align-items: center; gap: 10px; } .card .photo-id p { margin: 0; font-size: 14px; color: #ffd700; } .download-button { margin-top: 20px; /* Espacement entre la carte et le bouton */ } .hacker-legend { position: absolute; bottom: 60px; /* Position au-dessus du QR code */ right: 10px; font-size: 12px; color: #ffd700; font-style: italic; z-index: 1; } .animated-icon { position: absolute; top: 50px; /* Augmenter la valeur pour espacer de la banderole */ right: 10px; width: 40px; /* Même taille que le QR code */ height: 40px; z-index: 1; }
+    </style>
+</head>
+<body>
+<div class=container><h1>Créez votre Carte d'élève </h1><div class=form-group><input id=username placeholder="Nom de l'élève"> <input id=realname placeholder="Près nom"> <input id=age placeholder=Âge type=number> <input id=nationality placeholder=classe> <input id=languages placeholder="École "> <select id=favoriteLanguage><option value="">Choisissez votre langue préférée<option value=JavaScript>Français<option value=Python>anglais<option value=Java>lingala<option value=C++>aucune<option value=PHP>malgache<option value=latin>Latin</select> <textarea id=quote placeholder="Votre citation préférée"></textarea> <input id=photo type=file accept=image/*></div><button onclick=generateCard()>Générer la Carte</button><div class=card id=card><div class=photo-id><img alt=Photo src=""id=cardPhoto><p><strong>ID :</strong> <span id=cardId></span></div><div class=card-content><h2 id=cardUsername></h2><p><strong>Prés nom:</strong> <span id=cardRealname></span><p><strong>Âge :</strong> <span id=cardAge></span> ans<p><strong>Classe :</strong> <span id=cardNationality></span><p><strong>École :</strong> <span id=cardLanguages></span><p><strong>Langue Préféré :</strong> <span id=cardFavoriteLanguage></span><p class=quote><strong>Citation :</strong> <span id=cardQuote></span></div><div class=qr-code><img alt="QR Code"src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ProgrammerCard"></div><div class=hacker-legend></div></div><button onclick=downloadCard() class=download-button>Télécharger la Carte</button></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        (function(_0x54df95,_0x2cf0aa){const _0x31e86e=_0x174f,_0x185103=_0x54df95();while(!![]){try{const _0x6193f=parseInt(_0x31e86e(0x136))/0x1*(parseInt(_0x31e86e(0x133))/0x2)+parseInt(_0x31e86e(0x128))/0x3*(parseInt(_0x31e86e(0x13e))/0x4)+parseInt(_0x31e86e(0x13b))/0x5+parseInt(_0x31e86e(0x142))/0x6+parseInt(_0x31e86e(0x126))/0x7+-parseInt(_0x31e86e(0x13c))/0x8*(parseInt(_0x31e86e(0x124))/0x9)+-parseInt(_0x31e86e(0x139))/0xa*(parseInt(_0x31e86e(0x13d))/0xb);if(_0x6193f===_0x2cf0aa)break;else _0x185103['push'](_0x185103['shift']());}catch(_0x1c64c8){_0x185103['push'](_0x185103['shift']());}}}(_0x27f6,0x53f0a));let cardCount=0x0;function generateCard(){const _0x5177a7=_0x174f,_0x93c51b=document['getElementById'](_0x5177a7(0x143))[_0x5177a7(0x134)],_0x3c231d=document[_0x5177a7(0x131)](_0x5177a7(0x127))['value'],_0x35cbe9=document['getElementById']('age')[_0x5177a7(0x134)],_0x1890b1=document[_0x5177a7(0x131)](_0x5177a7(0x148))[_0x5177a7(0x134)],_0x147198=document[_0x5177a7(0x131)](_0x5177a7(0x14c))[_0x5177a7(0x134)],_0x4a716d=document[_0x5177a7(0x131)](_0x5177a7(0x12e))[_0x5177a7(0x134)],_0x40873f=document['getElementById'](_0x5177a7(0x140))[_0x5177a7(0x134)],_0x3ea680=document[_0x5177a7(0x131)]('photo')['files'][0x0];if(!_0x93c51b||!_0x3c231d||!_0x35cbe9||!_0x1890b1||!_0x147198||!_0x4a716d||!_0x3ea680||!_0x40873f){alert(_0x5177a7(0x144));return;}cardCount++;const _0x10fe0e=String(cardCount)[_0x5177a7(0x130)](0x4,'0'),_0x530025=new FileReader();_0x530025[_0x5177a7(0x138)]=function(_0x59476c){const _0x1c9d72=_0x5177a7;document['getElementById'](_0x1c9d72(0x145))[_0x1c9d72(0x125)]=_0x59476c[_0x1c9d72(0x123)][_0x1c9d72(0x12d)],document[_0x1c9d72(0x131)](_0x1c9d72(0x147))[_0x1c9d72(0x135)]=_0x93c51b,document[_0x1c9d72(0x131)](_0x1c9d72(0x13f))[_0x1c9d72(0x135)]=_0x3c231d,document['getElementById'](_0x1c9d72(0x14b))[_0x1c9d72(0x135)]=_0x35cbe9,document[_0x1c9d72(0x131)](_0x1c9d72(0x14e))[_0x1c9d72(0x135)]=_0x1890b1,document[_0x1c9d72(0x131)](_0x1c9d72(0x14a))[_0x1c9d72(0x135)]=_0x147198,document[_0x1c9d72(0x131)]('cardFavoriteLanguage')[_0x1c9d72(0x135)]=_0x4a716d,document['getElementById'](_0x1c9d72(0x129))[_0x1c9d72(0x135)]=_0x40873f,document[_0x1c9d72(0x131)](_0x1c9d72(0x132))[_0x1c9d72(0x135)]=_0x10fe0e,document['getElementById'](_0x1c9d72(0x12a))[_0x1c9d72(0x141)][_0x1c9d72(0x12f)]=_0x1c9d72(0x146);},_0x530025[_0x5177a7(0x13a)](_0x3ea680);}function _0x27f6(){const _0x5c47bc=['style','3658914XhjTJm','username','Veuillez\x20remplir\x20tous\x20les\x20champs\x20et\x20sélectionner\x20une\x20photo.','cardPhoto','flex','cardUsername','nationality','carte_programmeur.png','cardLanguages','cardAge','languages','href','cardNationality','target','9fsMfGd','src','4148648xrlBaZ','realname','1488594BEDGnE','cardQuote','card','toDataURL','createElement','result','favoriteLanguage','display','padStart','getElementById','cardId','44312XeNCbJ','value','textContent','13bnMMbS','download','onload','20TYYvza','readAsDataURL','116915GThwYl','2575904DYMJue','7393573mGcEwn','4LoQvLB','cardRealname','quote'];_0x27f6=function(){return _0x5c47bc;};return _0x27f6();}function _0x174f(_0x469294,_0x515587){const _0x27f6bd=_0x27f6();return _0x174f=function(_0x174f04,_0xc02863){_0x174f04=_0x174f04-0x123;let _0x4beb07=_0x27f6bd[_0x174f04];return _0x4beb07;},_0x174f(_0x469294,_0x515587);}function downloadCard(){const _0x26a7fe=_0x174f,_0x1b8641=document['getElementById'](_0x26a7fe(0x12a));html2canvas(_0x1b8641)['then'](_0x5b5703=>{const _0x514cff=_0x26a7fe,_0x5b3732=_0x5b5703[_0x514cff(0x12b)]('image/png'),_0x3f8f6d=document[_0x514cff(0x12c)]('a');_0x3f8f6d[_0x514cff(0x14d)]=_0x5b3732,_0x3f8f6d[_0x514cff(0x137)]=_0x514cff(0x149),_0x3f8f6d['click']();});}
+    </script>
+    <style>
+        html {
+  scroll-behavior: smooth;
+}  
+:root {
+    --header-height: 3rem;
+    --first-color: #00d9ff;
+    --dark-color: #ffffff;
+    --white-color: #ffffff;
+    --text-color: #ffffff;
+    --h2-font-size: 1.5rem;
+    --mb-2: 1rem;
+    --mb-4: 2rem;
+    --z-fixed: 100;
+}
+
+#header {
+    visibility: hidden;
+}
+#content {
+    visibility: hidden;
+    width: 100%;
+    overflow:hidden;
+    flex-direction: column;
+    align-items: center;
+}
+body {
+    font-family: 'Orbitron', georgia;
+    background: #0d1117;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px 0;
+    display: flex;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+h1 {
+    color: skyblue;
+    margin: 20px 0;
+}
+.container {
+    width: 60%;
+    min-height: 500px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;    
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);    
+    border: 1px solid rgba(0, 217, 255, 0.2);    
+    backdrop-filter: blur(5px);    
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+}
+
+section {    
+    margin: 20px 0;    
+    padding: 20px;    
+    border-radius: 12px;    
+    background: rgba(255, 255, 255, 0.05);    
+    border-left: 5px solid #00d9ff;    
+    transition: transform 0.3s ease, background 0.3s ease;    
+    position: relative;
+}    
+
+section:hover {    
+    transform: scale(1.02);    
+    background:  rgba(255, 255, 255, 0.08);    
+    z-index: 1;
+}    
+
+.btn {    
+    padding: 12px 20px;    
+    background: #00d9ff;    
+    color: #0d1117;    
+    border: none;    
+    border-radius: 8px;    
+    cursor: pointer;    
+    font-size: 16px;    
+    transition: all 0.3s ease;    
+    outline: none;    
+    display: inline-block;    
+    text-decoration: none;    
+    margin: 10px 5px;    
+}    
+
+.btn:hover {    
+    background: #00b3cc;    
+    transform: scale(1.05);    
+}    
+
+img {    
+    max-width: 100%;    
+   height:200px;    
+       
+    aspect-ratio: 16/9;    
+    object-fit: cover;    
+    border-radius: 8px;    
+    margin: 35px 0;    
+             box-shadow: 0 0 4px rgba(0, 217, 255, 0.8);    
+    transition: transform 0.3s ease;    
+}    
+          
+      img:hover {    
+    transform: scale(1.05);    
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);    
+    
+}    
+    
+
+.overlay {    
+    position: fixed;    
+    top: 0;    
+    left: 0;    
+    width: 100vw;    
+    height: 100vh;    
+    background: rgba(0, 0, 0, 0.4);    
+    backdrop-filter: blur(5px);    
+    display: flex;    
+    justify-content: center;    
+    align-items: center;    
+    z-index: 1000;    
+}    
+
+.alert-box {    
+    background: linear-gradient(135deg, #1f2937, #374151);    
+    color: #ffffff;    
+    padding: 25px;                             
+    border-radius: 10px;                   
+    text-align: center;    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);    
+    width: min(90%, 400px);    
+    margin: 15px;    
+}    
+
+.alert-box h2 {    
+    margin-bottom: 8px;    
+    font-size: 22px;    
+    font-weight: 700;    
+}    
+
+.alert-box p {    
+    font-size: 16px;    
+    font-style: italic;    
+    color: #b0bec5;    
+    margin-bottom: 20px;    
+}                
+
+
+    @media (max-width: 768px) {      
+    body { padding:10px; }      
+    .container { width: 100%; margin: 15px 0; }      
+}    
+
+ul { margin: 0; padding: 0; list-style: none; }    
+a { text-decoration: none; color: var(--text-color); }    
+img { max-width: 100%; height: auto; display: block; }    
+
+.section { padding: 3rem 0; }    
+    
+.section-title {    
+    position: relative;    
+    font-size: var(--h2-font-size);    
+    color: var(--dark-color);    
+    margin: var(--mb-4) 0;    
+    text-align: center;    
+}    
+.section-title::after {    
+    position: absolute;    
+    content: "";    
+    width: 32px;    
+    height: .18rem;    
+    left: 0; right: 0; margin: auto;    
+    top: 2rem;    
+    background-color: var(--first-color);    
+}    
+
+.messie {    
+    max-width: 1024px;    
+    display: grid;    
+    grid-template-columns: 100%;    
+    grid-column-gap: 2rem;    
+    width: calc(100% - 2rem);    
+    margin-left: var(--mb-2);    
+    margin-right: var(--mb-2);    
+}    
+.header {    
+    width: 100%;    
+    position: fixed;    
+    top: 0;    
+        
+    left: 0;    
+    z-index: var(--z-fixed);    
+    background: #2A3B47;        
+}    
+.nav {    
+    height: var(--header-height);    
+    display: flex;    
+    justify-content: space-between;    
+    align-items: center;    
+}    
+@media screen and (max-width: 768px) {    
+    .nav__satoru {    
+        position: fixed;    
+        top: var(--header-height);    
+        right: -100%;    
+        width: 80%;    
+        height: 100%;    
+        padding: 2rem;    
+        background-color: transparent;    
+        transition: .5s;    
+        backdrop-filter: blur(10px);    
+
+}
+
+@
+     
+    </style>
+</body>
+</html>
