@@ -9,6 +9,233 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style> 
+       
+html {
+  scroll-behavior: smooth;
+}  
+:root {
+    --header-height: 3rem;
+    --first-color: #15ff62;
+    --dark-color: #15ff62;
+    --white-color: #15ff62;
+    --text-color: #ff;
+   
+    --mb-2: 1rem;
+    --mb-4: 2rem;
+    --z-fixed: 100;
+}
+
+#header {
+    visibility: hidden;
+}
+#content {
+    visibility: hidden;
+    width: 100%;
+    overflow:hidden;
+    flex-direction: column;
+    align-items: center;
+}
+body {
+    fon:'Orbitron';
+    background: #160;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px 0;
+    display: flex;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+h1 {
+    color: skyblue;
+    margin: 20px 0;
+}
+.container {
+    width: 60%;
+    min-height: 500px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;    
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);    
+    border: 1px solid rgba(0, 217, 255, 0.2);    
+    backdrop-filter: blur(5px);    
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+}
+
+section {    
+    margin: 20px 0;    
+    padding: 20px;    
+    border-radius: 12px;    
+    background: rgba(255, 255, 255, 0.05);    
+    border-left: 5px solid #00d9ff;    
+    transition: transform 0.3s ease, background 0.3s ease;    
+    position: relative;
+}    
+
+section:hover {    
+    transform: scale(1.02);    
+    background:  rgba(255, 255, 255, 0.08);    
+    z-index: 1;
+}    
+
+.btn {
+      background: linear-gradient(130deg, #ff6b6b);
+      border: none;
+      padding: 1px 30px;
+    
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 20px 0;
+    }
+    
+ .button button:hover {
+      transform: scale(1.05);
+    }
+    
+
+.btn:hover {    
+    background: #00b3cc;    
+    transform: scale(1.05);    
+}    
+
+img {    
+    max-width: 100%;    
+   height:200px;    
+       
+    aspect-ratio: 16/9;    
+    object-fit: cover;    
+    border-radius: 8px;    
+    margin: 35px 0;    
+             box-shadow: 0 0 4px rgba(0, 217, 255, 0.8);    
+    transition: transform 0.3s ease;    
+}    
+          
+      img:hover {    
+    transform: scale(1.05);    
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);    
+    
+}    
+    
+
+.overlay {    
+    position: fixed;    
+    top: 0;    
+    left: 0;    
+    width: 100vw;    
+    height: 100vh;    
+    background: rgba(0, 0, 0, 0.4);    
+    backdrop-filter: blur(5px);    
+    display: flex;    
+    justify-content: center;    
+    align-items: center;    
+    z-index: 1000;    
+}    
+
+.alert-box {    
+    background: linear-gradient(135deg, #160);    
+    color:  #;    
+    padding: 25px;                             
+    border-radius: 10px;                   
+    text-align: center;    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);    
+    width: min(90%, 400px);    
+    margin: 15px;    
+}    
+
+.alert-box h2 {    
+    margin-bottom: 8px;    
+    font-size: 22px;    
+    font-weight: 700;    
+}    
+
+.alert-box p {    
+    font-size: 16px;    
+    font-style: bold;    
+    color: #b0bec5;    
+    margin-bottom: 20px;    
+}                
+
+
+    @media (max-width: 768px) {      
+    body { padding:10px; }      
+    .container { width: 100%; margin: 15px 0; }      
+}    
+
+ul { margin: 0; padding: 0; list-style: none; }    
+a { text-decoration: none; color: var(--text-color); }    
+img { max-width: 100%; height: auto; display: block; }    
+
+.section { padding: 3rem 0; }    
+    
+.section-title {    
+    position: relative;    
+    font-size: var(--h2-font-size);    
+    color: var(--dark-color);    
+    margin: var(--mb-4) 0;    
+    text-align: center;    
+}    
+.section-title::after {    
+    position: absolute;    
+    content: "";    
+    width: 32px;    
+    height: .18rem;    
+    left: 0; right: 0; margin: auto;    
+    top: 2rem;    
+    background-color: var(--first-color);    
+}    
+
+
+.header {    
+    width: 100%;    
+    position: fixed;    
+    top: 0;    
+        
+    left: 0;    
+    z-index: var(--z-fixed);    
+    background: #4c00bfd2;        
+}    
+.nav {    
+    height: var(--header-height);    
+    display: flex;    
+    justify-content: space-between;    
+    align-items: center;    
+}    
+@media screen and (max-width: 768px) {    
+    .nav__satoru {    
+        position: fixed;    
+        top: var(--header-height);    
+        right: -100%;    
+        width: 80%;    
+        height: 100%;    
+        padding: 2rem;    
+        background-color: transparent;    
+        transition: .5s;    
+        backdrop-filter: blur(10px);    
+    }    
+}    
+
+
+    
+    
+    
+.btn {
+
+animation: pulse 1.5s infinite;
+
+}
+
+@keyframes pulse {
+0% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 217, 255, 0.4); }
+50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 217, 255, 0.8); }
+100% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 217, 255, 0.4); }
+
         </style>
 </head>
 <body>    <header class="header" id="header">  
@@ -79,6 +306,18 @@
     </script>  <script src="messie.js">  
  
   
+</script>
+<script>
+    AOS.init({ duration: 1000, once: true, offset: 120, mirror: false });  
+
+    function closeAlert() {  
+        document.getElementById("overlay").style.display = "none";  
+        document.getElementById("content").style.visibility = "visible";  
+        document.getElementById("header").style.visibility = "visible";    
+        document.body.style.overflowY = "auto";  
+        AOS.refreshHard();   
+    }
+    
 </script>
   <!-- messie portfolio-->  
 </body>
