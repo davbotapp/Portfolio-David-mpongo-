@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de Site Web</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #160;
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+    }
+
+    .editor-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-family: monospace;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #run-button {
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 21px 29px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 15px;
+      border-radius: 8px;
+    }
+
+    #preview {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Générateur de Site Web Professionnel</h1>
+  
+  <div class="editor-container">
+      <label for="html-editor">HTML</label>
+    <textarea id="html-editor" placeholder="Écrivez votre code HTML ici..."></textarea>
+    
+    <label for="css-editor">CSS</label>
+    <textarea id="css-editor" placeholder="Écrivez votre code CSS ici..."></textarea>
+    
+    <label for="js-editor">JavaScript</label>
+    <textarea id="js-editor" placeholder="Écrivez votre code JavaScript ici..."></textarea>
+    
+    
+  </div>
+  
+  <button id="run-button">Go</button>
+  
+  <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+
+  <script>
+    document.getElementById('run-button').addEventListener('click', () => {
+      const htmlCode = document.getElementById('html-editor').value;
+      const cssCode = `<style>document.getElementById('css-editor').value</style>`;
+      const jsCode = `<script>{document.getElementById('js-editor').value}<\/script>`;
+      
+      const previewFrame = document.getElementById('preview');
+      const previewDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
+      
+      previewDocument.open();
+      previewDocument.write(htmlCode + cssCode + jsCode);
+      previewDocument.close();
+    });
+  </script>
+</body>
+</html>
