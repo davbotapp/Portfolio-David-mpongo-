@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu de Dames</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+   
+  body{
+display:flex;
+flex-direction:column;
+justify-content:center;align-items:center;
+height:100vh;
+margin:0;
+font-family:'Arial',sans-serif;
+touch-action:manipulation;
+background:linear-gradient(135deg, #160);
+animation:gradientAnimation 10s ease infinite;
+overflow:hidden
+}
+@keyframes gradientAnimation{
+0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}#banner{
+display:flex;
+justify-content:space-between;
+align-items:center;width:100%;
+padding:15px;
+background:linear-gradient(135deg,#,#);
+color:#fff;
+box-shadow:0 4px 15px rgb(0 0 0 / .3);
+border-bottom:2px solid rgb(255 255 255 / .2);
+position:fixed;
+top:0;z-index:10
+}
+#banner-title{
+font-size:24px;
+font-weight:700;
+margin-left:20px
+
+}
+#hamburger{
+display:flex;
+flex-direction:column;
+cursor:pointer;
+margin-right:20px
+}
+#hamburger span{
+width:25px;
+height:3px;
+background:#fff;
+margin:4px 0;
+transition:transform 0.3s ease,opacity 0.3s ease
+}
+#menu{
+display:none;
+flex-direction:column;
+background:rgb(135deg, #160);
+border-radius:10px;
+padding:10px;
+position:absolute;
+top:60px;
+right:15px
+}
+#menu.active{
+display:flex
+}
+#menu select,#menu button{
+padding:10px 15px;
+font-size:16px;
+border-radius:25px;
+border:none;
+cursor:pointer;
+background:rgb(255 255 255 / .2);color:#160;
+transition:background 0.3s ease,transform 0.2s ease;
+margin:5px 0
+}
+#menu select:hover,
+#menu button:hover{background:rgb(255 255 255 / .4);
+transform:scale(1.05)}
+#menu select option{background:#2600ff;
+color:#2600ff
+}
+#board{
+display:grid;
+grid-template-columns:repeat(8,10vmin);
+grid-template-rows:repeat(8,10vmin);
+gap:2px;background-color:#;
+padding:2px;
+border-radius:10px;
+box-shadow:0 0 20px rgb(0 0 0 / .5);
+margin-top:80px
+}
+.cell{display:flex;
+justify-content:center;
+align-items:center;
+background-color:#190;
+border-radius:5px;
+transition:background 0.3s ease}.cell.white{background-color:#eeeed2
+}
+.cell.highlight{background-color:#ffcc00!important
+}
+.piece{width:80%;height:80%;border-radius:50%;
+cursor:pointer;
+transition:transform 0.2s ease,box-shadow 0.2s ease;
+box-shadow:0 4px 6px rgb(0 0 0 / .3)
+}
+.piece.player1{
+background:radial-gradient(circle,#160,#1c15ff)
+}
+.piece.player2{background:radial-gradient(circle,#ff1f00,#70ff15)
+}
+.piece.selected{
+transform:scale(1.1);
+box-shadow:0 0 15px #ceff00
+}
+.piece.king{
+border:2px solid gold
+}
+#turn-indicator{
+margin-top:20px;
+font-size:24px;
+font-weight:700;
+color:#fff;
+text-shadow:0 2px 5px rgb(0 0 0 / .3)
+}
+#instructions{
+margin-top:10px;
+font-size:18px;
+color:#fff;
+text-align:center;
+text-shadow:0 2px 5px rgb(0 0 0 / .3)
+}
+#congrats{
+display:none;
+position:fixed;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+background:rgb(0 0 0 / .9);
+color:#fff;
+padding:20px;
+border-radius:10px;
+text-align:center;
+z-index:100
+}
+#congrats button {
+padding:10px 20px;
+font-size:16px;
+border-radius:25px;
+border:none;
+cursor:pointer;
+background:#ff7e5f;
+color:#fff;
+transition:background 0.3s ease
+}
+#congrats button:hover{
+background:#ff1a1a
+}
+footer{
+position:fixed;
+bottom:0;
+width:100%;
+background:rgb(255 255 255 / .1);
+padding:10px;
+text-align:center;
+box-shadow:0 -4px 10px rgb(0 0 0 / .3)
+}
+footer a{margin:0 10px;
+color:#fff;
+font-size:24px;
+transition:color 0.3s ease
+}
+footer a:hover{
+color:#ff7e
+}
+  </style>
+</head>
+<body>
+<div id=banner><div id=banner-title> Davbot Dame</div><div id=hamburger><span></span> <span></span> <span></span></div><div id=menu><select id=mode><option value=ai>Jouer contre l'ordinateur<option value=two-players>Jouer à deux</select> <select id=level><option value=easy>Facile<option value=medium>Moyen<option value=hard>Difficile</select> <button id=restart>Recommencer</button></div></div><div id=board></div><div id=turn-indicator>Tour du joueur rouge</div><div id=instructions></div><div id=congrats><p id=congrats-message></p><button id=new-game>Nouvelle partie</button></div>
+
+  <script>
+    const _0x4ab197=_0x30b4;(function(_0x49e3eb,_0x342d05){const _0x46a68b=_0x30b4,_0x4f5d57=_0x49e3eb();while(!![]){try{const _0x3f5a58=-parseInt(_0x46a68b(0x166))/0x1*(parseInt(_0x46a68b(0x16c))/0x2)+-parseInt(_0x46a68b(0x189))/0x3*(-parseInt(_0x46a68b(0x173))/0x4)+-parseInt(_0x46a68b(0x18d))/0x5+-parseInt(_0x46a68b(0x187))/0x6*(-parseInt(_0x46a68b(0x159))/0x7)+parseInt(_0x46a68b(0x16d))/0x8*(parseInt(_0x46a68b(0x17d))/0x9)+-parseInt(_0x46a68b(0x175))/0xa*(parseInt(_0x46a68b(0x163))/0xb)+parseInt(_0x46a68b(0x14b))/0xc*(parseInt(_0x46a68b(0x160))/0xd);if(_0x3f5a58===_0x342d05)break;else _0x4f5d57['push'](_0x4f5d57['shift']());}catch(_0x234141){_0x4f5d57['push'](_0x4f5d57['shift']());}}}(_0x2249,0x5c907));const board=document[_0x4ab197(0x14f)](_0x4ab197(0x152)),turnIndicator=document['getElementById']('turn-indicator'),instructions=document[_0x4ab197(0x14f)](_0x4ab197(0x177)),modeSelector=document[_0x4ab197(0x14f)](_0x4ab197(0x17f)),levelSelector=document[_0x4ab197(0x14f)](_0x4ab197(0x161)),restartButton=document[_0x4ab197(0x14f)]('restart'),hamburger=document['getElementById'](_0x4ab197(0x172)),menu=document[_0x4ab197(0x14f)]('menu'),congrats=document[_0x4ab197(0x14f)](_0x4ab197(0x151)),congratsMessage=document[_0x4ab197(0x14f)](_0x4ab197(0x158)),newGameButton=document[_0x4ab197(0x14f)](_0x4ab197(0x150));function _0x2249(){const _0x1cde83=['.piece.player2','player1','68518fhMdtQ','2120AFwTFm','appendChild','value','.piece.player1','div','hamburger','3892xdKehz','click','524730TkEuoG','.piece','instructions','block','col','félicitations\x20tu\x20as\x20gagné\x20!','remove','add','15597hqZWxI','createElement','mode','floor','display','player2','player','Le\x20joueur\x20noir\x20a\x20gagné\x20!','change','querySelector','1559748HrgKwO','active','615vJEzMH','abs','push','addEventListener','983790OIKYcw','selected','forEach','style','12MrvnAi','toRow','innerHTML','\x22]\x20.piece','getElementById','new-game','congrats','board','length','removeChild','dataset','.cell[data-row=\x22','king','congrats-message','7lciMmo','\x22][data-col=\x22','cell','textContent','classList','piece','toggle','4981327ebgQKN','level','none','66AkApbU','fromCol','querySelectorAll','12SMYCal','target','row','fromRow'];_0x2249=function(){return _0x1cde83;};return _0x2249();}let selectedPiece=null,currentPlayer=0x2,gameMode='ai',gameLevel='easy';const initialBoard=[[0x0,0x1,0x0,0x1,0x0,0x1,0x0,0x1],[0x1,0x0,0x1,0x0,0x1,0x0,0x1,0x0],[0x0,0x1,0x0,0x1,0x0,0x1,0x0,0x1],[0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0],[0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0],[0x2,0x0,0x2,0x0,0x2,0x0,0x2,0x0],[0x0,0x2,0x0,0x2,0x0,0x2,0x0,0x2],[0x2,0x0,0x2,0x0,0x2,0x0,0x2,0x0]];function createBoard(){const _0x4b0d1b=_0x4ab197;board[_0x4b0d1b(0x14d)]='';for(let _0x13b833=0x0;_0x13b833<0x8;_0x13b833++){for(let _0x8a089f=0x0;_0x8a089f<0x8;_0x8a089f++){const _0xf53f84=document[_0x4b0d1b(0x17e)](_0x4b0d1b(0x171));_0xf53f84['classList'][_0x4b0d1b(0x17c)](_0x4b0d1b(0x15b));(_0x13b833+_0x8a089f)%0x2===0x0&&_0xf53f84[_0x4b0d1b(0x15d)][_0x4b0d1b(0x17c)]('white');_0xf53f84[_0x4b0d1b(0x155)]['row']=_0x13b833,_0xf53f84[_0x4b0d1b(0x155)][_0x4b0d1b(0x179)]=_0x8a089f;const _0x3c6285=initialBoard[_0x13b833][_0x8a089f];if(_0x3c6285!==0x0){const _0xc6b266=document[_0x4b0d1b(0x17e)]('div');_0xc6b266[_0x4b0d1b(0x15d)][_0x4b0d1b(0x17c)](_0x4b0d1b(0x15e)),_0xc6b266[_0x4b0d1b(0x15d)]['add'](_0x3c6285===0x1?_0x4b0d1b(0x16b):_0x4b0d1b(0x182)),_0xc6b266[_0x4b0d1b(0x155)][_0x4b0d1b(0x183)]=_0x3c6285,_0xf53f84[_0x4b0d1b(0x16e)](_0xc6b266);}_0xf53f84[_0x4b0d1b(0x18c)](_0x4b0d1b(0x174),()=>handleCellClick(_0x13b833,_0x8a089f)),board[_0x4b0d1b(0x16e)](_0xf53f84);}}}function handleCellClick(_0x5efca0,_0x3c4938){const _0x4ea64c=_0x4ab197;if(gameMode==='ai'&&currentPlayer===0x1)return;const _0x2db5c8=document['querySelector'](_0x4ea64c(0x156)+_0x5efca0+_0x4ea64c(0x15a)+_0x3c4938+'\x22]'),_0xbc5a29=_0x2db5c8[_0x4ea64c(0x186)]('.piece');if(_0xbc5a29&&parseInt(_0xbc5a29[_0x4ea64c(0x155)][_0x4ea64c(0x183)])===currentPlayer)selectedPiece&&selectedPiece[_0x4ea64c(0x15d)]['remove']('selected'),selectedPiece=_0xbc5a29,selectedPiece['classList'][_0x4ea64c(0x17c)](_0x4ea64c(0x18e));else{if(selectedPiece){const _0x1a9e5f=parseInt(selectedPiece['parentElement']['dataset'][_0x4ea64c(0x168)]),_0xf759f8=parseInt(selectedPiece['parentElement']['dataset']['col']);isValidMove(_0x1a9e5f,_0xf759f8,_0x5efca0,_0x3c4938)&&(movePiece(_0x1a9e5f,_0xf759f8,_0x5efca0,_0x3c4938),selectedPiece[_0x4ea64c(0x15d)][_0x4ea64c(0x17b)](_0x4ea64c(0x18e)),selectedPiece=null,currentPlayer=currentPlayer===0x1?0x2:0x1,updateTurnIndicator(),gameMode==='ai'&&currentPlayer===0x1&&setTimeout(playAI,0x3e8));}}}function isValidMove(_0x3148ff,_0x3de650,_0x500ac9,_0x302530){const _0x333e77=_0x4ab197,_0x859743=Math[_0x333e77(0x18a)](_0x500ac9-_0x3148ff),_0x5901e4=Math['abs'](_0x302530-_0x3de650);if(_0x859743===0x1&&_0x5901e4===0x1)return!document[_0x333e77(0x186)](_0x333e77(0x156)+_0x500ac9+_0x333e77(0x15a)+_0x302530+_0x333e77(0x14e));if(_0x859743===0x2&&_0x5901e4===0x2){const _0x25654b=(_0x3148ff+_0x500ac9)/0x2,_0x224341=(_0x3de650+_0x302530)/0x2,_0x29c791=document['querySelector'](_0x333e77(0x156)+_0x25654b+_0x333e77(0x15a)+_0x224341+'\x22]'),_0x293b1c=_0x29c791[_0x333e77(0x186)](_0x333e77(0x176));if(_0x293b1c&&parseInt(_0x293b1c['dataset'][_0x333e77(0x183)])!==currentPlayer)return!![];}return![];}function movePiece(_0x3082af,_0x530929,_0x1f77d7,_0x6ed4bb){const _0x295086=_0x4ab197,_0x4daf21=document[_0x295086(0x186)](_0x295086(0x156)+_0x3082af+'\x22][data-col=\x22'+_0x530929+'\x22]'),_0x2c5afb=document[_0x295086(0x186)](_0x295086(0x156)+_0x1f77d7+_0x295086(0x15a)+_0x6ed4bb+'\x22]'),_0x5b7437=_0x4daf21[_0x295086(0x186)]('.piece'),_0x2f6945=Math[_0x295086(0x18a)](_0x1f77d7-_0x3082af);if(_0x2f6945===0x2){const _0xaf77bf=(_0x3082af+_0x1f77d7)/0x2,_0x2a4295=(_0x530929+_0x6ed4bb)/0x2,_0x97fda4=document[_0x295086(0x186)](_0x295086(0x156)+_0xaf77bf+_0x295086(0x15a)+_0x2a4295+'\x22]');_0x97fda4[_0x295086(0x154)](_0x97fda4[_0x295086(0x186)]('.piece'));}_0x2c5afb[_0x295086(0x16e)](_0x5b7437),(currentPlayer===0x1&&_0x1f77d7===0x7||currentPlayer===0x2&&_0x1f77d7===0x0)&&_0x5b7437['classList'][_0x295086(0x17c)](_0x295086(0x157)),checkWin();}function checkWin(){const _0x2610cf=_0x4ab197,_0x242bf0=document[_0x2610cf(0x165)](_0x2610cf(0x170))[_0x2610cf(0x153)],_0x3583d8=document[_0x2610cf(0x165)](_0x2610cf(0x16a))[_0x2610cf(0x153)];if(_0x242bf0===0x0)showCongrats(_0x2610cf(0x17a));else _0x3583d8===0x0&&showCongrats(_0x2610cf(0x184));}function _0x30b4(_0x202578,_0x31cc6a){const _0x2249f2=_0x2249();return _0x30b4=function(_0x30b450,_0x1abb39){_0x30b450=_0x30b450-0x14b;let _0xd96a96=_0x2249f2[_0x30b450];return _0xd96a96;},_0x30b4(_0x202578,_0x31cc6a);}function showCongrats(_0x3d2da9){const _0x2ad6cd=_0x4ab197;congratsMessage['textContent']=_0x3d2da9,congrats[_0x2ad6cd(0x190)][_0x2ad6cd(0x181)]=_0x2ad6cd(0x178);}function hideCongrats(){const _0x2e7491=_0x4ab197;congrats['style']['display']=_0x2e7491(0x162);}function updateTurnIndicator(){const _0x49135a=_0x4ab197;turnIndicator[_0x49135a(0x15c)]=currentPlayer===0x2?'Tour\x20du\x20joueur\x20rouge':'Tour\x20de\x20l\x27ordinateur';}function playAI(){const _0xeb56b=_0x4ab197,_0x5a776a=document[_0xeb56b(0x165)](_0xeb56b(0x170)),_0x4cc07d=[];_0x5a776a[_0xeb56b(0x18f)](_0x5bfe45=>{const _0x62bf12=_0xeb56b,_0x4b58d3=parseInt(_0x5bfe45['parentElement'][_0x62bf12(0x155)][_0x62bf12(0x168)]),_0x531702=parseInt(_0x5bfe45['parentElement'][_0x62bf12(0x155)][_0x62bf12(0x179)]);for(let _0x592448=0x0;_0x592448<0x8;_0x592448++){for(let _0x3062e3=0x0;_0x3062e3<0x8;_0x3062e3++){isValidMove(_0x4b58d3,_0x531702,_0x592448,_0x3062e3)&&_0x4cc07d[_0x62bf12(0x18b)]({'fromRow':_0x4b58d3,'fromCol':_0x531702,'toRow':_0x592448,'toCol':_0x3062e3});}}});if(_0x4cc07d[_0xeb56b(0x153)]>0x0){const _0x5e5f93=_0x4cc07d[Math[_0xeb56b(0x180)](Math['random']()*_0x4cc07d['length'])];movePiece(_0x5e5f93[_0xeb56b(0x169)],_0x5e5f93[_0xeb56b(0x164)],_0x5e5f93[_0xeb56b(0x14c)],_0x5e5f93['toCol']),currentPlayer=0x2,updateTurnIndicator();}}modeSelector['addEventListener'](_0x4ab197(0x185),_0x34f591=>{const _0x1646de=_0x4ab197;gameMode=_0x34f591[_0x1646de(0x167)][_0x1646de(0x16f)],createBoard(),currentPlayer=0x2,updateTurnIndicator();}),levelSelector[_0x4ab197(0x18c)]('change',_0x243ae8=>{const _0x47466e=_0x4ab197;gameLevel=_0x243ae8['target'][_0x47466e(0x16f)],createBoard(),currentPlayer=0x2,updateTurnIndicator();}),restartButton[_0x4ab197(0x18c)](_0x4ab197(0x174),()=>{createBoard(),currentPlayer=0x2,updateTurnIndicator(),hideCongrats();}),newGameButton[_0x4ab197(0x18c)](_0x4ab197(0x174),()=>{createBoard(),currentPlayer=0x2,updateTurnIndicator(),hideCongrats();}),hamburger[_0x4ab197(0x18c)](_0x4ab197(0x174),()=>{const _0x3c4327=_0x4ab197;menu['classList'][_0x3c4327(0x15f)](_0x3c4327(0x188));}),createBoard(),updateTurnIndicator();
+  </script>
+</body>
+</html
