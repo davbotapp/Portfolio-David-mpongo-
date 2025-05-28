@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crée par davbot</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Veuillez entrer le mot clé de la vidéo</h1>
+    <form class="form-group center" action="/search-youtube" method="get">
+        <input type="text" name="q" placeholder="Mot clé">
+        <input type="submit" value="Rechercher">
+    </form>
+</body>
+</html>
+<style>
+    /* style.css */
+.form-group {
+    margin-bottom: 20px;
+}
+body {
+    background: #160;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 20px); /* Ajustez la largeur en fonction de votre marge */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto; /* Pour centrer horizontalement */
+    margin-top: 10px; /* Ajoutez de la marge au-dessus du bouton */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+h1{
+  color:gray;
+  text-align: center;
+}
+/* style.css */
+.center {
+    text-align: center;
+}
+</style><script>// validation.js
+document.addEventListener("DOMContentLoaded", function() {
+    var usernameInput = document.getElementById("username");
+    var passwordInput = document.getElementById("password");
+    var loginError = document.getElementById("login-error");
+
+    usernameInput.addEventListener("input", function() {
+        loginError.innerHTML = "";
+    });
+
+    passwordInput.addEventListener("input", function() {
+        loginError.innerHTML = "";
+    });
+});
+
+function validateForm() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var loginError = document.getElementById("login-error");
+
+    if (password !== "motdepassecorrect") {
+        loginError.innerHTML = "<table><tr><td>Nom d'utilisateur ou mot de passe incorrect.</td></tr></table>";
+        return false;
+    } else {
+        return true;
+    }
+}
+  </script>
