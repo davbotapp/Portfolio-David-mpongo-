@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculateur d'Âge Complet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #160;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: #00bfff;
+      color: white;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    #resultat {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculateur d'Âge Exact</h1>
+  <input type="date" id="dateNaissance">
+  <button onclick="calculerAge()">Go</button>
+
+  <div id="resultat"></div>
+
+  <script>
+    function calculerAge() {
+      const dateInput = document.getElementById("dateNaissance").value;
+      if (!dateInput) return;
+      const naissance = new Date(dateInput);
+      const maintenant = new Date();
+
+      const diffMs = maintenant - naissance;
+      const diffJours = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      let ans = maintenant.getFullYear() - naissance.getFullYear();
+      let mois = maintenant.getMonth() - naissance.getMonth();
+      let jours = maintenant.getDate() - naissance.getDate();
+
+      if (jours < 0) {
+        mois--;
+        const dernierMois = new Date(maintenant.getFullYear(), maintenant.getMonth(), 0).getDate();
+        jours += dernierMois;
+      }
+
+      if (mois < 0) {
+        ans--;
+        mois += 12;
+      }
+
+      const joursSemaine = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+      const jourActuel = joursSemaine[maintenant.getDay()];
+      const heure = maintenant.toLocaleTimeString('fr-FR');
+      const dateFormatted = `naissance.getDate() /{naissance.getMonth()+1} / naissance.getFullYear()`;
+
+      const resultat = `
+        Date de naissance : le{dateFormatted}<br>
+        Âge : ans ans,{mois} mois et jours jours<br>
+        Nombre de jours vécus :{diffJours} jour(s)<br>
+        Jour actuel : jourActuel<br>
+        Heure actuelle :{hours}
+      
+      `;
+
+      document.getElementById("resultat").innerHTML = resultat;
+    }
+    </script>
+</body>
+</html>
+```
+
