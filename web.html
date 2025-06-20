@@ -1,89 +1,146 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de Site Web</title>
+  <meta charset="UTF-8" />
+  <title>david mpongo</title>
   <style>
     body {
+      background-color:#160;
+      color: #fff;
       font-family: Arial, sans-serif;
-      background-color: #160;
+      margin: 0;
       padding: 10px;
     }
 
     h1 {
+      color: #00ff88;
       text-align: center;
-      color: #fff;
-    }
-
-    .editor-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
 
     textarea {
       width: 100%;
-      height: 100px;
-      padding: 10px;
+      height: 200px;
+      background: #1e1e1e;
+      color: #00ff88;
       font-family: monospace;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    #run-button {
-      background-color: #00bfff;
-      color: white;
+      padding: 10px;
       border: none;
-      padding: 21px 29px;
-      font-size: 18px;
-      cursor: pointer;
-      margin-top: 15px;
-      border-radius: 8px;
+      border-radius: 5px;
+      margin-bottom: 10px;
     }
 
-    #preview {
+    button {
+      background-color: #00bfff;
+      border: none;
+      padding: 10px 15px;
+      margin-right: 5px;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    iframe {
       width: 100%;
-      height: 500px;
-      border: 1px solid #ccc;
+      height: 300px;
+      background: white;
       margin-top: 10px;
-      background-color: white;
+    }
+
+    .saved {
+      background: #222;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    .saved pre {
+      color: #ccc;
+      overflow-x: auto;
+    }
+
+    .actions button {
+      margin: 5px 5px 5px 0;
+      background-color: #444;
+    }
+
+    .actions button:hover {
+      background-color: #666;
+    }
+
+    hr {
+      border: 1px solid #333;
     }
   </style>
 </head>
 <body>
-  <h1>Générateur de Site Web Professionnel</h1>
-  
-  <div class="editor-container">
-      <label for="html-editor">HTML</label>
-    <textarea id="html-editor" placeholder="Écrivez votre code HTML ici..."></textarea>
-    
-    <label for="css-editor">CSS</label>
-    <textarea id="css-editor" placeholder="Écrivez votre code CSS ici..."></textarea>
-    
-    <label for="js-editor">JavaScript</label>
-    <textarea id="js-editor" placeholder="Écrivez votre code JavaScript ici..."></textarea>
-    
-    
+  <h1>Éditeur de Code Pro</h1>
+  <textarea id="code" placeholder="Écris ton code HTML ici..."></textarea>
+  <div>
+    <button onclick="runCode()">Go</button>
+    <button onclick="saveCode()">Enregistrer</button>
   </div>
-  
-  <button id="run-button">Go</button>
-  
-  <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+  <iframe id="result"></iframe>
+
+  <h2>Historique</h2>
+  <div id="history"></div>
 
   <script>
-    document.getElementById('run-button').addEventListener('click', () => {
-      const htmlCode = document.getElementById('html-editor').value;
-      const cssCode = `<style>document.getElementById('css-editor').value</style>`;
-      const jsCode = `<script>{document.getElementById('js-editor').value}<\/script>`;
-      
-      const previewFrame = document.getElementById('preview');
-      const previewDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
-      
-      previewDocument.open();
-      previewDocument.write(htmlCode + cssCode + jsCode);
-      previewDocument.close();
-    });
+    const codeArea = document.getElementById("code");
+    const resultFrame = document.getElementById("result");
+    const historyDiv = document.getElementById("history");
+
+    function runCode(code = null) {
+      const html = code || codeArea.value;
+      const doc = resultFrame.contentDocument || resultFrame.contentWindow.document;
+      doc.open();
+      doc.write(html);
+      doc.close();
+    }
+
+    function saveCode() {
+      const html = codeArea.value;
+      if (!html.trim()) return;
+      const all = JSON.parse(localStorage.getItem("savedCodes") || "[]");
+      all.push(html);
+      localStorage.setItem("savedCodes", JSON.stringify(all));
+      loadHistory();
+    }
+    function loadHistory() {
+      historyDiv.innerHTML = "";
+      const all = JSON.parse(localStorage.getItem("savedCodes") || "[]");
+      all.forEach((code, index) => {
+        const div = document.createElement("div");
+        div.className = "saved";
+        div.innerHTML = `
+          <pre>code.substring(0, 100)...</pre>
+          <div class="actions">
+          <button onclick="editSaved(${index})">Éditer</button>
+            <button onclick="deleteSaved(${index})">Supprimer</button>
+          </div>
+        `;
+        historyDiv.appendChild(div);
+      });
+    }
+
+    function viewSaved(index) {
+      const all = JSON.parse(localStorage.getItem("savedCodes") || "[]");
+      runCode(all[index]);
+    }
+
+    function editSaved(index) {
+      const all = JSON.parse(localStorage.getItem("savedCodes") || "[]");
+      codeArea.value = all[index];
+      runCode(all[index]);
+    }
+
+    function deleteSaved(index) {
+      const all = JSON.parse(localStorage.getItem("savedCodes") || "[]");
+      all.splice(index, 1);
+      localStorage.setItem("savedCodes", JSON.stringify(all));
+      loadHistory();
+    }
+
+    // Charger historique au départ
+    loadHistory();
   </script>
 </body>
 </html>
