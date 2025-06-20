@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>David mpongo</title>
+  <style>
+    body {
+      background-color: #0b3d0b;
+      color: white;
+      font-family: Arial;
+      padding: 20px;
+    }
+    h1 { color: #4CAF50; }
+    input, select, button {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+    .online { color: lightgreen; }
+    .offline { color: red; }
+    .card {
+      background: #1a1a1a;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #4CAF50;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌐 Hébergement </h1>
+
+<form id="urlForm">
+  <input type="text" id="name" placeholder="Nom d'utilisateur" required />
+  <input type="text" id="display" placeholder="Nom d'affichage" required />
+  <input type="text" id="phone" placeholder="Téléphone" required />
+  <input type="text" id="url" placeholder="URL (ex: https://...)" required />
+  <input type="number" id="port" min="100" max="500" placeholder="Port (min 204)" required />
+  <button type="submit">Enregistrer</button>
+</form>
+
+<div>
+  <input type="text" id="search" placeholder="🔎 Rechercher par nom ou URL" oninput="renderDashboard()" />
+  <select id="filter" onchange="renderDashboard()">
+    <option value="all">Tous</option>
+    <option value="online">🟢 En ligne</option>
+    <option value="offline">🔴 Hors ligne</option>
+  </select>
+</div>
+
+<h2>📊 Tableau de bord</h2>
+<div id="dashboard"></div>
+
+<script>
+let urls = JSON.parse(localStorage.getItem("urls") || "[]");
+
+document.getElementById("urlForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const display = document.getElementById("display").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const url = document.getElementById("url").value.trim();
+  const port = parseInt(document.getElementById("port").value);
+
+  if (!url || isNaN(port) || port < 204 || port > 500) {
+    alert("Port invalide (doit être entre 204 et 500)");
+    return;
+  }
+
+  urls.push({
+    name, display, phone, url, port,
+    lastChecked: null,
+    status: "unknown",
+    success: 0,
+    fail: 0
+  });
+  localStorage.setItem("urls", JSON.stringify(urls));
+  document.getElementById("urlForm").reset();
+  renderDashboard();
+});
+
+function renderDashboard() {
+  const dash = document.getElementById("dashboard");
+  const search = document.getElementById("search").value.toLowerCase();
+  const filter = document.getElementById("filter").value;
+  dash.innerHTML = "";
+
+  urls.forEach((e, i) => {
+    const matchSearch = e.name.toLowerCase().includes(search) || e.url.toLowerCase().includes(search);
+    const matchFilter = filter === "all" || e.status === filter;
+
+    if (matchSearch && matchFilter) {
+      dash.innerHTML += `
+        <div class="card">
+          <h3>𝑫𝑨𝑽𝑩𝑶𝑻 𝑼𝑷</h3>
+          <h3>NOM d'utilisateur : [${e.display} ]</h3>
+          
+          
+          <p>URL : <a href="${e.url}" target="_blank">${e.url}</a> </p><p> (Port : ${e.port})</p>
+          <p>Tel 📞 : ${e.phone}</p>
+          <p>Ping : ${e.lastChecked || "—"}</p>
+          <p class="e.status === "online" ? "online" : "offline""> statut : ${e.status === "online" ? "🟢 En ligne" : "🔴 Hors ligne"}
+          </p>
+          <p>✓ e.success | ✗${e.fail}</p>
+          <button onclick="deleteUrl(${i})">🗑 Supprimer</button>
+        </div>
+      `;
+    }
+  });
+
+  if (dash.innerHTML === "") {
+    dash.innerHTML = "<p>Aucune URL trouvée.</p>";
+  }
+}
+
+function deleteUrl(index) {
+  if (confirm("Supprimer cette URL ?")) {
+    urls.splice(index, 1);
+    localStorage.setItem("urls", JSON.stringify(urls));
+    renderDashboard();
+  }
+}
+
+function simulatePing() {
+  urls = urls.map((e) => {
+    const now = new Date().toLocaleTimeString();
+    const isOnline = Math.random() > 0.3;
+    e.lastChecked = now;
+    e.status = isOnline ? "online" : "offline";
+    if (isOnline) e.success++;
+    else e.fail++;
+    return e;
+  });
+  localStorage.setItem("urls", JSON.stringify(urls));
+  renderDashboard();
+}
+
+renderDashboard();
+setInterval(simulatePing, 30000); // Ping toutes les 30 sec
+</script>
+
+</body>
+</html>
