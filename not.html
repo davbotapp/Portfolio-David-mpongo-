@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bloc-notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #002b00;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    textarea {
+      width: 90%;
+      height: 200px;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #00b300;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    #history {
+      margin-top: 20px;
+      text-align: left;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #004d00;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .note {
+      margin-bottom: 10px;
+      padding: 8px;
+      background: #006600;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 Bloc-notes</h1><textarea id="note" placeholder="Écris ta note ici..."></textarea><br>
+  <button onclick="saveNote()">Enregistrer</button>
+  <button onclick="showHistory()">Historique</button>
+
+  <div id="history"></div>
+
+  <script>
+    function saveNote() {
+      const text = document.getElementById('note').value.trim();
+      if (!text) return alert("Note vide !");
+      let notes = JSON.parse(localStorage.getItem('notes')) || [];
+      notes.unshift({ text, date: new Date().toLocaleString() });
+      localStorage.setItem('notes', JSON.stringify(notes));
+      document.getElementById('note').value = '';
+      alert("Note enregistrée !");
+    }
+
+    function showHistory() {
+      const historyDiv = document.getElementById('history');
+      const notes = JSON.parse(localStorage.getItem('notes')) || [];
+      if (notes.length === 0) return historyDiv.innerHTML = "Aucune note enregistrée.";
+      historyDiv.innerHTML = "<h3>Historique des notes :</h3>" + 
+        notes.map(note => `<div class="note"><strong>note.date</strong><br>${note.text}</div>`).join('');
+    }
+  </script>
+</body>
+</html>
