@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Souhaits d'anniversaire Émouvants</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #002b1f;
+      color: #fff;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 30px;
+    }
+
+    #wish-box {
+      background-color: #003d2c;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 20px #0f0;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 24px;
+      background-color: #ff4d6d;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e8435c;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Souhaits d'anniversaire 🎂</h1>
+  <div id="wish-box">Clique sur le bouton ci-dessous pour recevoir un message d'anniversaire touchant.</div>
+  <button onclick="generateWish()">💌 Nouveau Souhait</button>
+
+  <script>
+    const wishes = [
+      "En ce jour si spécial, je te souhaite un anniversaire rempli de chaleur, de lumière et d’amour. Que chaque instant t’offre un sourire, chaque sourire une étincelle de bonheur. Le monde est meilleur avec toi, et ce jour nous rappelle à quel point ta présence est précieuse.",
+      "Joyeux anniversaire à une personne incroyable ! Que chaque battement de ton cœur en ce jour soit un rappel de tout l’amour que tu inspires autour de toi. Que la vie t’offre de doux instants, des réussites infinies et des souvenirs inoubliables.",
+      "Aujourd’hui, ce n’est pas juste un jour de plus. C’est un chapitre de plus dans le magnifique livre de ta vie. Que cette nouvelle année soit remplie de rêves réalisés, de découvertes profondes, et d’une paix intérieure qui ne s’éteint jamais.",
+      "Que ton anniversaire soit le reflet de tout le bien que tu fais. Tu es une personne lumineuse, dont la gentillesse et la sincérité changent les vies. Aujourd’hui, c’est à ton tour de recevoir un peu de toute la beauté que tu offres.","Chaque année passée est une victoire, chaque sourire partagé une richesse. En ce jour, je te souhaite non seulement un joyeux anniversaire, mais aussi une vie douce, sincère, et remplie de ce que ton cœur désire le plus.",
+      "Joyeux anniversaire à toi, qui sais donner sans attendre, aimer sans condition, et vivre avec le cœur. Que cette année soit douce comme tes pensées, belle comme ton âme, et forte comme ton courage.",
+      "Que cette journée spéciale soit le début d’une année extraordinaire pour toi. Entouré(e) de ceux que tu aimes, porté(e) par tes rêves les plus chers, que ton avenir s’ouvre sur un horizon plein de promesses.",
+      "Un an de plus à te voir briller, un an de plus à te savoir là. Tu es une étoile rare dans un ciel parfois sombre, et ton existence rend la vie plus belle. Je te souhaite un anniversaire aussi merveilleux que ton âme.",
+      "Je te souhaite un océan de tendresse, un univers de bonheur et une pluie infinie de sourires. Que ton anniversaire soit une célébration de tout ce que tu es, et de tout ce que tu mérites encore de vivre.",
+      "Chaque moment passé avec toi est un cadeau. Et aujourd’hui, c’est à ton tour de recevoir. Que ton anniversaire soit un souffle de bonheur, un rappel que tu es profondément aimé(e) et admiré(e).",// Ajoute ici jusqu'à 100 messages longs si tu veux
+    ];
+
+    function generateWish() {
+      const box = document.getElementById("wish-box");
+      const randomIndex = Math.floor(Math.random() * wishes.length);
+      box.innerText = wishes[randomIndex];
+    }
+  </script>
+</body>
+</html>
