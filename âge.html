@@ -1,69 +1,76 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculatrice d'âge</title>
-<style>
-body {
+  <meta charset="UTF-8">
+  <title>Calculateur d'âge</title>
+  <style>
+    body {
       font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color : #160;
-
-.container {
-  width: 300px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  text-align: center;
-}
-
-button {
-  padding: 5px 10px;
-  margin-top: 10px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-p {
-  font-size: 18px;
-  margin-top: 20px;
-}
-</style>
+      background-color: #0e2f0e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+    }
+    #result {
+      margin-top: 20px;
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <h1>📜𝗖𝗔𝗟𝗖𝗨𝗟𝗔𝗧𝗢𝗥 𝗔𝗚𝗘🎲</h1>
-    <input type="date" id="date" name="date">
-    <button onclick="calculateAge()">Calculer l'âge</button>
-    <p id="result"></p>
-    <script>
-      function calculateAge() {
-        const birthDate = new Date(document.getElementById('date').value);
-        const today = new Date();
-        const age = today.getFullYear() - birthDate.getFullYear();
-        const monthDiff = today.getMonth() - birthDate.getMonth();
 
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-        }
+  <h1>📅 Déterminez votre âge exact</h1>
+  <input type="date" id="dob">
+  <button onclick="calculer()">GO</button>
 
-        document.getElementById('result').innerText = `Vous avez ${age} ans.`;
+  <div id="result"></div>
+
+  <script>
+    function calculer() {
+      const dob = new Date(document.getElementById("dob").value);
+      if (isNaN(dob)) return alert("Veuillez entrer une date valide.");
+
+      const now = new Date();
+      const diff = now - dob;
+      const joursVécus = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      let années = now.getFullYear() - dob.getFullYear();
+      let mois = now.getMonth() - dob.getMonth();
+      let jours = now.getDate() - dob.getDate();
+
+      if (jours < 0) {
+        mois--;
+        jours += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
       }
-    </script>
-</div>
+      if (mois < 0) {
+        années--;
+        mois += 12;
+      }
+
+      const joursSemaine = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+      const jourNaissance = joursSemaine[dob.getDay()];
+
+      const heure = now.toLocaleTimeString();
+      const dateActuelle = now.toLocaleDateString();
+
+      document.getElementById("result").innerHTML = `
+        <p>🗓 Date de naissance : <strong>${dob.toLocaleDateString()}</strong></p>
+        <p>🎂 Âge : <strong>${années} ans, ${mois} mois,${jours} jours</strong></p>
+        <p>📆 Nombre de jours vécus : <strong>${joursVécus} jours</strong></p>
+        <p>🧠 Jour de naissance : <strong>${jourNaissance}</strong></p>
+        <p>⏰ Date actuelle : <strong>${dateActuelle}</strong></p>
+        <p>🕒 Heure actuelle : <strong>${heure}</strong></p>
+      `;
+    }
+  </script>
+
 </body>
 </html>
