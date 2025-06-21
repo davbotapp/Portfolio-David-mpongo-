@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Générateur de Citations Inspirantes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #1e2b1f;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #ff4d4d;
+      margin-bottom: 30px;
+    }
+
+    #quote-box {
+      background-color: #2d3e31;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: auto;
+      font-size: 20px;
+      line-height: 1.8;
+      box-shadow: 0 0 10px #2ecc71;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #e74c3c;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <h1>💡 Générateur des Citations </h1>
+  <div id="quote-box">Clique sur le bouton pour découvrir une citation.</div>
+  <button onclick="generateQuote()">🎯 Nouvelle citation</button>
+
+  <script>
+    const quotes = [
+      "Le vrai courage ne réside pas dans la capacité à vaincre tous les obstacles d’un seul coup, mais dans la force tranquille de se relever encore et encore, de croire que chaque chute est une opportunité de grandir et de devenir meilleur, même lorsque le monde semble sombre et sans issue.",
+      "Il y a dans chaque être humain une lumière qui ne demande qu’à briller, mais pour qu’elle rayonne, il faut accepter les épreuves, transformer les douleurs en leçons, et les doutes en détermination. C’est dans les moments les plus difficiles que naissent les plus grandes révélations.",
+      "La réussite ne se mesure pas uniquement par les objectifs atteints, mais par les valeurs que tu as portées en chemin, la bonté que tu as semée, la vérité que tu as défendue et les rêves que tu as osé poursuivre malgré les incertitudes.",
+      "Il n’y a rien de plus fort que quelqu’un qui a connu la souffrance, qui a affronté ses peurs, et qui malgré les larmes et les silences, continue de sourire, d’aimer, de créer et d’inspirer ceux qui croisent son chemin.","Parfois, ce n’est pas le sommet de la montagne qui importe, mais le chemin parcouru, les étapes franchies, les erreurs comprises et les petites victoires célébrées en silence. Chaque pas est un acte de courage.",
+      "Tu n’es pas défini par ce que tu possèdes, ni par ce que les autres disent de toi. Tu es défini par ta capacité à aimer, à résister, à apprendre, et à continuer d’avancer avec foi et dignité, même lorsque personne ne te regarde.",
+      "L’amour véritable commence par l’acceptation de soi. Lorsque tu arrêtes de te juger à travers le regard des autres, tu libères une force intérieure capable de tout reconstruire, même après les tempêtes les plus violentes.",
+      "Il faut parfois perdre ce qu’on croyait essentiel pour découvrir ce qui l’est réellement. La paix ne vient pas toujours de l’extérieur, mais de cette voix intérieure qui murmure : ‘Tu as survécu, tu es encore debout.’",
+      "Les rêves ne sont pas faits pour être réalistes, ils sont faits pour être poursuivis. Peu importe combien de fois tu tombes, l’essentiel est de ne jamais cesser de croire que tu es destiné à quelque chose de grand.",
+      "Ce ne sont pas les années qui donnent la sagesse, mais les moments vécus avec intensité, les silences pleins de sens, les regards sincères et les épreuves qui t’obligent à te retrouver face à toi-même.",
+      "Ta valeur ne dépend pas de ton passé. Ce que tu as traversé ne te diminue pas, il t’a façonné. Et c’est précisément parce que tu es passé par l’ombre que tu peux maintenant éclairer le chemin des autres.",
+      "Il y aura toujours des gens pour douter de toi, mais tant que tu crois en ce que tu fais, en qui tu es, et en la lumière que tu portes, aucun obstacle ne pourra éteindre ce feu qui brûle en toi.",
+      "La plus belle des victoires est silencieuse. C’est celle que personne ne voit, celle que tu remportes seul, lorsque tu refuses d’abandonner, lorsque tu décides de continuer malgré tout.",
+      "Le monde n’a pas besoin de gens parfaits. Il a besoin de cœurs sincères, d’âmes authentiques, de personnes qui ont connu la douleur mais choisissent quand même d’aimer et d’espérer.",
+      "Les plus grandes révolutions commencent dans le silence d’un cœur déterminé. Tu n’as pas besoin de bruit pour changer ta vie, juste d’une décision claire et du courage de la tenir.","Même dans le chaos, il existe un point fixe : ton souffle. Reviens-y. Respire. Souviens-toi que tant que tu respires, tu peux choisir, évoluer, et réécrire ton histoire.",
+      "Tu ne peux pas contrôler tout ce qui arrive, mais tu peux toujours choisir comment tu y réagis. Et parfois, cette simple décision change tout.",
+      "Les gens les plus brillants sont souvent ceux qui ont connu le plus d’obscurité. Leur lumière ne vient pas du confort, mais de la capacité à renaître encore et encore.",
+      "Parle-toi comme tu parlerais à ton meilleur ami. Sois doux avec toi-même, surtout lorsque tu es fatigué, confus ou perdu. Tu mérites ta propre compassion.",
+      "Si tu t’es déjà senti inutile, rappelle-toi que le simple fait d’exister peut apporter de la lumière à quelqu’un. Tu n’as pas besoin d’être exceptionnel pour avoir de la valeur.",
+      "Il n’y a pas d’échec, seulement des leçons. Chaque détour, chaque retard t’apprend quelque chose que la ligne droite ne t’aurait jamais offert.",
+      "Tu peux recommencer autant de fois qu’il le faut. Ta force n’est pas dans ce que tu as évité, mais dans tout ce que tu as traversé sans perdre ton humanité.",
+      "Tu es le héros silencieux de ta propre vie. Même si personne ne te félicite, tu fais un travail remarquable simplement en continuant.",
+      "La paix intérieure ne vient pas du monde extérieur qui s’aligne, mais de ton choix d’accepter ce que tu ne peux pas changer, et d’agir là où tu le peux.",
+      "Aucune douleur n’est vaine si elle t’ouvre à plus de compassion, de compréhension, ou de vérité. Transforme-la en lumière pour toi et pour les autres.",
+      "Quand tu es épuisé, n’abandonne pas. Repose-toi. Reviens à toi. Tu as déjà tant accompli. Ce n’est pas la fin, juste une pause avant un nouveau départ."];
+
+    function generateQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote-box").innerText = quotes[randomIndex];
+    }
+  </script>
+</body>
+</html>
+
+
+
