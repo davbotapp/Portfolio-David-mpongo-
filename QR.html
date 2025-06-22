@@ -1,183 +1,86 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>David mpongo </title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>QR Code Generator</h1>
-        <p>Paste a url or enter text to create QR code</p>
-      </header>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Générateur de QR Code</title>
+  <style>
+    body {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      color: #00e676;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #00e676;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+    }
+    #qrcode {
+      margin-top: 30px;
+      background: #fff;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
 
-      <div class="form">
-        <input type="text" spellcheck="false" placeholder="Enter url....Created By MR_SAHEB" />
-        <button>Generate QR Code</button>
-      </div>
+  <h1>🔳 Générateur de QR Code</h1>
+  <input type="text" id="text" placeholder="Entrez un texte ou une URL" />
+  <div>
+    <button onclick="generateQR()">Générer</button>
+    <button onclick="downloadQR()">Télécharger</button>
+  </div><div id="qrcode"></div>
 
-      <div class="qr-code">
-        <img src="" alt="qr-code" />
-      </div>
-    </div>
+  <!-- QRCode.js -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    let qr;
 
-    <!-- javascript -->
-    <script src="./script.js"></script>
-  </body>
+    function generateQR() {
+      const container = document.getElementById('qrcode');
+      container.innerHTML = "";
+      const text = document.getElementById('text').value.trim();
+      if (text === "") return alert("Veuillez entrer un texte !");
+      qr = new QRCode(container, {
+        text: text,
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+
+    function downloadQR() {
+      const img = document.querySelector('#qrcode img');
+      if (!img) return alert("Générez d'abord un QR code !");
+      const link = document.createElement('a');
+      link.href = img.src;
+      link.download = 'qr_code.png';
+      link.click();
+    }
+  </script>
+
+</body>
 </html>
-
-<script>const wrapper = document.querySelector(".wrapper"),
-  qrInput = wrapper.querySelector(".form input"),
-  generateBtn = wrapper.querySelector(".form button"),
-  qrImg = wrapper.querySelector(".qr-code img");
-let preValue;
-
-generateBtn.addEventListener("click", () => {
-  let qrValue = qrInput.value.trim();
-  if (!qrValue || preValue === qrValue) return;
-  preValue = qrValue;
-  generateBtn.innerText = "Generating QR Code...";
-  qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
-  qrImg.addEventListener("load", () => {
-    wrapper.classList.add("active");
-    generateBtn.innerText = "Generate QR Code";
-  });
-});
-
-qrInput.addEventListener("keyup", () => {
-  if (!qrInput.value.trim()) {
-    wrapper.classList.remove("active");
-    preValue = "";
-  }
-});</script>
-
-<style>@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  display: flex;
-  padding: 0 10px;
-  min-height: 100vh;
-  align-items: center;
-  background: linear-gradient(180deg,#160);
-  justify-content: center;
-  color: #fff;
-}
-
-.wrapper {
-  height: 265px;
-  max-width: 410px;
-  background: #222;
-  border-radius: 7px;
-  padding: 20px 25px 0;
-  transition: height 0.2s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.wrapper.active {
-  height: 530px;
-}
-
-header h1 {
-  font-size: 21px;
-  font-weight: 500;
-  color: #fff;
-}
-
-header p {
-  margin-top: 5px;
-  color: #aaa;
-  font-size: 16px;
-}
-
-.wrapper .form {
-  margin: 20px 0 25px;
-}
-
-.form :where(input, button) {
-  width: 100%;
-  height: 55px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  transition: 0.1s ease;
-}
-
-.form input {
-  font-size: 18px;
-  padding: 0 17px;
-  border: 1px solid #999;
-  color: #160;
-  background: #333;
-}
-
-.form input:focus {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
-}
-
-.form input::placeholder {
-  color: #999;
-}
-
-.form button {
-  color: #fff;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 17px;
-  background: #444;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.form button:hover {
-  background: #333;
-}
-
-.form button:active {
-  transform: scale(0.95);
-}
-
-.qr-code {
-  opacity: 0;
-  display: flex;
-  padding: 33px 0;
-  border-radius: 5px;
-  align-items: center;
-  pointer-events: none;
-  justify-content: center;
-  border: 1px solid #ccc;
-}
-
-.wrapper.active .qr-code {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.5s 0.05s ease;
-}
-
-.qr-code img {
-  width: 170px;
-}
-
-@media (max-width: 430px) {
-  .wrapper {
-    height: 255px;
-    padding: 16px 20px;
-  }
-  .wrapper.active {
-    height: 510px;
-  }
-  header p {
-    color: #696969;
-  }
-  .form :where(input, button) {
-    height: 52px;
-  }
-  .qr-code img {
-    width: 160px;
-  }
-}</style>
