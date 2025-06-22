@@ -1,722 +1,168 @@
+
 <!DOCTYPE html>
-<html lang="fr">    
-<head>    
-    <meta charset="UTF-8">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>portfolio David</title>    
-    <link rel="icon" href="https://i.imgur.com/naY3qiQ.jpeg" type="image/ico">
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>David Mpongo - Portfolio</title>
+  <link rel="icon" href="https://i.imgur.com/naY3qiQ.jpeg" type="image/ico">
   <link rel="shortcut icon" href="https://i.imgur.com/naY3qiQ.jpeg">
   <link rel="icon" href="https://i.imgur.com/naY3qiQ.jpeg" type="image/x-icon">
   <link rel="icon" type="image/jpeg" href="https://i.imgur.com/naY3qiQ.jpeg">
  
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">    
-    <link rel="stylesheet" href="style.css">    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">    
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style> 
-      
-        
-        
-           .profile {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 10px auto;
-      border: 3px solid white;
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1b0f;
+      color: white;
+      text-align: center;
+      padding: 20px;
     }
-    .profile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .info {
-      color: red;
-      font-size: 18px;
-      margin: 5px 0;
-    }
+    #alertBox {
+      position: fixe;
+      background: #1c1c1c;
+      color: white;
+      padding: 50px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 999;
+     }
     .follow {
       font-size: 16px;
       margin-bottom: 15px;
-      color: red;
-    }
-    table {
-      width: 100%;
-      background-color: #022;
-      color: #fff;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-    th, td {
-      border: 1px solid #fff;
-      padding: 6px;
-    }
-        
-        
-        
-        
-        
-     
-     
-     
-     
-        
-        
-        
-        body {
- 
-      font-family: 'Orbit', Georgia ;
-      background: linear-gradient(125deg, #160);
-      color: #160;
-      text-align: center;
-      overflow-x: hidden;
-      min-height: 100vh;
-      margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-    }
-    
-        .container,contactForm {
-            background: linear-gradient(135deg, #160);
-            padding: 20px;
-            border-radius: 110px;
-            border: 2px solid rgba(0, 217, 255, 0.2);
-            box-shadow: 0 4px 15px #00000066;
-            width: 90%;
-            max-width: 250px;
-            position: relative;
-            overflow: hidden;
-        }
+      color: red;}
 
-        h1, h2 {
-            color: #ffb200;
-            margin: 15px 0;
-            text-align: center;
-        }
-
-        p {
-           
-            opacity: .8;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        #contactForm input, #contactForm textarea {
-            padding: 10px;
-            width: 90%;
-            border: 2px solid #;
-            border-radius: 5px;
-            
-            background:#ffd2;
-            color: #;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        #contactForm input:focus, #contactForm textarea:focus {
-            border-color: #ff15d2;
-        }
-
-        #contactForm button {
-            padding: 10px 20px;
-            background: #;
-            color: #;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-           
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-
-        textarea {
-            min-height: 80px;
-           
-        }
-
-        button[type="submit"] {
-            width: 16%;
-            padding: 8px;
-            }
-        button[type="submit"]:hover {
-            background: #0099b3 ; 
-          }
-        input:invalid:not(:placeholder-shown),
-        textarea:invalid:not(:placeholder-shown) {
-            border-color: #ff0056;
-        }
-
-        .whatsapp-link {
-            margin-top: 15px;
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-body {
-      background: linear-gradient(125deg, #160);
-      color: #f0ff;
-      text-align: center;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    .search input {
-      background: (255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: #;
-      padding: 15px;
-      font-size: 18px;
-      border-radius: 5px;
-      outline: none;
-      transition: 0.3s;
-    }
-    .search input:focus {
-      border-color: #ff6b6b;
-    }
-    .button button:hover {
-      transform: scale(1.05);
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 15px;
-      transition: 0.3s;
-      display: none;
-      max-width: 600px;
-      margin: 20px auto;
-      backdrop-filter: blur(10px);
-    }
-        /* Animation */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        /* Style des labels */
-        label {
-            margin-bottom: 10px;
-            display: block;
-            
-            color: #fff;
-            
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Inputs et textareas */
-        input,
-        textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            font-size: 1rem;
-            box-sizing: border-box;
-            transition: border 0.3s ease, background 0.3s ease;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #6a40fc;
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Boutons */
-       
-
-        button:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #bc48fc, #6a40fc);
-        }
-
-        /* Conteneur principal */
-        main {
-            
-            color: black;
-            background: #121212;
-            padding: 20px;
-            line-height: 1.6;
-            border-radius:30px;
-        }
-
-        /* Section hero */
-        #hero {
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        #hero h1, 
-        #hero h2, 
-        #hero h3, 
-        #hero h4 {
-            margin: 10px 0;
-            color: #;
-        }
-
-        /* Images stylisées */
-        img {
-            border-radius: 15px;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 10px auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sections */
-        .section-margin {
-            margin: 40px 0;
-        }
-
-        .section-margin h4 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        p {
-        text-align:center;
-}
-        /* Liens */
-        a.button {
-            
-            background: linear-gradient(135deg,red,purple);
-            color: white;
-            text-decoration: none;
-            padding: 10px 10px;
-            border-radius: 10px;
-         
-            
-            
-            text-transform: uppercase;
-            transition: background 0.3s ease, transform 0.3s ease;
-           
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-        }
-
-        a.button:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #bc48fc);
-        }
-
-        /* Footer */
-        footer {
-            padding: 20px;
-            background: #1a1a1a;
-            text-align: center;
-        }
-
-        footer h1 {
-            color: #fff;
-            font-family: 'Georgia', serif;
-        }
-
-        footer p {
-            color: lightgray;
-            
-            line-height: 1.8;
-        }
-
-        /* Clients */
-        .client1,
-        .client2,
-        .client3 {
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Vidéos */
-        video {
-            border-radius: 15px;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-        }
-        p,h1,h3 {
-            text-align:center;
-           
-        }
-         h3
-         {
-             color:#bc48fc;
-         }
-        
-       html {
-  scroll-behavior: smooth;
-}  
-:root {
-    --header-height: 3rem;
-    --first-color: #15ff62;
-    --dark-color: #15ff62;
-    --white-color: #15ff62;
-    --text-color: #ff;
-   
-    --mb-2: 1rem;
-    --mb-4: 2rem;
-    --z-fixed: 100;
-}
-
-#header {
-    visibility: hidden;
-}
-#content {
-    visibility: hidden;
-    width: 100%;
-    overflow:hidden;
-    flex-direction: column;
-    align-items: center;
-}
-body {
-    fon:'Orbitron';
-    background: #160;
-    color: #ffffff;
-    margin: 0;
-    padding: 20px 0;
-    display: flex;
-    overflow-y: auto;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-}
-h1 {
-    color: skyblue;
-    margin: 20px 0;
-}
-.container {
-    width: 60%;
-    min-height: 500px;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 20px;    
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);    
-    border: 1px solid rgba(0, 217, 255, 0.2);    
-    backdrop-filter: blur(5px);    
-    box-sizing: border-box;
-    transform-style: preserve-3d;
-}
-
-section {    
-    margin: 20px 0;    
-    padding: 20px;    
-    border-radius: 12px;    
-    background: rgba(255, 255, 255, 0.05);    
-    border-left: 5px solid #00d9ff;    
-    transition: transform 0.3s ease, background 0.3s ease;    
-    position: relative;
-}    
-
-section:hover {    
-    transform: scale(1.02);    
-    background:  rgba(255, 255, 255, 0.08);    
-    z-index: 1;
-}    
-
-.btn {
-      background: linear-gradient(130deg, #ff1515);
-      border: none;
-      padding: 1px 30px;
-    
-      border-radius: 5px;
+    #goBtn {
+      margin-top: 15px;
+      background: #00cc66;
       color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
-      margin: 20px 0;
     }
-    
- .button button:hover {
-      transform: scale(1.05);
+
+    #mainContent {
+      display: none;
+      text-align: center;
     }
-    
-
-.btn:hover {    
-    background: #00b3cc;    
-    transform: scale(1.05);    
-}    
-
-img {    
-    max-width: 100%;    
-   height:200px;    
-       
-    aspect-ratio: 16/9;    
-    object-fit: cover;    
-    border-radius: 8px;    
-    margin: 35px 0;    
-             box-shadow: 0 0 4px rgba(0, 217, 255, 0.8);    
-    transition: transform 0.3s ease;    
-}    
-          
-      img:hover {    
-    transform: scale(1.05);    
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);    
-    
-}    
-    
-
-.overlay {    
-    position: fixed;    
-    top: 0;    
-    left: 0;    
-    width: 100vw;    
-    height: 100vh;    
-    background: rgba(0, 0, 0, 0.4);    
-    backdrop-filter: blur(5px);    
-    display: flex;    
-    justify-content: center;    
-    align-items: center;    
-    z-index: 1000;    
-}    
-
-.alert-box {    
-    background: linear-gradient(135deg, #160);    
-    color:  #;    
-    padding: 25px;                             
-    border-radius: 10px;                   
-    text-align: center;    
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);    
-    width: min(90%, 400px);    
-    margin: 15px;    
-}    
-
-.alert-box h2 {    
-    margin-bottom: 8px;    
-    font-size: 22px;    
-    font-weight: 700;    
-}    
-
-.alert-box p {    
-    font-size: 16px;    
-    font-style: bold;    
-    color: #b0bec5;    
-    margin-bottom: 20px;    
-}                
-
-
-    @media (max-width: 768px) {      
-    body { padding:10px; }      
-    .container { width: 100%; margin: 15px 0; }      
-}    
-
-ul { margin: 0; padding: 0; list-style: none; }    
-a { text-decoration: none; color: var(--text-color); }    
-img { max-width: 100%; height: auto; display: block; }    
-
-.section { padding: 3rem 0; }    
-    
-.section-title {    
-    position: relative;    
-    font-size: var(--h2-font-size);    
-    color: var(--dark-color);    
-    margin: var(--mb-4) 0;    
-    text-align: center;    
-}    
-.section-title::after {    
-    position: absolute;    
-    content: "";    
-    width: 32px;    
-    height: .18rem;    
-    left: 0; right: 0; margin: auto;    
-    top: 2rem;    
-    background-color: var(--first-color);    
-}    
-
-
-.header {    
-    width: 100%;    
-    position: fixed;    
-    top: 0;    
-        
-    left: 0;    
-    z-index: var(--z-fixed);    
-    background: #;        
-}    
-.nav {    
-    height: var(--header-height);    
-    display: flex;    
-    justify-content: space-between;    
-    align-items: center;    
-}    
-@media screen and (max-width: 768px) {    
-    .nav__satoru {    
-        position: fixed;    
-        top: var(--header-height);    
-        right: -100%;    
-        width: 80%;    
-        height: 100%;    
-        padding: 2rem;    
-        background-color: transparent;    
-        transition: .5s;    
-        backdrop-filter: blur(10px);    
-    }    
-}    
-
-
-    
-    
-    
-.btn {
-
-animation: pulse 1.5s infinite;
-
+    header {
+      padding: 20px 0;
+    }
+    h1 {
+      color: #ff3333;
+      font-size: 28px;
+    }
+    p {
+      color: #ccc;
+      margin: 10px 0 30px;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #00bfff;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    a.button {
+      text-decoration: none;
+      background: #ff3333;
+      color: white;
+      padding: 12px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    a.button:hover {
+      background: #cc0000;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 12px;
+      color: #777;
+    }
+     .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 300px;
 }
 
-@keyframes pulse {
-0% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 217, 255, 0.4); }
-50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 217, 255, 0.8); }
-100% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 217, 255, 0.4); }
-/* Boutons */
-        button {
-            background: linear-gradient(135deg, #6a40fc, #ff3e3e);
-            
-            
-        }
- 
+    .btn {
+      background: #ff3333;
+      border: none;
+      color: white;
+      padding: 15px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
 
-        </style>
-</head>
-<body>    <header class="header" 
-    <nav class="nav messie"> 
-       <div class="bien"> 
-           
-            
-            
-</nav>
+    .btn:hover {
+      background: #cc0000;
+    }
+  </style>
+ </head>
+<body>
 
-</header>  
-<br>  
-<br>  
-<br>   <div class="overlay" id="overlay">      
-        <div class="alert-box" data-aos="slide-left">      
-            
-                <h2>Bienvenue Chez David mpongo ✍️ !</h2>      
-                <p>cliquez sur "Go it" pour continuer</p>      
-                <button class="btn" onclick="closeAlert()">Go it</button>      
-                <!-- Font Awesome pour les icônes -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-             
-          
   
-          
-        </div>      
-    </div>      <div id="content">    <div id="accueil" data-aos="slide-up">    
-         <p>             ╭────•◈•─────•◈•──────•◈•─────•◈•─────╮</p>
+  <div id="alertBox">
+      
+<p>             ╭────•◈•────•◈•─────•◈•─────╮</p>
     <h2>Bienvenue sur mon portfolio</h1>    
-<p>╰───•◈•───────•◈•───────•◈•───────•◈•───╯</p>
-     </div>
-     
-     
-     
-     
-     
-     <div class="profile">
-    <img src="https://i.imgur.com/naY3qiQ.jpeg" alt="Profil">
+<p>╰───•◈•─────•◈•───────•◈•───╯</p>
+   <p>╭─────•◈•─────╮</p>
+    🫶cliquer sur Go it pour continuer 🫶
+   .  🖤🤍♥️
+<p>╰─────•◈•─────╯</p>
+ 
+    <button id="goBtn">Go it</button>
   </div>
+  
+ 
+    
+  <div id="mainContent">
+    
+      <header>
+    <img src="https://i.imgur.com/naY3qiQ.jpeg" class="avatar" alt="photo de profil">
+    <h1>David Mpongo</h1>
+    <p>Développeur Web & Mobile</p>
+  </header>
+
   <div class="info">443 j'aime ❤️</div>
   <div class="follow"><span id="followers">2500</span>  followers 👥 </div>
 
-  
+ 
     
-  <script>
-    let minute = 1;
-    let utilisateurs = 443;
+  <nav>
+    <a href="projet.html" class="button">Voir mes projets</a>
+    <a href="information.html" class="button">À propos de moi</a>
+    <a href="contact.html" class="button">Contactez-moi</a>
+  </nav>
+<script>
+    const goBtn = document.getElementById('goBtn');
+    const alertBox = document.getElementById('alertBox');
+    const mainContent = document.getElementById('mainContent');
 
-    setInterval(() => {
-      utilisateurs += Math.floor(Math.random() * 10) + 1;
-      const row = document.createElement("tr");
-      row.innerHTML = `<td>minute</td><td>{utilisateurs}</td>`;
-      document.getElementById("stats").appendChild(row);
-      document.getElementById("followers").textContent = utilisateurs;
-      minute++;
-    }, 60000); // chaque minute
+    goBtn.addEventListener('click', () => {
+      alertBox.style.display = 'none';
+      mainContent.style.display = 'block';
+    });
   </script>
   
-     
-     
-     
-     
-     
-     
-     
-     
-     
- <!-- Barre des réseaux sociaux -->
-  <div class="social-bar">
-   👉   <a href="https://wa.me/+243846064543"><i class="fab fa-whatsapp"></i></a>
-      <o>.</o>
-    <a href="https://www.facebook.com/david.mpongo.280361"><i class="fab fa-facebook"></i></a>
-    <o>.</o>
-    <a href="https://www.facebook.com/profile.php?id=61550884726891"><i class="fab fa-facebook-messenger"></i></a>👈
-  </div>
-       
-         
-<p>╭─────•◈•─────╮</p>
-    🤍🫶𝐋𝐁 𝐍𝐄𝐖🫶🖤
-<p>╰─────•◈•─────╯</p>
- 
-<a href="information.html" class="btn">Moi</a>
-<p>.</p>
-<a href="contact.html" class="btn">Contact</a>
-<a href="projet.html" class="btn">projet</a>
-<a href="new.html" class="btn">New</a>
+  <footer>
+    &copy; 2025 David Mpongo. Tous droits réservés.
+  </footer>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js">
-      
-    </script>  <script src="messie.js">  
- 
-  
-</script>
-<script>
-    AOS.init({ duration: 1000, once: true, offset: 120, mirror: 1 });  
-
-    function closeAlert() {  
-        document.getElementById("overlay").style.display = "none";  
-        document.getElementById("content").style.visibility = "visible";  
-      
-        document.body.style.overflowY = "auto";  
-        AOS.refresh();   
-    }
-    
-</script>
-  <!-- David mpongo portfolio-->  
-
-	<div style="font-size: 25px">
-	<script type="text/javascript">
-	farbbibliothek = new Array();
-	farbbibliothek[0] = new Array("#FF0000","#FF1100","#FF2200","#FF3300","#FF4400","#FF5500","#FF6600","#FF7700","#FF8800","#FF9900","#FFaa00","#FFbb00","#FFcc00","#FFdd00","#FFee00","#FFff00","#FFee00","#FFdd00","#FFcc00","#FFbb00","#FFaa00","#FF9900","#FF8800","#FF7700","#FF6600","#FF5500","#FF4400","#FF3300","#FF2200","#FF1100");
-	farbbibliothek[1] = new Array("#00FF00","#000000","#00FF00","#00FF00");
-	farbbibliothek[2] = new Array("#00FF00","#FF0000","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00");
-	farbbibliothek[3] = new Array("#FF0000","#FF4000","#FF8000","#FFC000","#FFFF00","#C0FF00","#80FF00","#40FF00","#00FF00","#00FF40","#00FF80","#00FFC0","#00FFFF","#00C0FF","#0080FF","#0040FF","#0000FF","#4000FF","#8000FF","#C000FF","#FF00FF","#FF00C0","#FF0080","#FF0040");
-	farbbibliothek[4] = new Array("#FF0000","#EE0000","#DD0000","#CC0000","#BB0000","#AA0000","#990000","#880000","#770000","#660000","#550000","#440000","#330000","#220000","#110000","#000000","#110000","#220000","#330000","#440000","#550000","#660000","#770000","#880000","#990000","#AA0000","#BB0000","#CC0000","#DD0000","#EE0000");
-	farbbibliothek[5] = new Array("#000000","#000000","#000000","#FFFFFF","#FFFFFF","#FFFFFF");
-	farbbibliothek[6] = new Array("#0000FF","#FFFF00");
-	farben = farbbibliothek[4];
-	function farbschrift(){for(var b=0;b<Buchstabe.length;b++){document.all["a"+b].style.color=farben[b]}farbverlauf()}function string2array(b){Buchstabe=new Array();while(farben.length<b.length){farben=farben.concat(farben)}k=0;while(k<=b.length){Buchstabe[k]=b.charAt(k);k++}}function divserzeugen(){for(var b=0;b<Buchstabe.length;b++){document.write("<span id='a"+b+"' class='a"+b+"'>"+Buchstabe[b]+"</span>")}farbschrift()}var a=1;function farbverlauf(){for(var b=0;b<farben.length;b++){farben[b-1]=farben[b]}farben[farben.length-1]=farben[-1];setTimeout("farbschrift()",30)}var farbsatz=1;function farbtauscher(){farben=farbbibliothek[farbsatz];while(farben.length<text.length){farben=farben.concat(farben)}farbsatz=Math.floor(Math.random()*(farbbibliothek.length-0.0001))}setInterval("farbtauscher()",5000);
-
-	text=
-	" ✰✰𝐃𝐀𝐕𝐈𝐃.𝐌𝐏𝐎𝐍𝐆𝐎✰✰ 🍁:::🍂::::::✰"
-	string2array(text);
-	divserzeugen();
-	//document.write(text);
-	</script></div>
-	<p id='name'>
-	    
 </body>
 </html>
