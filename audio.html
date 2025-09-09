@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Convertisseur Texte en Parole - Davbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e1e1e;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    textarea {
+      width: 80%;
+      height: 150px;
+      font-size: 16px;
+      padding: 10px;
+      margin-bottom: 10px;
+      resize: none;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #ffd700;
+      color: #000;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e6c200;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🗣️ Davbot - Texte en Parole</h1>
+
+  <textarea id="text" placeholder="Écris ici ton texte..."></textarea><br>
+
+  <select id="voiceSelect"></select><br>
+
+  <button onclick="speak()">🔊 Parler</button>
+  <button onclick="stop()">⏹️ Stop</button>
+
+  <script>
+const synth = window.speechSynthesis;
+    const voiceSelect = document.getElementById("voiceSelect");
+    const textInput = document.getElementById("text");
+
+    let voices = [];
+
+    function loadVoices() {
+      voices = synth.getVoices();
+      voiceSelect.innerHTML = '';
+      voices.forEach((voice, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `voice.name ({voice.lang})`;
+        voiceSelect.appendChild(option);
+      });
+    }
+
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      if (typeof synth.onvoiceschanged !== "undefined") {
+        synth.onvoiceschanged = loadVoices;
+      }
+    } else {
+      alert("Désolé, votre navigateur ne supporte pas la synthèse vocale.");
+    }
+
+    function speak() {
+      const utterance = new SpeechSynthesisUtterance(textInput.value);
+      const selectedVoice = voices[voiceSelect.value];
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      synth.speak(utterance);
+    }
+
+    function stop() {
+      synth.cancel();
+    }
+  </script>
+
+</body>
+</html>
