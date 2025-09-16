@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>David mpongo </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #160;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #4caf50;
+    }
+    .question {
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+    .option {
+      display: block;
+      background: #e0e0e0;
+      margin: 10px;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .option:hover {
+      background: #ccc;
+    }
+#result, #score, #congrats {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #congrats {
+      color: #e91e63;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Davbot Devinettes </h1>
+  <div class="question" id="question">Chargement...</div>
+  <div id="options"></div>
+  <div id="result"></div>
+  <div id="score">Score : 0</div>
+  <div id="congrats"></div>
+</div>
+
+<script>
+  const questions = [
+    {
+      q: "Quel est l'animal qui a quatre pattes le matin, deux à midi et trois le soir ?",
+      options: ["a) Le chat", "b) L'homme", "c) Le chien", "d) L'ombre"],
+      answer: "b"
+    },
+    {
+      q: "Plus je suis grand, moins tu me vois. Que suis-je ?",
+      options: ["a) L'obscurité", "b) L'air", "c) La lumière", "d) Le brouillard"],
+      answer: "a"
+    },
+    {
+      q: "Qu’est-ce qui est à toi mais que les autres utilisent plus que toi ?",
+      options: ["a) Ton nom", "b) Ton téléphone", "c) Ton miroir", "d) Ton argent"],
+      answer: "a"
+    },
+    
+  {
+    q: "Je commence la nuit et finis le matin. Qui suis-je ?",
+    options: ["a) L’aube", "b) Le rêve", "c) L’ombre", "d) Le sommeil"],
+    answer: "b"
+  },
+  {
+    q: "J’ai des feuilles mais je ne suis pas un arbre. Qui suis-je ?",
+    options: ["a) Un livre", "b) Une fleur", "c) Une main", "d) Un carnet"],
+    answer: "a"
+  },
+  {
+    q: "Je grandis sans jamais vivre. Qui suis-je ?",
+    options: ["a) L’ombre", "b) La montagne", "c) Le chiffre", "d) L’âge"],
+    answer: "b"
+  },
+  {
+    q: "Plus tu m’en prends, plus je deviens grand. Qui suis-je ?",
+    options: ["a) Le vide", "b) Un trou", "c) Le silence", "d) Le mystère"],
+    answer: "b"
+  },
+  {
+    q: "Je suis invisible, je voyage plus vite que tout. Qui suis-je ?",
+    options: ["a) La lumière", "b) Le son", "c) Le vent", "d) La pensée"],
+    answer: "d"
+  },
+  {
+    q: "Je sors sans jamais entrer. Qui suis-je ?",
+    options: ["a) Le secret", "b) La fumée", "c) Le son", "d) Le souffle"],
+    answer: "c"
+  },
+  {
+    q: "Qu’est-ce qui a une tête, une queue, mais aucun corps ?",
+    options: ["a) Un serpent", "b) Une pièce", "c) Une corde", "d) Une ombre"],
+    answer: "b"
+  },
+  {
+q: "Je monte mais je ne redescends jamais. Qui suis-je ?",
+    options: ["a) L’escalier", "b) Le temps", "c) L’âge", "d) L’air"],
+    answer: "c"
+  },
+  {
+    q: "Je suis pris avant que vous ne mangiez. Qui suis-je ?",
+    options: ["a) Une cuillère", "b) Une bouchée", "c) Une photo", "d) Une assiette"],
+    answer: "c"
+  },
+  {
+    q: "J’ai un lit mais je ne dors pas, j’ai une bouche mais je ne parle pas. Qui suis-je ?",
+    options: ["a) Une rivière", "b) Une grotte", "c) Un volcan", "d) Une montagne"],
+    answer: "a"
+  },
+  
+   {
+    q: "Je suis pris avant que vous ne me donniez. Qui suis-je ?",
+    options: ["a) Une décision", "b) Une photo", "c) Un repas", "d) Une parole"],
+    answer: "b"
+  },
+  {
+    q: "Qu’est-ce qui grandit sans vie, a des feuilles mais pas de branches ?",
+    options: ["a) Un livre", "b) Une fleur", "c) Un arbre mort", "d) Une ombre"],
+    answer: "a"
+  },
+  {
+    q: "Je suis une question à laquelle on ne répond jamais. Qui suis-je ?",
+    options: ["a) Une énigme", "b) Comment vas-tu ?", "c) L’énigme de la vie", "d) Dormir ?"],
+    answer: "b"
+  },
+  {
+    q: "Plus tu me retiens, plus je fuis. Qui suis-je ?",
+    options: ["a) Le temps", "b) L’eau", "c) Le sable", "d) L’air"],
+    answer: "a"
+  },
+  {
+    q: "Je fais tout le tour de la maison sans bouger. Qui suis-je ?",
+    options: ["a) Le mur", "b) Le jardin", "c) Le chemin", "d) La clôture"],
+    answer: "d"
+  },
+  {
+    q: "J’ai un cou mais pas de tête. Qui suis-je ?",
+    options: ["a) Une bouteille", "b) Un stylo", "c) Une chaise", "d) Un vase"],
+    answer: "a"
+  },
+  {
+    q: "Je peux être cassé sans être touché. Qui suis-je ?",
+ options: ["a) Un rêve", "b) Une promesse", "c) Une vitre", "d) Une corde"],
+    answer: "b"
+  },
+  {
+    q: "Je suis invisible mais vous pouvez me sentir. Qui suis-je ?",
+    options: ["a) L’âme", "b) Le vent", "c) Le son", "d) Le vide"],
+    answer: "b"
+  },
+  {
+    q: "J’existe une fois dans une minute, deux fois dans un moment, mais jamais dans mille ans. Qui suis-je ?",
+    options: ["a) Le mot 'un'", "b) La lettre M", "c) Le chiffre 1", "d) L’instant"],
+    answer: "b"
+  },
+  {
+    q: "Plus je suis chaud, plus je suis vide. Qui suis-je ?",
+    options: ["a) Un ballon", "b) Un volcan", "c) Le désert", "d) Une casserole"],
+    answer: "c"
+  },
+  {
+    q: "Je n’ai pas de jambes mais je cours partout. Qui suis-je ?",
+    options: ["a) Une voiture", "b) Le vent", "c) L’eau", "d) Le temps"],
+    answer: "c"
+  },
+  {
+    q: "Plus je sèche, plus je deviens humide. Qui suis-je ?",
+    options: ["a) Une serviette", "b) L’eau", "c) Le savon", "d) La pluie"],
+    answer: "a"
+  },
+  {
+    q: "Qu’est-ce qui est à vous mais que les autres utilisent plus que vous ?",
+    options: ["a) Votre stylo", "b) Votre nom", "c) Votre lit", "d) Votre temps"],
+    answer: "b"
+  },
+  {
+    q: "Je suis toujours devant vous mais vous ne pouvez jamais me rattraper. Qui suis-je ?",
+    options: ["a) L’ombre", "b) Le futur", "c) Le vent", "d) L’éclair"],
+    answer: "b"
+  },
+  {
+    q: "Qu’est-ce qui peut remplir une pièce sans prendre d’espace ?",
+    options: ["a) Le son", "b) Le vent", "c) La lumière", "d) L’odeur"],
+    answer: "c"
+  },
+  {
+    q: "Je suis haut quand je suis jeune, et bas quand je suis vieux. Qui suis-je ?",
+    options: ["a) Une bougie", "b) Un arbre", "c) Une montagne", "d) Une tour"],
+    answer: "a"
+  },
+  {
+    q: "Qu’est-ce qui est plus léger qu’une plume mais que personne ne peut tenir longtemps ?",
+options: ["a) Un soupir", "b) Le souffle", "c) La pensée", "d) Le rêve"],
+    answer: "b"
+  },
+  {
+    q: "Je commence par E, je finis par E, et je contiens une lettre. Qui suis-je ?",
+    options: ["a) Une enveloppe", "b) Une école", "c) Une étoile", "d) Une épée"],
+    answer: "a"
+  },
+  {
+    q: "J’ai des clés mais pas de serrures. Qui suis-je ?",
+    options: ["a) Un coffre", "b) Un piano", "c) Un clavier", "d) Un code"],
+    answer: "b"
+  },
+  {
+    q: "Plus tu m’as, moins tu vois. Qui suis-je ?",
+    options: ["a) Le brouillard", "b) L’obscurité", "c) Le sommeil", "d) La fumée"],
+    answer: "b"
+  },
+    // Ajoutez d'autres questions ici
+  ];
+
+  let currentQuestion;
+  let score = 0;
+  let consecutive = 0;
+
+  function loadQuestion() {
+    document.getElementById('result').innerText = "";
+    document.getElementById('congrats').innerText = "";
+    currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+    document.getElementById('question').innerText = currentQuestion.q;
+
+    const optsDiv = document.getElementById('options');
+    optsDiv.innerHTML = "";
+    currentQuestion.options.forEach((opt, i) => {
+      const letter = ['a', 'b', 'c', 'd'][i];
+      const btn = document.createElement('div');
+      btn.className = 'option';
+      btn.innerText = opt;
+      btn.onclick = () => checkAnswer(letter);
+      optsDiv.appendChild(btn);
+    });
+  }
+
+  function checkAnswer(letter) {
+    if (letter === currentQuestion.answer) {
+      score++;
+      consecutive++;
+      document.getElementById('result').innerText = "✅ Bonne réponse !";
+      if (consecutive === 10) {
+        document.getElementById('congrats').innerText = "🎉 Félicitations ! 10 réponses correctes d'affilée !";
+      }
+    } else {
+      score = 0;
+      consecutive = 0;
+      document.getElementById('result').innerText = `❌ Mauvaise réponse. La bonne était "${currentQuestion.answer})"`;
+    }
+    document.getElementById('score').innerText = "Score : " + score;
+    setTimeout(loadQuestion, 2000);
+  }
+
+  window.onload = loadQuestion;
+</script>
+
+</body>
+</html>
