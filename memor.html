@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeu de mémoire</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #2c3e50;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin: 20px 0;
+    }
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      grid-gap: 10px;
+      margin-bottom: 20px;
+    }
+    .card {
+      width: 80px;
+      height: 80px;
+      background: #34495e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      cursor: pointer;
+      border-radius: 10px;
+      user-select: none;
+    }
+    .card.flipped {
+      background: #1abc9c;
+    }
+    .card.matched {
+      background: #27ae60;
+      color: #fff;
+      pointer-events: none;
+    }
+    button {
+      padding: 10px 20px;
+      background: #f1c40f;
+      border: none;
+     border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jeu de Mémoire</h1>
+  <div class="game-board" id="board"></div>
+  <button onclick="restartGame()">Recommencer</button>
+
+  <script>
+    const board = document.getElementById('board');
+    const icons = ['🍎','🍌','🍓','🍇','🍍','🍉','🍋','🍊' ,'Davbot','🦅','🦮','🍦'];
+    let cards = [];
+    let flippedCards = [];
+    let matchedCount = 0;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function createCards() {
+      const doubled = shuffle([...icons, ...icons]);
+      board.innerHTML = '';
+      matchedCount = 0;
+      flippedCards = [];
+
+      doubled.forEach(icon => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.icon = icon;
+        card.textContent = '';
+        card.addEventListener('click', () => flipCard(card));
+        board.appendChild(card);
+      });
+    }
+
+    function flipCard(card) {
+      if (flippedCards.length === 2 || card.classList.contains('flipped')) return;
+      card.classList.add('flipped');
+      card.textContent = card.dataset.icon;
+      flippedCards.push(card);
+
+      if (flippedCards.length === 2) {
+        const [a, b] = flippedCards;
+  if (a.dataset.icon === b.dataset.icon) {
+          a.classList.add('matched');
+          b.classList.add('matched');
+          matchedCount++;
+          if (matchedCount === icons.length) {
+            setTimeout(() => alert('Bravo ! Toutes les paires sont trouvées !'), 300);
+          }
+        } else {
+          setTimeout(() => {
+            a.classList.remove('flipped');
+            b.classList.remove('flipped');
+            a.textContent = '';
+            b.textContent = '';
+          }, 800);
+        }
+        flippedCards = [];
+      }
+    }
+
+    function restartGame() {
+      createCards();
+    }
+
+    createCards();
+  </script>
+</body>
+</html>
