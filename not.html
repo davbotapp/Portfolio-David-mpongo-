@@ -2,75 +2,126 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bloc-notes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bloc Note Davbot</title>
   <style>
     body {
+      background-color: #0f1a1a;
+      color: #fff;
       font-family: Arial, sans-serif;
-      background-color: #002b00;
-      color: white;
       padding: 20px;
       text-align: center;
     }
     textarea {
       width: 90%;
       height: 200px;
-      border-radius: 10px;
       padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #1e2d2d;
+      color: #fff;
       font-size: 16px;
     }
     button {
-      margin: 10px;
+      margin: 8px;
       padding: 10px 20px;
-      background-color: #00b300;
       border: none;
       border-radius: 5px;
+      background: #00c896;
       color: white;
+      font-weight: bold;
       cursor: pointer;
     }
     #history {
-      margin-top: 20px;
-      text-align: left;
-      max-height: 200px;
-      overflow-y: auto;
-      background: #004d00;
+ margin-top: 30px;
+      background: #1e2d2d;
       padding: 10px;
-      border-radius: 8px;
+      border-radius: 5px;
     }
-    .note {
-      margin-bottom: 10px;
-      padding: 8px;
-      background: #006600;
-      border-radius: 4px;
+    .note-item {
+      cursor: pointer;
+      color: #00c896;
+      margin: 5px 0;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>📝 Bloc-notes</h1><textarea id="note" placeholder="Écris ta note ici..."></textarea><br>
+  <h2>📝 Bloc Note Davbot</h2>
+  <textarea id="note" placeholder="Écris ta note ici..."></textarea><br>
   <button onclick="saveNote()">Enregistrer</button>
-  <button onclick="showHistory()">Historique</button>
+  <button onclick="deleteNote()">Supprimer</button>
+  <button onclick="exportPDF()">Exporter en PDF</button>
+  <button onclick="exportTXT()">Exporter en .TXT</button>
+  <button onclick="window.print()">🖨️ Imprimer</button>
 
-  <div id="history"></div>
+  <div id="history">
+    <h3>📁 Notes enregistrées</h3>
+    <div id="noteList"></div>
+  </div>
 
   <script>
+    const noteField = document.getElementById('note');
+    const noteList = document.getElementById('noteList');
+
     function saveNote() {
-      const text = document.getElementById('note').value.trim();
-      if (!text) return alert("Note vide !");
-      let notes = JSON.parse(localStorage.getItem('notes')) || [];
-      notes.unshift({ text, date: new Date().toLocaleString() });
-      localStorage.setItem('notes', JSON.stringify(notes));
-      document.getElementById('note').value = '';
-      alert("Note enregistrée !");
+      const name = prompt("Nom de la note ?");
+      if (!name) return;
+      localStorage.setItem("davbot-note-" + name, noteField.value);
+      updateHistory();
+      alert("Note enregistrée sous '" + name + "'");
     }
 
-    function showHistory() {
-      const historyDiv = document.getElementById('history');
-      const notes = JSON.parse(localStorage.getItem('notes')) || [];
-      if (notes.length === 0) return historyDiv.innerHTML = "Aucune note enregistrée.";
-      historyDiv.innerHTML = "<h3>Historique des notes :</h3>" + 
-        notes.map(note => `<div class="note"><strong>note.date</strong><br>${note.text}</div>`).join('');
+    function deleteNote() {
+      const name = prompt("Nom de la note à supprimer ?");
+      if (!name) return;
+      localStorage.removeItem("davbot-note-" + name);
+      updateHistory();
+alert("Note supprimée !");
     }
+
+    function exportPDF() {
+      const name = prompt("Nom du fichier sans extension ?");
+      if (!name) return;
+      const text = noteField.value;
+      const blob = new Blob([text], { type: 'application/pdf' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = name + "-Davbot.pdf";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    function exportTXT() {
+      const name = prompt("Nom du fichier sans extension ?");
+      if (!name) return;
+      const text = noteField.value;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = name + "-Davbot.txt";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    function updateHistory() {
+      noteList.innerHTML = "";
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith("davbot-note-")) {
+          const name = key.replace("davbot-note-", "");
+          const div = document.createElement("div");
+          div.textContent = name + "-Davbot";
+          div.className = "note-item";
+          div.onclick = () => {
+noteField.value = localStorage.getItem(key);
+          };
+          noteList.appendChild(div);
+        }
+      });
+    }
+
+    updateHistory();
   </script>
 </body>
 </html>
