@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Davbot Hacker Chat</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    #chat-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #111;
+      padding: 20px;
+      border: 2px solid #0f0;
+    }
+
+    #chat-box {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #0f0;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #000;
+    }
+
+    .msg {
+      margin-bottom: 10px;
+    }
+
+    .user { color: #0ff; }
+    .bot { color: #0f0; }
+
+    #input-area {
+      display: flex;
+      gap: 10px;
+    }
+
+    #input {
+      flex: 1;
+      padding: 10px;
+      background: #000;
+      color: #0f0;
+      border: 1px solid #0f0;
+      outline: none;
+    }
+
+    button {
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="chat-container">
+    <h2>💻 Davbot Chat - Mode Hacker</h2>
+    <div id="chat-box"></div><div id="input-area">
+      <input type="text" id="input" placeholder="Tape ta question..." />
+      <button onclick="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+
+    async function sendMessage() {
+      const input = document.getElementById("input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage("Vous", message, "user");
+      input.value = "";
+
+      appendMessage("Davbot", "⏳ Réflexion...", "bot");
+
+      try {
+        const res = await fetch("https://api.affiliateplus.xyz/api/chatbot?message=" + encodeURIComponent(message) + "&name=Davbot&owner=David+Mpongo&user=001");
+        const data = await res.json();
+        updateLastBotMessage("Davbot: " + data.message);
+      } catch {
+        updateLastBotMessage("Davbot: ❌ Erreur de connexion à l'API.");
+      }
+    }
+
+    function appendMessage(name, msg, cls) {
+      const div = document.createElement("div");
+      div.className = "msg " + cls;
+      div.textContent = name + ": " + msg;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function updateLastBotMessage(message) {
+      const responses = document.querySelectorAll(".bot");
+      if (responses.length) {responses[responses.length - 1].textContent = message;
+      }
+    }
+  </script>
+
+</body>
+</html>
