@@ -1,392 +1,99 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700" rel="stylesheet">
-    <style>
+    <head>
         
-body {
- 
-      font-family: 'Orbitron', Georgia ;
-      background: linear-gradient(125deg, #1a1a2e, #16213e, #2b43ff, #ff47, #66ff2b,#b92bff, #ff352b, #ff5e00);
-      color: #f0ff;
-      text-align: center;
-      overflow-x: hidden;
-      min-height: 100vh;
-      margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-    }
-    
-        .container,contactForm {
-            background: linear-gradient(135deg, #1f2937, #374151, #1a1a2e, #16213e, #2b43ff, #ff47, #66ff2b,#b92bff, #ff352b, #ff5e00);
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px solid rgba(0, 217, 255, 0.2);
-            box-shadow: 0 4px 15px #00000066;
-            width: 90%;
-            max-width: 250px;
-            position: relative;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<form id="contactForm">
+  <input type="text" id="nom" placeholder="Nom" required><br>
+  <input type="email" id="email" placeholder="Adresse mail" required><br>
+  <textarea id="message" placeholder="Votre message" required></textarea><br>
 
-        h1, h2 {
-            color: #00d9ff;
-            margin: 15px 0;
-            text-align: center;
-        }
+  <select id="methode" required>
+    <option value="">Choisissez une méthode d'envoi</option>
+    <option value="whatsapp">WhatsApp</option>
+    <option value="facebook">Facebook</option>
+    <option value="assistant">Assistant Davbot</option>
+  </select><br>
 
-        p {
-            font-size: 14px;
-            opacity: .8;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+  <button type="submit">Envoyer</button>
+</form>
 
-        
-
-        
-        #contactForm input, #contactForm textarea {
-            padding: 10px;
-            width: 90%;
-            border: 2px solid #00d9ff;
-            border-radius: 5px;
-            font-size: 14px;
-            background:#ff15d2;
-            color: #ff15d2;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        #contactForm input:focus, #contactForm textarea:focus {
-            border-color: #ff15d2;
-        }
-
-        #contactForm button {
-            padding: 10px 20px;
-            background: #ff0a0;
-            color: #ff7300;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
+<p id="confirmationMessage" style="color: green; font-weight: bold;"></p>
 
 
-        textarea {
-            min-height: 80px;
-           
-        }
+<style>
+  body {
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+  }
 
-        button[type="submit"] {
-            width: 100%;
-            padding: 15px;
-            
-            
-        }
+  form {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  }
 
-        button[type="submit"]:hover {
-            background: #0099b3 ,  #1a1a2e, #16213e, 
-          
-        }
+  input, textarea, select, button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
 
-        
+  input::placeholder, textarea::placeholder {
+    color: #aaa;
+  }
 
-        input:invalid:not(:placeholder-shown),
-        textarea:invalid:not(:placeholder-shown) {
-            border-color: #ff005566;
-        }
+  button {
+    background-color: #ff0000;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
 
-        .whatsapp-link {
-            margin-top: 15px;
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-    </style>
-</head>
-<body>
-    <h1 data-aos="zoom-in">📞</h1>
-    <p data-aos="zoom-in" data-aos-delay="100">
-    <div class="container" data-aos="fade-up">
-        <h2 m></h2>
-        <form id="contactForm">
-            <div>         <label for="name">Nom</label>
-            
-                <input id="name" type="text" required placeholder=" ">
-                   </div>
-            <div>
-                 <label for="email">Email</label>
-                <input id="email" type="email" required placeholder=" ">
-               
-            </div>
-            <div>                <label for="phone">Téléphone</label>
-                <input id="phone" type="tel" placeholder=" ">
+  button:hover {
+    background-color: #cc0000;
+  }
 
-            </div>
-            <div>
-                <label for="message">message </label>
-                <textarea id="message" required placeholder=" "></textarea>
-                        </div>
-            <button type="submit" class="button">Envoyer sur WhatsApp</button>
-        </form>
-        
-        <div class="whatsapp-link">
-            <a href="https://www.facebook.com/profile.php?id=100092277325670" class="button">Facebook</a>
-            
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true });
-        
-        document.getElementById("contactForm").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const message = encodeURIComponent(document.getElementById("message").value);
-            window.open(`https://wa.me/+24384-064543?text=%0ANom: ${encodeURIComponent(document.getElementById("name").value)}%0AEmail: ${encodeURIComponent(document.getElementById("email").value)}%0ATéléphone: ${encodeURIComponent(document.getElementById("phone").value)}%0AMessage: ${message}`, "_blank");
-        });
-    </script>
-    
-    <style>
-body {
- 
-      font-family: 'Orbitron', Georgia ;
-      background: linear-gradient(125deg, #160);
-      color: #f0ff;
-      text-align: center;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    
-    
-
-    .search input {
-      background: (255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
-      padding: 15px;
-      font-size: 18px;
-      border-radius: 5px;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    .search input:focus {
-      border-color: #ff6b6b;
-    }
-
-  
-    .button button:hover {
-      transform: scale(1.05);
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 15px;
-      transition: 0.3s;
-      display: none;
-      max-width: 600px;
-      margin: 20px auto;
-      backdrop-filter: blur(10px);
-    }
-
-    
-  </style>
-  
-  
-  
-  "<style>   
-        /* Animation */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-      
-        /* Style des labels */
-        label {
-            margin-bottom: 10px;
-            display: block;
-            font-weight: bold;
-            color: #fff;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Inputs et textareas */
-        input,
-        textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            font-size: 1rem;
-            box-sizing: border-box;
-            transition: border 0.3s ease, background 0.3s ease;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #6a40fc;
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Boutons */
-        button {
-            background: linear-gradient(135deg, #6a40fc, #ff3e3e);
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #bc48fc, #6a40fc);
-        }
-
-        /* Conteneur principal */
-        main {
-            font-family: georgia;
-            color: black;
-            background: #121212;
-            padding: 20px;
-            line-height: 1.6;
-            border-radius:30px;
-        }
-
-        /* Section hero */
-        #hero {
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        #hero h1, 
-        #hero h2, 
-        #hero h3, 
-        #hero h4 {
-            margin: 10px 0;
-            color: #fff;
-        }
-
-        /* Images stylisées */
-        img {
-            border-radius: 15px;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 10px auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sections */
-        .section-margin {
-            margin: 40px 0;
-        }
-
-        .section-margin h4 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        p {
-        text-align:center;
-}
-        /* Liens */
-        a.button {
-            
-            background: linear-gradient(135deg,red,purple);
-            color: white;
-            text-decoration: none;
-            padding: 10px 10px;
-            border-radius: 10px;
-         
-            font-size: 10px;
-            
-            text-transform: uppercase;
-            transition: background 0.3s ease, transform 0.3s ease;
-           
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  #confirmationMessage {
     text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+  }
+</style>
 
-        }
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-        a.button:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #bc48fc, #ff3e3e);
-        }
+    const nom = document.getElementById("nom").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const methode = document.getElementById("methode").value;
 
-        /* Footer */
-        footer {
-            padding: 20px;
-            background: #1a1a1a;
-            text-align: center;
-        }
-
-        footer h1 {
-            color: #fff;
-            font-family: 'Georgia', serif;
-        }
-
-        footer p {
-            color: lightgray;
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-
-        /* Clients */
-        .client1,
-        .client2,
-        .client3 {
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Vidéos */
-        video {
-            border-radius: 15px;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-        }
-        p,h1,h3 {
-            text-align:center;
-            font-size:georgia;
-        }
-         h3
-         {
-             color:#bc48fc;
-         }
-        
-          </style>
+    const msg = encodeURIComponent("Nom: " + nom + "\nEmail: " + email + "\nMessage: " + message);
+    const confirmation = document.getElementById("confirmationMessage");if (methode === "whatsapp") {
+      window.open("https://wa.me/243846064543?text=" + msg, "_blank");
+      confirmation.textContent = "Message envoyé via WhatsApp.";
+    } else if (methode === "facebook") {
+      window.open("https://www.facebook.com/david.mpongo.280361", "_blank");
+      confirmation.textContent = "Redirection vers Facebook.";
+    } else if (methode === "assistant") {
+      confirmation.textContent = "Message envoyé à l’assistant virtuel Davbot.";
+    } else {
+      confirmation.textContent = "Veuillez choisir une méthode d'envoi.";
+    }
+  });
+</script>
 </body>
 </html>
