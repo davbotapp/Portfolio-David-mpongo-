@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Davbot service</title>
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+  <!-- AOS animation library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+    }
+    body {
+      background: #111;
+      color: white;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+ margin-top: 60px; /* height navbar */
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+    header .content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #00bfff;
+    }
+    header p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    header button {
+      background: none;
+      border: 2px solid #00bfff;
+      color: #00bfff;
+      padding: 12px 40px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    header button:hover {
+      background: #00bfff;
+      color: #111;
+    }
+    
+    /* About */
+    #about p {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    #about code {
+      background: #222;
+      padding: 10px;
+      display: block;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 16px;
+      white-space: pre-wrap;
+      color: #00bfff;
+    }
+    
+    /* Services */
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+    .service-box {
+ background: #222;
+      padding: 25px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px #00bfff88;
+      transition: transform 0.3s ease;
+    }
+    .service-box:hover {
+      transform: translateY(-10px);
+    }
+    .service-box i {
+      font-size: 50px;
+      margin-bottom: 15px;
+      color: #00bfff;
+    }
+    .service-box h2 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+    .service-box p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #ccc;
+      min-height: 60px;
+    }
+    .service-box button {
+      background: #00bfff;
+      border: none;
+      color: #111;
+      padding: 12px 25px;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .service-box button:hover {
+      background: #0077b6;
+      color: white;
+    }
+    
+    /* Testimonials */
+    #temoignages h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #00bfff;
+    }
+    .testimonials-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+    .testimonial {
+      background: #222;
+      width: 280px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00bfff55;
+display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .testimonial img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #00bfff;
+    }
+    .testimonial p {
+      font-style: italic;
+      color: #ddd;
+    }
+    
+    /* Contact */
+    #contact {
+      background: url('https://files.catbox.moe/tumqa7.jpeg') no-repeat center center/cover;
+      position: relative;
+      border-radius: 15px;
+      margin-bottom: 60px;
+    }
+    #contact::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      border-radius: 15px;
+      z-index: 0;
+    }
+    .contact-content {
+      position: relative;
+      max-width: 700px;
+      margin: auto;
+      padding: 60px 20px;
+      color: white;
+      z-index: 1;
+    }
+    .contact-content h2 {
+      margin-bottom: 30px;
+      text-align: center;
+      color: #00bfff;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, select, textarea {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+    input, select {
+      background: #111;
+color: #00bfff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+    }
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00bfff;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+    nav ul li {
+      cursor: pointer;
+      font-weight: 600;
+    }
+    nav ul li:hover {
+      color: #00bfff;
+    }
+    /* Hamburger for mobile */
+    #menuToggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #00bfff;
+    }
+    
+    /* Header */
+    header {
+      height: 90vh;
+      background: url('https://files.catbox.moe/hewj008.jpeg') no-repeat center center/cover;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+color: white;
+      border: 1px solid #00bfff;
+    }
+    textarea {
+      background: #111;
+      color: white;
+      min-height: 100px;
+      resize: vertical;
+      border: 1px solid #00bfff;
+    }
+    button[type="submit"] {
+      background: #00bfff;
+      border: none;
+      color: #111;
+      padding: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: background 0.3s ease;
+      margin-top: 10px;
+    }
+    button[type="submit"]:hover {
+      background: #0077b6;
+      color: white;
+    }
+    #confirmationMessage {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00ff90;
+      text-align: center;
+    }
+    
+    /* Contact links */
+    .contact-links {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .contact-links a {
+      margin: 0 15px;
+      color: #00bfff;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-links a:hover {
+      color: #0077b6;
+    }
+    
+    /* Responsive */
+    @media(max-width: 768px){
+      .services-container,
+      .testimonials-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav ul {
+        display: none;
+      }
+      #menuToggle {
+display: block;
+      }
+      nav.open ul {
+        display: flex;
+        flex-direction: column;
+        background: rgba(0,0,0,0.9);
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        gap: 15px;
+        z-index: 1100;
+      }
+      nav.open ul li {
+        padding: 10px 20px;
+      }
+    }
+    gallery-section {
+  background-color: #0a0a23;
+    color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.gallery-section h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: #00aaff;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Davbot David mpongo</div>
+    <div id="menuToggle"><i class="fas fa-bars"></i></div>
+    <ul id="menu">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services gratuits</a></li>
+      <li><a href="#premium">Services premium</a></li>
+          <li><a href="#galerie">galerie</a></li>
+      <li><a href="#temoignages">Témoignages</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header id="accueil" data-aos="fade-in">
+    <div class="content">
+      <h1>Bienvenue chez Davbot Service</h1>
+      
+      <p>Votre assistant DAVBOT pour vos besoins informatiques et projets numériques.</p>
+      
+      <button onclick= "window.location.href='#contact' ">Contactez-nous</button>
+    </div>
+  </header>
+
+  <section id="about" data-aos="fade-up">
+    <h1>Notre entreprise</h1>
+    <p><strong>Notre entreprise est un service dont vous pouvez nous contacter et nous informer sur le projet dont vous avez besoin.</strong></p>
+    <p><code>Vous pouvez nous dire ce que vous souhaitez réaliser, par exemple :</code></p>
+    <ul>
+      <li>création d'applications web 📱💻</li>
+      <li>créé de Site web officiel rt et professionnels</li>
+      <li>création de logo 📿</li>
+      <li>Apprendre la programmation📘</li>
+      <li>Créer une IA via WhatsApp, Facebook , télégram 🤖🧠</li>
+    </ul>
+    <p>Vous êtes libre de proposer ce que vous souhaitez créé ou apprendre ✨.</p>
+  </section>
+
+  <section id="services" data-aos="fade-right">
+    <h1>Services gratuits</h1>
+    <div class="services-container">
+      <div class="service-box">
+        <i class="fas fa-book"></i>
+        <h2>Apprendre ,+70 Bases HTML</h2>
+        <p>Formation gratuite pour maîtriser les bases du HTML.</p>
+  <a href="ser.html"><button onclick="alert('Voir service : Apprendre 20 Bases HTML')">Voir</button></a>
+      </div>
+      <div class="service-box">
+<i class="fas fa-code"></i>
+        <h2>Apprendre 40 propriété CSS</h2>
+        <p>formation gratuite pour maîtriser les propriété CSS</p>
+      <a href="ser2.html"><button onclick="alert('Voir service : Service Gratuit CSS')">Voir</button></a>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-laptop-code"></i>
+        <h2>Apprendre le basse  de JS</h2>
+        <p>Formation professionnelle pour maîtriser JS </p>
+     <a href="ser3.html"><button onclick="alert('Voir service : Service Gratuit Js )">Voir</button></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="premium" data-aos="fade-left">
+    <h1>Services premium</h1>
+    <div class="services-container">
+      <div class="service-box">
+        <i class="fas fa-mobile-alt"></i>
+        <h2>Créer une application web</h2>
+        <p>Service complet pour développer votre application web professionnelle.</p>
+        <a href="#contact"><button onclick="alert('Acheter service : Créer une application web')">Acheter</button></a>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-chart-line"></i>
+        <h2>Créé un site web </h2>
+        <p>formation complète pour création d'un site web officiel et professionnels </p>
+       <a href="#contact"> <button onclick="alert('Acheter service : Service  payant')">Acheter</button></a>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-robot"></i>
+        <h2>création de ia intégrées </h2>
+        <p>création de intelligence artificielle intégrées dans le net</p>
+        <a href="#contact"><button onclick="alert('Acheter service : Service payant')">Acheter</button></a>
+      </div>
+      
+      
+      <div class="service-box">
+        <i class="fas fa-crown"></i>
+        <h2>Identité visuelle complète</h3>
+        <p>Logo + charte graphique + supports marketing pour impact maximal.</p>
+          <a href="#contact"><button onclick="alert('Acheter service : Service payant')">Acheter</button></a>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-feather-alt"></i>
+        <h2>Connexion gratuit</h2>
+        <p>formation complète pour avoir une connexion Internet gratuite  à l'aide de VPN</p>
+       <a href="#contact"> <button onclick="alert('Acheter service : Service  payant')">Acheter</button></a>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-lightbulb"></i>
+        <h2>vos besoins </h2>
+        <p>Dites-nous en quoi nous pouvons vous-aidez etc </p>
+       <a href="#contact"> <button onclick="alert('Acheter service : Service  payant')">Acheter</button></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="temoignages" data-aos="fade-up">
+    <h1>Témoignages</h1>
+    <div class="testimonials-container">
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Témoin 1" />
+        <p>"Excellent service, très professionnel et rapide."</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/women/20.jpg" alt="Témoin 2" />
+        <p>"Davbot a transformé notre projet en réalité."</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/men/30.jpg" alt="Témoin 3" />
+        <p>"L’assistance est toujours disponible et très compétente."</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="Témoin 4" />
+        <p>"Je recommande vivement pour les services premium."</p>
+      </div>
+      <div class="testimonial">
+        <img src="https://randomuser.me/api/portraits/men/50.jpg" alt="Témoin 5" />
+        <p>"Une expérience utilisateur très agréable."</p>
+      </div>
+      <div class="testimonial">
+          <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Témoin 6" />
+        <p>"Le meilleur rapport qualité-prix sur le marché."</p>
+      </div>
+      <div class="testimonial">
+        <img le mpsrc="https://randomuser.me/api/portraits/men/70.jpg" alt="Témoin 7" />
+        <p>"Davbot, un assistant fiable et professionnel."</p>
+      </div>
+    </div>
+  </section>
+  
+  
+ 
+<section class="gallery-section" id="galerie">
+  <h2>Notre Galerie</h2>
+  <div class="gallery-grid">
+    <img src="https://via.placeholder.com/300x200?text=Logo+1" alt="Logo 1">
+    <img src="https://via.placeholder.com/300x200?text=Logo+2" alt="Logo 2">
+    <img src="https://via.placeholder.com/300x200?text=Logo+3" alt="Logo 3">
+    <img src="https://via.placeholder.com/300x200?text=Logo+4" alt="Logo 4">
+    <img src="https://via.placeholder.com/300x200?text=Logo+5" alt="Logo 5">
+    <img src="https://via.placeholder.com/300x200?text=Logo+6" alt="Logo 6">
+    
+  </div>
+</section>
+  
+  
+  <section id="contact" data-aos="fade-up">
+    <div class="contact-content">
+      <h2>Contactez-nous</h2>
+      
+      
+           
+<form id="contactForm">
+  <input type="text" id="nom" placeholder="Nom" required><br>
+  <input type="email" id="email" placeholder="Adresse mail" required><br>
+  <textarea id="message" placeholder="Votre message" required></textarea><br>
+
+  <select id="methode" required>
+    <option value="">Choisissez une méthode d'envoi</option>
+    <option value="whatsapp">WhatsApp</option>
+    <option value="facebook">Facebook</option>
+    <option value="assistant">Assistant Davbot</option>
+  </select><br>
+
+  <button type="submit">Envoyer</button>
+</form>
+
+<p id="confirmationMessage" style="color: green; font-weight: bold;"></p>
+        
+        
+        
+      </form>
+      
+      
+      <p id="confirmationMessage"></p>
+      <div class="contact-links">
+        <a href="https://wa.me/243846064543" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.facebook.com/david.mpongo.280361" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="mailto:davbotapp@gmail.com"><i class="fas fa-envelope"></i> Gmail</a>
+        
+        
+    <p>.</p>
+          
+    <a href="https://www.facebook.com/david.mpongo.280361" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-reddit"></i></a>
+  
+      </div>
+    </div> 
+    </select>
+       
+    <footer> <p>&copy; 2025 Davbot service. Tous droits réservés.</p>
+  </footer>
+  
+  
+  <script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nom = document.getElementById("nom").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const methode = document.getElementById("methode").value;
+
+    const msg = encodeURIComponent("Nom: " + nom + "\nEmail: " + email + "\nMessage: " + message);
+    const confirmation = document.getElementById("confirmationMessage");if (methode === "whatsapp") {
+      window.open("https://wa.me/243846064543?text=" + msg, "_blank");
+      confirmation.textContent = "Message envoyé via WhatsApp.";
+    } else if (methode === "facebook") {
+      window.open("https://www.facebook.com/david.mpongo.280361", "_blank");
+      confirmation.textContent = "Redirection vers Facebook.";
+    } else if (methode === "assistant") {
+      confirmation.textContent = "Message envoyé à l’assistant virtuel Davbot.";
+    } else {
+      confirmation.textContent = "Veuillez choisir une méthode d'envoi.";
+    }
+  });
+</script>
+
+
+
+
+ 
+      
+      
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    // Toggle mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+
+    // Contact form submission (fake)
+    const form = document.getElementById('contactForm');
+    const confirmation = document.getElementById('confirmationMessage');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      // Simulate sending form data (replace with real backend if available)
+      confirmation.textContent = 'Merci pour votre message, nous vous répondrons bientôt!';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
