@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Apprendre le HTML - 70+ Balises avec Quiz & Exercices</title>
+<style>
+  /* === STYLE BLEU FONCÉ / NOIR === */
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a122a;
+    color: #cdd6f4;
+    line-height: 1.6;
+  }
+  header {
+    background: #1e2a78;
+    text-align: center;
+    padding: 25px 15px;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #a1caff;
+    user-select: none;
+  }
+  main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 15px 20px;
+    background: #16254b;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(46,89,255,0.5);
+  }
+  h2 {
+    border-bottom: 3px solid #2e59ff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    columns: 2;
+    column-gap: 40px;
+  }
+  li {
+    background: #243b8b;
+    width: 100%;
+    margin: 8px 0;
+    background: #243b8b;
+    border: none;
+    color: #cdd6f4;
+    padding: 14px;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+  .answers button:hover {
+    background-color: #5177ff;
+  }
+  .answers button.correct {
+    background-color: #4CAF50 !important;
+  }
+  .answers button.incorrect {
+    background-color: #f44336 !important;
+  }
+  .result {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #a1ff94;
+    margin-top: 25px;
+    text-align: center;
+  }
+  
+margin-bottom: 12px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+  }
+  code {
+    background: #18244a;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #89b0f0;
+    font-weight: 600;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    border-radius: 8px;
+    border: none;
+    padding: 15px;
+    font-family: monospace;
+    font-size: 1rem;
+    background: #0f193f;
+    color: #a1caff;
+    resize: vertical;
+    margin-top: 10px;
+  }
+  button {
+    background-color: #2e59ff;
+    border: none;
+    color: white;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #5177ff;
+  }
+  #output {
+    margin-top: 25px;
+    background: #0a122a;
+    border: 2px solid #2e59ff;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 70px;
+    font-family: monospace;
+    white-space: pre-wrap;
+  }
+  /* Quiz Styles */
+  .quiz-container {
+    background: #1c2a70;
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin-top: 40px;
+  }
+  .question {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+  .answers button {
+    display: block;
+</style>
+</head>
+<body>
+
+<header>Apprendre le HTML - 70+ Balises avec Quiz & Exercices</header>
+
+<main>
+  <section id="intro">
+    <h2>Comment utiliser ce site</h2>
+    <p>Ce site te présente plus de 70 balises HTML essentielles, avec leurs descriptions et exemples. Tu pourras pratiquer dans la section exercices, puis tester tes connaissances grâce au quiz à la fin.</p>
+    <p>Lis bien les explications, essaie les exercices, puis lance le quiz pour valider ce que tu as appris !</p>
+  </section>
+
+  <section id="tags">
+    <h2>Les Balises HTML essentielles</h2>
+    <ul>
+      <li><code>&lt;!DOCTYPE html&gt;</code> : Définit le type de document HTML5.</li>
+<li><code>&lt;html&gt;</code> : Racine de la page.</li>
+      <li><code>&lt;head&gt;</code> : Métadonnées (titre, charset, CSS).</li>
+      <li><code>&lt;title&gt;</code> : Titre de la page.</li>
+      <li><code>&lt;meta charset="UTF-8"&gt;</code> : Encodage des caractères.</li>
+      <li><code>&lt;link&gt;</code> : Lien vers CSS externe.</li>
+      <li><code>&lt;style&gt;</code> : CSS interne.</li>
+      <li><code>&lt;body&gt;</code> : Contenu visible de la page.</li>
+      <li><code>&lt;h1&gt; à &lt;h6&gt;</code> : Titres (importance décroissante).</li>
+      <li><code>&lt;p&gt;</code> : Paragraphe.</li>
+      <li><code>&lt;a&gt;</code> : Lien hypertexte.</li>
+      <li><code>&lt;img&gt;</code> : Image.</li>
+      <li><code>&lt;ul&gt;</code> : Liste non ordonnée.</li>
+      <li><code>&lt;ol&gt;</code> : Liste ordonnée.</li>
+      <li><code>&lt;li&gt;</code> : Élément de liste.</li>
+      <li><code>&lt;div&gt;</code> : Conteneur bloc.</li>
+      <li><code>&lt;span&gt;</code> : Conteneur inline.</li>
+      <li><code>&lt;form&gt;</code> : Formulaire.</li>
+      <li><code>&lt;input&gt;</code> : Champ de formulaire.</li>
+      <li><code>&lt;button&gt;</code> : Bouton.</li>
+      <li><code>&lt;textarea&gt;</code> : Zone texte.</li>
+ <li><code>&lt;label&gt;</code> : Étiquette pour input.</li>
+      <li><code>&lt;table&gt;</code> : Tableau.</li>
+      <li><code>&lt;tr&gt;</code> : Ligne tableau.</li>
+      <li><code>&lt;td&gt;</code> : Cellule tableau.</li>
+      <li><code>&lt;th&gt;</code> : En-tête tableau.</li>
+      <li><code>&lt;header&gt;</code> : En-tête page/section.</li>
+      <li><code>&lt;footer&gt;</code> : Pied de page.</li>
+      <li><code>&lt;nav&gt;</code> : Navigation.</li>
+      <li><code>&lt;section&gt;</code> : Section.</li>
+      <li><code>&lt;article&gt;</code> : Article.</li>
+      <li><code>&lt;aside&gt;</code> : Contenu secondaire.</li>
+      <li><code>&lt;strong&gt;</code> : Texte important (gras).</li>
+      <li><code>&lt;em&gt;</code> : Texte emphatique (italique).</li>
+      <li><code>&lt;br&gt;</code> : Saut de ligne.</li>
+      <li><code>&lt;hr&gt;</code> : Ligne horizontale.</li>
+      <li><code>&lt;iframe&gt;</code> : Cadre embarqué.</li>
+      <li><code>&lt;audio&gt;</code> : Audio.</li>
+      <li><code>&lt;video&gt;</code> : Vidéo.</li>
+      <li><code>&lt;source&gt;</code> : Source audio/vidéo.</li>
+      <li><code>&lt;canvas&gt;</code> : Dessin 2D/3D.</li>
+      <li><code>&lt;script&gt;</code> : JavaScript.</li>
+   <li><code>&lt;main&gt;</code> : Contenu principal.</li>
+      <li><code>&lt;picture&gt;</code> : Image responsive.</li>
+      <li><code>&lt;details&gt;</code> : Contenu déroulant.</li>
+      <li><code>&lt;summary&gt;</code> : Titre déroulant.</li>
+      <li><code>&lt;mark&gt;</code> : Texte surligné.</li>
+      <li><code>&lt;progress&gt;</code> : Barre de progression.</li>
+      <li><code>&lt;time&gt;</code> : Date/heure.</li>
+      <li><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code> : Responsive.</li>
+      <li><code>&lt;style&gt;</code> : CSS interne.</li>
+      <li><code>&lt;details&gt;</code> : Détails déroulants.</li>
+      <li><code>&lt;abbr&gt;</code> : Abréviation.</li>
+      <li><code>&lt;code&gt;</code> : Bloc code.</li>
+      <li><code>&lt;pre&gt;</code> : Texte préformaté.</li>
+      <li><code>&lt;blockquote&gt;</code> : Citation longue.</li>
+      <li><code>&lt;cite&gt;</code> : Citation source.</li>
+      <li><code>&lt;small&gt;</code> : Texte secondaire.</li>
+      <li><code>&lt;sub&gt;</code> : Indice.</li>
+      <li><code>&lt;sup&gt;</code> : Exposant.</li>
+      <li><code>&lt;del&gt;</code> : Texte supprimé.</li>
+      <li><code>&lt;ins&gt;</code> : Texte inséré.</li>
+    </ul>
+  </section>
+  <section class="exercise" id="exerciseSection">
+  <section class="exercise" id="exerciseSection">
+    <h2>Exercice pratique</h2>
+    <p>Écris un petit code HTML utilisant au moins 3 balises vues ci-dessus (ex: &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;). Clique sur "Valider" pour voir le rendu.</p>
+    <textarea id="codeInput" placeholder="Exemple : &lt;h1&gt;Salut&lt;/h1&gt;&lt;p&gt;Ceci est un paragraphe.&lt;/p&gt;"></textarea>
+    <button onclick="runCode()">Valider</button>
+    <div id="output"></div>
+  </section>
+
+  <section id="quizSection">
+    <h2>Quiz HTML - Teste tes connaissances</h2>
+    <div class="quiz-container" id="quizContainer">
+      <div class="question" id="questionText"></div>
+      <div class="answers" id="answersContainer"></div>
+      <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Question suivante</button>
+      <div class="result" id="result"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // === Exercice : Afficher le code saisi en rendu HTML ===
+  function runCode() {
+    const input = document.getElementById('codeInput').value;
+    const output = document.getElementById('output');
+    // Simple sandbox display
+    output.innerHTML = input;
+  }
+
+  // === Quiz ===
+
+  const quizData = [
+    {
+ question: "Quelle balise définit la racine d’un document HTML ?",
+      answers: [
+        { text: "<html>", correct: true },
+        { text: "<head>", correct: false },
+        { text: "<body>", correct: false },
+        { text: "<div>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise est utilisée pour insérer une image ?",
+      answers: [
+        { text: "<img>", correct: true },
+        { text: "<image>", correct: false },
+        { text: "<picture>", correct: false },
+        { text: "<src>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise permet de créer un lien cliquable ?",
+      answers: [
+        { text: "<a>", correct: true },
+        { text: "<link>", correct: false },
+        { text: "<href>", correct: false },
+        { text: "<button>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise utilise-t-on pour insérer un paragraphe ?",
+      answers: [
+        { text: "<p>", correct: true },
+        { text: "<par>", correct: false },
+        { text: "<para>", correct: false },
+        { text: "<div>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise est utilisée pour définir un titre principal ?",
+      answers: [
+        { text: "<h1>", correct: true },
+ { text: "<title>", correct: false },
+        { text: "<header>", correct: false },
+        { text: "<head>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise permet de créer une liste non ordonnée ?",
+      answers: [
+        { text: "<ul>", correct: true },
+        { text: "<ol>", correct: false },
+        { text: "<li>", correct: false },
+        { text: "<list>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise HTML est utilisée pour insérer du code JavaScript ?",
+      answers: [
+        { text: "<script>", correct: true },
+        { text: "<js>", correct: false },
+        { text: "<code>", correct: false },
+        { text: "<javascript>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise est utilisée pour insérer un saut de ligne ?",
+      answers: [
+        { text: "<br>", correct: true },
+        { text: "<break>", correct: false },
+        { text: "<hr>", correct: false },
+        { text: "<lb>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise contient les métadonnées (charset, title, liens CSS) d’une page ?",
+      answers: [
+        { text: "<head>", correct: true },
+        { text: "<body>", correct: false },
+        { text: "<html>", correct: false },
+ { text: "<meta>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise sert à afficher du texte en italique pour l'emphase ?",
+      answers: [
+        { text: "<em>", correct: true },
+        { text: "<i>", correct: false },
+        { text: "<italic>", correct: false },
+        { text: "<strong>", correct: false },
+      ]
+    },
+    {
+      question: "Laquelle de ces balises est utilisée pour créer un tableau ?",
+      answers: [
+        { text: "<table>", correct: true },
+        { text: "<tab>", correct: false },
+        { text: "<tr>", correct: false },
+        { text: "<td>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise permet d'ajouter un pied de page à une section ou page ?",
+      answers: [
+        { text: "<footer>", correct: true },
+        { text: "<foot>", correct: false },
+        { text: "<end>", correct: false },
+        { text: "<section>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise HTML permet de créer un formulaire ?",
+      answers: [
+        { text: "<form>", correct: true },
+        { text: "<input>", correct: false },
+        { text: "<textarea>", correct: false },
+        { text: "<button>", correct: false },
+      ]
+    },
+    {
+question: "Quelle balise permet d'afficher du texte en gras pour l'importance ?",
+      answers: [
+        { text: "<strong>", correct: true },
+        { text: "<b>", correct: false },
+        { text: "<bold>", correct: false },
+        { text: "<em>", correct: false },
+      ]
+    },
+    {
+      question: "Quelle balise sert à insérer un commentaire dans le code HTML ?",
+      answers: [
+        { text: "<!-- commentaire -->", correct: true },
+        { text: "// commentaire", correct: false },
+        { text: "/* commentaire */", correct: false },
+        { text: "<comment>", correct: false },
+      ]
+    }
+  ];
+
+  let currentQuestionIndex = 0;
+  let score = 0;
+
+  const questionText = document.getElementById('questionText');
+  const answersContainer = document.getElementById('answersContainer');
+  const nextBtn = document.getElementById('nextBtn');
+  const result = document.getElementById('result');
+
+  function loadQuestion() {
+    nextBtn.style.display = 'none';
+    result.textContent = '';
+    const currentQ = quizData[currentQuestionIndex];
+    questionText.textContent = currentQ.question;
+    answersContainer.innerHTML = '';
+
+    currentQ.answers.forEach((answer, idx) => {
+      const btn = document.createElement('button');
+      btn.textContent = answer.text;
+ btn.onclick = () => selectAnswer(btn, answer.correct);
+      answersContainer.appendChild(btn);
+    });
+  }
+
+  function selectAnswer(button, correct) {
+    Array.from(answersContainer.children).forEach(btn => {
+      btn.disabled = true;
+    });
+    if (correct) {
+      button.classList.add('correct');
+      score++;
+    } else {
+      button.classList.add('incorrect');
+      // Afficher la bonne réponse en vert
+      const correctBtn = Array.from(answersContainer.children).find(btn => {
+        return quizData[currentQuestionIndex].answers.find(a => a.text === btn.textContent).correct;
+      });
+      if (correctBtn) correctBtn.classList.add('correct');
+    }
+    nextBtn.style.display = 'block';
+  }
+
+  function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    questionText.textContent = "Quiz terminé !";
+    answersContainer.innerHTML = '';
+    nextBtn.style.display = 'none';
+    result.textContent = `Ton score : score /{quizData.length}`;
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+</html>
