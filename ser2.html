@@ -2,356 +2,111 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Apprendre le CSS - DavBot</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apprendre 40 Propriétés CSS</title>
   <style>
     body {
-      background-color: #0d1117;
-      color: #c9d1d9;
       font-family: Arial, sans-serif;
+      background: #0f2027;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      color: #f1f1f1;
       margin: 0;
-      padding: 0 20px;
-    }
-
-    h1, h2 {
-      color: #58a6ff;
-    }
-
-    .section {
-      margin: 30px 0;
       padding: 20px;
-      background-color: #161b22;
-      border-left: 4px solid #58a6ff;
     }
 
-    pre {
-      background: #0d1117;
-      padding: 10px;
-      color: #7ee787;
-      border-left: 2px solid #58a6ff;
-      overflow-x: auto;
+    h1 {
+      text-align: center;
+      color: #00e676;
     }
 
-    .quiz {
-      margin-top: 20px;
+    .property {
+      background: #1c1c1c;
+      border-left: 4px solid #00e676;
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 8px;
     }
 
-    .question {
-      margin-bottom: 15px;
+    .property h2 {
+      margin: 0;
+      font-size: 1.2em;
+      color: #00e676;
     }
 
-    button {
-      background-color: #58a6ff;
-      color: black;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 5px;
+    .property p {
+      margin: 5px 0 10px;
     }
 
-    button:hover {
-      background-color: #1f6feb;
-    }
-
-    .result {
-      margin-top: 20px;
-      font-weight: bold;
-   color: #7ee787;
+    code {
+      background: #333;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: inline-block;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
-  <h1>🎨 Apprendre le CSS - DavBot</h1>
 
-  <div class="section">
-    <h2>1. color</h2>
-    <p>Définit la couleur du texte.</p>
-    <pre>p { color: red; }</pre>
-  </div>
+  <h1>📘 40 Propriétés CSS à connaître</h1>
 
-  <div class="section">
-    <h2>2. background-color</h2>
-    <p>Change la couleur d’arrière-plan d’un élément.</p>
-    <pre>div { background-color: black; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>3. font-size</h2>
-    <p>Contrôle la taille du texte.</p>
-    <pre>h1 { font-size: 30px; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>4. margin</h2>
-    <p>Ajoute de l’espace extérieur autour d’un élément.</p>
-    <pre>div { margin: 20px; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>5. padding</h2>
-    <p>Ajoute de l’espace intérieur dans un élément.</p>
-    <pre>div { padding: 15px; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>6. border</h2>
-    <p>Ajoute une bordure autour d’un élément.</p>
-    <pre>div { border: 2px solid white; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>7. text-align</h2>
-    <p>Aligne le texte (gauche, droite, centre).</p>
-    <pre>p { text-align: center; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>8. display</h2>
-    <p>Définit la façon dont un élément s’affiche (block, inline, flex...).</p>
- <pre>div { display: flex; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>9. position</h2>
-    <p>Permet de positionner un élément (relative, absolute...)</p>
-    <pre>div { position: absolute; top: 10px; }</pre>
-  </div>
-
-  <div class="section">
-    <h2>10. overflow</h2>
-    <p>Gère le débordement du contenu (hidden, scroll...)</p>
-    <pre>div { overflow: auto; }</pre>
-  </div>
-<div class="section">
-  <h2>11. width</h2>
-  <p>Définit la largeur d’un élément.</p>
-  <pre>div { width: 200px; }</pre>
-</div>
-
-<div class="section">
-  <h2>12. height</h2>
-  <p>Définit la hauteur d’un élément.</p>
-  <pre>div { height: 100px; }</pre>
-</div>
-
-<div class="section">
-  <h2>13. font-family</h2>
-  <p>Définit la police du texte.</p>
-  <pre>body { font-family: Arial, sans-serif; }</pre>
-</div>
-
-<div class="section">
-  <h2>14. font-weight</h2>
-  <p>Définit l’épaisseur du texte.</p>
-  <pre>h1 { font-weight: bold; }</pre>
-</div>
-
-<div class="section">
-  <h2>15. line-height</h2>
-  <p>Définit l’espacement entre les lignes.</p>
-  <pre>p { line-height: 1.5; }</pre>
-</div>
-
-<div class="section">
-  <h2>16. letter-spacing</h2>
-  <p>Définit l’espacement entre les lettres.</p>
-  <pre>h1 { letter-spacing: 2px; }</pre>
-</div>
-
-<div class="section">
-  <h2>17. text-transform</h2>
-  <p>Transforme le texte (majuscule, minuscule...)</p>
-  <pre>p { text-transform: uppercase; }</pre>
-</div>
-
-<div class="section">
-  <h2>18. border-radius</h2>
-  <p>Arrondit les coins d’un élément.</p>
-  <pre>div { border-radius: 10px; }</pre>
-</div>
-
-<div class="section">
-  <h2>19. box-shadow</h2>
-  <p>Ajoute une ombre portée à un élément.</p>
-  <pre>div { box-shadow: 2px 2px 10px black; }</pre>
-</div>
-
-<div class="section">
-  <h2>20. text-shadow</h2>
-  <p>Ajoute une ombre au texte.</p>
-  <pre>h1 { text-shadow: 1px 1px 3px gray; }</pre>
-</div>
-
-<div class="section">
-  <h2>21. opacity</h2>
-  <p>Définit la transparence.</p>
-  <pre>div { opacity: 0.5; }</pre>
-</div>
-
-<div class="section">
-  <h2>22. cursor</h2>
-  <p>Change l’apparence du curseur.</p>
-  <pre>button { cursor: pointer; }</pre>
-</div>
-
-<div class="section">
-  <h2>23. visibility</h2>
-  <p>Montre ou cache un élément (mais garde l’espace).</p>
-  <pre>div { visibility: hidden; }</pre>
-</div>
-
-<div class="section">
-  <h2>24. z-index</h2>
-  <p>Définit la priorité d’empilement.</p>
-  <pre>div { z-index: 10; }</pre>
-</div>
-
-<div class="section">
-  <h2>25. transition</h2>
-  <p>Ajoute une animation douce aux changements CSS.</p>
-  <pre>div { transition: all 0.3s ease; }</pre>
-</div>
-
-<div class="section">
-  <h2>26. transform</h2>
-  <p>Transforme un élément (scale, rotate...)</p>
-  <pre>div:hover { transform: scale(1.1); }</pre>
-</div>
-
-<div class="section">
-    <h2>27. overflow-x / overflow-y</h2>
-  <p>Gère les débordements horizontal/vertical.</p>
-  <pre>div { overflow-x: scroll; }</pre>
-</div>
-
-<div class="section">
-  <h2>28. flex-direction</h2>
-  <p>Définit la direction des éléments flex.</p>
-  <pre>div { display: flex; flex-direction: column; }</pre>
-</div>
-
-<div class="section">
-  <h2>29. justify-content</h2>
-  <p>Aligne les éléments sur l’axe principal.</p>
-  <pre>div { justify-content: center; }</pre>
-</div>
-
-<div class="section">
-  <h2>30. align-items</h2>
-  <p>Aligne les éléments sur l’axe secondaire.</p>
-  <pre>div { align-items: center; }</pre>
-</div>
-
-<div class="section">
-  <h2>31. gap</h2>
-  <p>Ajoute un espacement entre les éléments dans un conteneur flex/grid.</p>
-  <pre>div { display: flex; gap: 20px; }</pre>
-</div>
-
-<div class="section">
-  <h2>32. grid-template-columns</h2>
-  <p>Définit le nombre et la taille des colonnes dans une grille.</p>
-  <pre>div { display: grid; grid-template-columns: 1fr 1fr; }</pre>
-</div>
-
-<div class="section">
-  <h2>33. grid-gap</h2>
-  <p>Ajoute de l’espace entre les lignes/colonnes dans une grille.</p>
-  <pre>div { grid-gap: 10px; }</pre>
-</div>
-
-<div class="section">
-  <h2>34. object-fit</h2>
-  <p>Contrôle le redimensionnement des images/vidéos.</p>
-  <pre>img { object-fit: cover; }</pre>
-</div>
-
-<div class="section">
-  <h2>35. max-width / min-width</h2>
-  <p>Définit les tailles minimales/maximales.</p>
-  <pre>img { max-width: 100%; }</pre>
-</div>
-
-<div class="section">
-  <h2>36. white-space</h2>
-  <p>Contrôle les sauts de ligne et les espaces.</p>
-  <pre>p { white-space: nowrap; }</pre>
-</div>
-
-<div class="section">
-  <h2>37. list-style</h2>
-  <p>Change l’apparence des listes.</p>
-  <pre>ul { list-style: square; }</pre>
-</div>
-
-<div class="section">
-  <h2>38. clip-path</h2>
-  <p>Découpe une forme sur un élément.</p>
-  <pre>img { clip-path: circle(50%); }</pre>
-</div>
-
-<div class="section">
-  <h2>39. filter</h2>
-  <p>Applique des effets visuels comme blur, brightness, etc.</p>
-  <pre>img { filter: grayscale(100%); }</pre>
-</div>
-
-<div class="section">
-  <h2>40. box-sizing</h2>
-  <p>Contrôle comment la taille est calculée.</p>
-  <pre>* { box-sizing: border-box; }</pre>
-</div>
-
-  <div class="quiz">
-    <h2>🎯 Quiz CSS</h2>
-    <form id="quizForm">
-      <div class="question">
-        <p>1. Quelle propriété modifie la taille du texte ?</p>
-        <input type="text" name="q1">
-      </div>
-      <div class="question">
-        <p>2. Que fait `text-align: center` ?</p>
-        <input type="text" name="q2">
-      </div>
-      <div class="question">
-        <p>3. Quelle propriété donne de l’espace autour d’un élément ?</p>
-        <input type="text" name="q3">
-      </div>
-      <div class="question">
-        <p>4. Comment changer la couleur de fond ?</p>
-        <input type="text" name="q4">
-      </div>
-      <div class="question">
-        <p>5. Quelle propriété pour cacher le dépassement ?</p>
-        <input type="text" name="q5">
-      </div>
-      <button type="button" onclick="checkQuiz()">Voir le score</button>
-    </form>
-    <div id="result" class="result"></div>
-</div>
+  <div id="content"></div>
 
   <script>
-    function checkQuiz() {
-      const form = document.forms['quizForm'];
-      let score = 0;
-      const answers = {
-        q1: "font-size",
-        q2: "centre",
-        q3: "margin",
-        q4: "background-color",
-        q5: "overflow"
-      };
+    const cssProps = [{ name: "color", desc: "Change la couleur du texte.", ex: "color: red;" },
+      { name: "background-color", desc: "Définit la couleur de fond.", ex: "background-color: black;" },
+      { name: "font-size", desc: "Taille du texte.", ex: "font-size: 16px;" },
+      { name: "font-weight", desc: "Épaisseur du texte.", ex: "font-weight: bold;" },
+      { name: "text-align", desc: "Alignement horizontal du texte.", ex: "text-align: center;" },
+      { name: "margin", desc: "Espace autour d’un élément.", ex: "margin: 20px;" },
+      { name: "padding", desc: "Espace intérieur d’un élément.", ex: "padding: 10px;" },
+      { name: "border", desc: "Ajoute une bordure.", ex: "border: 1px solid #ccc;" },
+      { name: "border-radius", desc: "Coins arrondis.", ex: "border-radius: 10px;" },
+      { name: "width", desc: "Largeur de l’élément.", ex: "width: 100%;" },
+      { name: "height", desc: "Hauteur de l’élément.", ex: "height: 200px;" },
+      { name: "display", desc: "Mode d’affichage (block, flex, etc.).", ex: "display: flex;" },
+      { name: "flex-direction", desc: "Direction des éléments flex.", ex: "flex-direction: row;" },
+      { name: "justify-content", desc: "Alignement horizontal dans flex.", ex: "justify-content: center;" },{ name: "align-items", desc: "Alignement vertical dans flex.", ex: "align-items: center;" },
+      { name: "position", desc: "Positionnement (relative, absolute...).", ex: "position: absolute;" },
+      { name: "top / left / right / bottom", desc: "Position selon les bords.", ex: "top: 10px;" },
+      { name: "z-index", desc: "Profondeur de l’élément.", ex: "z-index: 999;" },
+      { name: "overflow", desc: "Gère le débordement du contenu.", ex: "overflow: auto;" },
+      { name: "box-shadow", desc: "Ombre portée.", ex: "box-shadow: 2px 2px 5px #000;" },
+      { name: "text-shadow", desc: "Ombre du texte.", ex: "text-shadow: 1px 1px 3px #333;" },
+      { name: "opacity", desc: "Transparence.", ex: "opacity: 0.5;" },
+      { name: "cursor", desc: "Type de curseur.", ex: "cursor: pointer;" },
+      { name: "transition", desc: "Transition douce.", ex: "transition: all 0.3s ease;" },
+      { name: "transform", desc: "Transformation CSS.", ex: "transform: rotate(10deg);" },
+      { name: "animation", desc: "Animation d’un élément.", ex: "animation: slide 2s infinite;" },
+      { name: "visibility", desc: "Visible ou caché.", ex: "visibility: hidden;" },
+      { name: "white-space", desc: "Gestion des espaces blancs.", ex: "white-space: nowrap;" },
+      { name: "line-height", desc: "Hauteur de ligne.", ex: "line-height: 1.5;" },
+      { name: "letter-spacing", desc: "Espacement entre lettres.", ex: "letter-spacing: 2px;" },
+      { name: "word-spacing", desc: "Espacement entre mots.", ex: "word-spacing: 5px;" },
+      { name: "list-style", desc: "Style des listes.", ex: "list-style: none;" },
+      { name: "max-width", desc: "Largeur maximale.", ex: "max-width: 800px;" },
+      { name: "min-height", desc: "Hauteur minimale.", ex: "min-height: 100px;" },
+      { name: "background-image", desc: "Image de fond.", ex: "background-image: url('img.jpg');" },
+      { name: "background-size", desc: "Taille de l’image de fond.", ex: "background-size: cover;" },
+      { name: "background-position", desc: "Position de l’image de fond.", ex: "background-position: center;" },
+      { name: "float", desc: "Position flottante.", ex: "float: left;" },
+      { name: "clear", desc: "Évite les flottants.", ex: "clear: both;" },
+      { name: "box-sizing", desc: "Calcul des dimensions.", ex: "box-sizing: border-box;" },
+      { name: "filter", desc: "Effets visuels (blur, etc.).", ex: "filter: blur(3px);" },
+    ];
 
-      for (let key in answers) {
-        let userAnswer = form[key].value.trim().toLowerCase();
-        if (userAnswer.includes(answers[key])) {
-          score++;
-        }
-      }
+    const contentDiv = document.getElementById("content");
 
-      document.getElementById("result").innerText = `🎉 Vous avez ${score}/5 bonnes réponses.`;
-    }
+    cssProps.forEach(prop => {
+      contentDiv.innerHTML += `<div class="property">
+          <h2>${prop.name}</h2>
+          <p>${prop.desc}</p>
+          <code>${prop.ex}</code>
+        </div>
+      `;
+    });
   </script>
 </body>
 </html>
