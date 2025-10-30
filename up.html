@@ -1,200 +1,218 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uptime Monitor</title>
+  <meta charset="UTF-8">
+  <title>Gestion Hébergement</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: #121212;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
     }
-    h1 {
-      color: #e74c3c;
+
+    header {
       text-align: center;
+      padding: 20px;
+      background: #161b22;
+      color: #58a6ff;
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom: 1px solid #30363d;
     }
-    .container {
-      max-width: 700px;
-      margin: auto;
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #161b22;
     }
-    .form-group {
-      margin-bottom: 10px;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 10px;
+
+    nav button {
+      flex: 1;
+      padding: 12px;
+      background: #21262d;
+      color: #58a6ff;
       border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav button.active {
+      border-bottom: 2px solid #58a6ff;
+      background: #0d1117;
+    }
+
+    .container {
+      padding: 20px;
+ }
+
+    input, button, label {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
       border-radius: 5px;
-      margin-top: 5px;
-      font-size: 1em;
+      border: none;
+      font-size: 16px;
     }
-    input, select {
-      background-color: #1e1e1e;
-      color: white;
+
+    input {
+      background: #21262d;
+      color: #c9d1d9;
+      border: 2px solid #30363d;
     }
+
+    input.valid {
+      border-color: #2ea043;
+    }
+
+    input.invalid {
+      border-color: #f85149;
+    }
+
     button {
-      background-color: #e74c3c;
-      ChatGPT: color: white;
+      background: #238636;
+      color: white;
       cursor: pointer;
     }
+
     button:hover {
-      background-color: #c0392b;
+      background: #2ea043;
     }
+
     .site {
-      background: #1f1f1f;
-      padding: 15px;
-      border-radius: 5px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-left: 4px solid #58a6ff;
+      padding: 12px;
       margin-bottom: 10px;
+      border-radius: 5px;
     }
-    .status-ok { color: #70ff15; }
-    .status-down { color: #e74c3c; }
-    .site-actions {
+
+    .site p {
+      margin: 5px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .danger {
+      background: #f85149;
+      border: none;
+      color: white;
+      padding: 10px;
       margin-top: 10px;
     }
-    .site-actions button {
-      width: auto;
-      margin-right: 10px;
-    }
-    @media(max-width: 600px){
-      h1 { font-size: 1.5em; }
+
+    .danger:hover {
+      background: #da3633;
     }
   </style>
 </head>
 <body>
+  <header>Davbot Hébergement</header>
+
+  <nav>
+    <button class="active" onclick="showTab('add')">Ajouter</button>
+    <button onclick="showTab('list')">Liste</button>
+  </nav>
 
   <div class="container">
-    <h1>🛡️ Davbot Uptime Monitor</h1>
+    <div id="add" class="tab">
+ <label for="name">Nom du site :</label>
+      <input type="text" id="name" placeholder="Ex: Mon Site">
 
-    <div class="form-group">
-      <label>Nom du site</label>
-      <input type="text" id="siteName" placeholder="Ex: Mon API" />
-    </div>
-    <div class="form-group">
-      <label>URL</label>
-      <input type="text" id="siteURL" placeholder="https://exemple.com" />
-    </div>
-    <div class="form-group">
-      <label>Port (optionnel)</label>
-      <input type="number" id="sitePort" placeholder="Ex: 443" />
-    </div>
-    <div class="form-group">
-      <label>Intervalle de vérification (en secondes)</label>
-      <select id="siteInterval">
-        <option value="15">15s</option>
-        <option value="30">30s</option>
-        <option value="60">60s</option>
-      </select>
-    </div>
- <button onclick="ajouterSite()">Ajouter</button>
+      <label for="url">URL :</label>
+      <input type="text" id="url" placeholder="https://exemple.com">
 
-    <h2 style="margin-top: 30px;">📋 Sites surveillés</h2>
-    <div id="sitesList"></div>
+      <label for="port">Port :</label>
+      <input type="number" id="port" placeholder="Ex: 8080">
+
+      <button onclick="addSite()">Ajouter</button>
+    </div>
+
+    <div id="list" class="tab hidden">
+      <div id="sitesContainer"></div>
+      <button class="danger" onclick="clearSites()">Vider le stockage</button>
+    </div>
   </div>
 
   <script>
-    let sites = JSON.parse(localStorage.getItem("uptimeSites") || "[]");
-
-    function enregistrerSites() {
-      localStorage.setItem("uptimeSites", JSON.stringify(sites));
+    function showTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      if (tabId === 'list') loadSites();
     }
 
-    function ajouterSite() {
-      const name = document.getElementById("siteName").value.trim();
-      const url = document.getElementById("siteURL").value.trim();
-      const port = document.getElementById("sitePort").value.trim();
-      const interval = parseInt(document.getElementById("siteInterval").value);
-
-      if (!name || !url) {
-        alert("Nom et URL requis !");
-        return;
-      }
-
+    function isValidURL(url) {
       try {
         new URL(url);
-      } catch {
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function addSite() {
+      const name = document.getElementById("name").value.trim();
+      const url = document.getElementById("url").value.trim();
+      const port = document.getElementById("port").value.trim();
+      const urlInput = document.getElementById("url");
+
+      if (!isValidURL(url)) {
+        urlInput.classList.add("invalid");
+        urlInput.classList.remove("valid");
         alert("URL invalide !");
+        return;
+      } else {
+        urlInput.classList.remove("invalid");
+        urlInput.classList.add("valid");
+      }
+
+      const site = { name, url, port };
+      const existing = JSON.parse(localStorage.getItem("hebergements")) || [];
+      existing.push(site);
+      localStorage.setItem("hebergements", JSON.stringify(existing));
+
+      document.getElementById("name").value = "";
+      document.getElementById("url").value = "";
+      document.getElementById("port").value = "";
+      urlInput.classList.remove("valid");
+
+      alert("Hébergement enregistré !");
+    }
+
+    function loadSites() {
+      const container = document.getElementById("sitesContainer");
+      container.innerHTML = "";
+      const sites = JSON.parse(localStorage.getItem("hebergements")) || [];
+
+      if (sites.length === 0) {
+        container.innerHTML = "<p>Aucun hébergement enregistré.</p>";
         return;
       }
 
-      const id = Date.now();
-      const site = {
-        id, name, url, port: port || null, interval, status: "unknown"
-      };
-      sites.push(site);
-      enregistrerSites();
-      afficherSites();
-      planifier(site);
-
-      // Reset form
-      document.getElementById("siteName").value = "";
-      document.getElementById("siteURL").value = "";
-      document.getElementById("sitePort").value = "";
-    }
-  function supprimerSite(id) {
-      sites = sites.filter(s => s.id !== id);
-      enregistrerSites();
-      afficherSites();
-    }
-
-    function afficherSites() {
-      const list = document.getElementById("sitesList");
-      list.innerHTML = "";
       sites.forEach(site => {
-        const div = document.createElement("div");
-        div.className = "site";
-        div.innerHTML = `
-          <b>site.name</b><br/>${site.url} <br/>Port: ${site.port ? ":" + site.port : ""}<br/>
-          État : <span class=${site.status === 'ok' ? 'status-ok' : 'status-down'}>
-           ${ site.status.toUpperCase()}
-          </span>
-          <div class="site-actions">
-            <button onclick="supprimerSite(${site.id})">Supprimer</button>
-          </div>
+        const el = document.createElement("div");
+        el.className = "site";
+        el.innerHTML = `<p><strong>Nom :</strong> ${site.name}</p>
+          <p><strong>URL :</strong> <a href="{site.url}" target="_blank" style="color:#3fb950;">${site.url}</a></p>
+          <p><strong>Port :</strong>${site.port}</p>
         `;
-        list.appendChild(div);
+        container.appendChild(el);
       });
     }
 
-    function planifier(site) {
-      verifierEtat(site);
-      setInterval(() => {
-        const s = sites.find(x => x.id === site.id);
-        if (s) verifierEtat(s);
-      }, site.interval * 1000);
+    function clearSites() {
+      localStorage.removeItem("hebergements");
+      loadSites();
     }
-
-    async function verifierEtat(site) {
-      let fullUrl = site.url;
-      if (site.port) {
-        try {
-          const urlObj = new URL(site.url);
-          urlObj.port = site.port;
-          fullUrl = urlObj.toString();
-        } catch {
-          site.status = "down ";
- enregistrerSites();
-          afficherSites();
-          return;
-        }
-      }
-
-      try {
-        await fetch(fullUrl, { method: "GET", mode: "no-cors" });
-        site.status = "ok 🟢";
-      } catch {
-        site.status = "down";
-      }
-
-      enregistrerSites();
-      afficherSites();
-    }
-
-    // Init
-    sites.forEach(site => planifier(site));
-    afficherSites();
   </script>
 </body>
-</html>121212
+</html>
