@@ -2,201 +2,277 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-site-verification" content="YvfIvLYwUp-8q6YSySsEBCG2iuqVcRpz8kEAY4XLDfM" />
-  <title>David Mpongo - Portfolio</title>
-  <meta name="google-site-verification" content="YvfIvLYwUp-8q6YSySsEBCG2iuqVcRpz8kEAY4XLDfM" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="https://i.imgur.com/naY3qiQ.jpeg" type="image/x-icon">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0d1117;
-      color: #ffffff;
-      text-align: center;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+      <meta name="google-site-verification" content="YvfIvLYwUp-8q6YSySsEBCG2iuqVcRpz8kEAY4XLDfM" />
+     
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David Mpongo - Portfolio</title>
 
-    #alertBox {
-      position: absolute;
-      background: #001f3f;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      transition: opacity 1s ease;
-      z-index: 999;
-    }
+<link rel="icon" href="https://i.imgur.com/naY3qiQ.jpeg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    #alertBox.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0d1117;color:#fff;transition:.4s}
+body.light{background:#f5f5f5;color:#111}
 
-    #welcomeText {
-      font-size: 20px;
-      color: #00bfff;
- margin-bottom: 30px;
-      white-space: pre-line;
-      line-height: 1.6;
-      max-width: 90%;
-    }
+.container{max-width:1100px;margin:auto;padding:20px;text-align:center}
 
-    #goBtn {
-      background: #00cc74;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
+#themeToggle{
+position:fixed;top:15px;right:15px;
+background:#00bfff;border:none;color:#fff;
+padding:10px;border-radius:50%;cursor:pointer;z-index:1000}
 
-    #goBtn:hover {
-      transform: scale(1.1);
-      background: #00bfff;
-    }
+/* Profile */
+.avatar{width:130px;height:130px;border-radius:50%;border:4px solid #00bfff}
+h1{color:#00bfff;margin-top:10px}
+.status span{color:#00ff6a;animation:pulse 1.5s infinite}
+@keyframes pulse{0%{opacity:.3}50%{opacity:1}100%{opacity:.3}}
 
-    #mainContent {
-      display: none;
-      animation: fadeIn 1.5s forwards;
-      flex-direction: column;
-      align-items: center;
-    }
+.followers{margin:15px 0;font-size:18px}
+.followers button{background:none;border:none;font-size:20px;color:#00bfff;cursor:pointer}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* Buttons */
+.btn{
+display:inline-block;margin:10px;padding:12px 25px;
+border-radius:25px;background:#00bfff;color:#fff;
+border:none;font-weight:bold;cursor:pointer}
 
-    .avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      border: 4px solid #00bfff;
-      object-fit: cover;
-      margin-bottom: 20px;
-      transition: transform 0.4s ease;
-    }
+/* Sections */
+section{margin-top:40px}
 
-    .avatar:hover {
-      transform: scale(1.1) rotate(3deg);
-    }
+/* Skills */
+.skill-group{text-align:left;margin:25px 0}
+.skill-group h3{color:#00bfff;margin-bottom:10px}
+.skill span{display:flex;justify-content:space-between;font-size:14px}
+.progress{background:#222;height:10px;border-radius:10px;overflow:hidden}
+.progress-bar{
+height:100%;width:0;
+background:linear-gradient(90deg,#00bfff,#00ff6a);
+transition:1.5s}
 
-    h1 {
-      color: #00bfff;
-      font-size: 28px;
-      margin-bottom: 5px;
-    }
+/* Projects */
+#projects{display:none}
+.projects-container{
+display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.project-card{
+width:260px;border:1px solid #00bfff;
+border-radius:10px;overflow:hidden}
+.project-card img{
+width:100%;height:150px;object-fit:cover}
+.project-card div{padding:10px}
+.project-card a{display:block;margin-top:8px}
 
-    p {
-      margin: 0;
-      color: #ccc;
-    }
+/* Contact */
+form{max-width:500px;margin:auto;display:flex;flex-direction:column;gap:10px}
+input,textarea,select{padding:10px;border-radius:8px;border:none}
 
-    .info, .follow {
-      color: #00bfff;
-      margin: 10px 0;
-    }
-
-    nav {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
- margin-top: 30px;
-    }
-
-    a.button {
-      text-decoration: none;
-      background: #00bfff;
-      color: white;
-      padding: 12px;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    a.button:hover {
-      background: #cc0000;
-      transform: scale(1.05);
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 13px;
-      color: #888;
-    }
-  </style>
+footer{margin:40px 0;color:#888}
+</style>
 </head>
+
 <body>
 
-<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-29.mp3"></audio>
+<button id="themeToggle"><i class="fas fa-moon"></i></button>
 
-<div id="alertBox">
-  <div id="welcomeText"></div>
-  <button id="goBtn">Go it</button>
+<div class="container">
+
+<img src="https://i.imgur.com/naY3qiQ.jpeg" class="avatar">
+<h1>David Mpongo</h1>
+
+<div class="status">Statut : <span id="statusText">En ligne</span></div>
+
+<div class="followers">
+<span id="followCount">423</span> followers
+<button onclick="addFollow()">👍</button>
 </div>
 
-<div id="mainContent">
-  <header>
-    <img src="https://i.imgur.com/naY3qiQ.jpeg" class="avatar" alt="photo de profil">
-    <h1>David Mpongo</h1>
-    <p>Développeur Web & Mobile</p>
-  </header>
+<p>
+Je suis un développeur congolais Web, Mobile et Intelligence Artificielle.
+J’ai 18 ans avec plus de 4 ans d’expérience en informatique.
+Je crée des sites web, applications mobiles, chatbots IA, fichiers VPN
+pour connexion gratuite et plateformes intelligentes modernes.
+</p>
 
-  <div class="info">443 j'aime ❤️</div>
-  <div class="follow"><span id="followers">2500</span> followers 👥</div>
+<button class="btn" onclick="toggleProjects()">Voir mes projets 🚀</button>
 
-  <nav>
-    <a href="projet.html" class="button">Voir mes projets</a>
-    <a href="information.html" class="button">À propos de moi</a>
-    <a href="contact.html" class="button">Contactez-moi</a>
-  </nav>
+<!-- ================= COMPÉTENCES ================= -->
+<section id="skills">
+<h2>Mes Compétences 💻</h2>
 
-  <footer>
-    &copy; 2025 David Mpongo. Tous droits réservés.
-  </footer>
+<div class="skill-group">
+<h3><i class="fab fa-html5"></i> Développement Web</h3>
+<div class="skill"><span>HTML <b>95%</b></span><div class="progress"><div class="progress-bar" data="95"></div></div></div>
+<div class="skill"><span>CSS <b>90%</b></span><div class="progress"><div class="progress-bar" data="90"></div></div></div>
+<div class="skill"><span>JavaScript <b>85%</b></span><div class="progress"><div class="progress-bar" data="85"></div></div></div>
+<div class="skill"><span>PHP <b>75%</b></span><div class="progress"><div class="progress-bar" data="75"></div></div></div>
+</div>
+
+<div class="skill-group">
+<h3><i class="fas fa-brain"></i> Intelligence Artificielle</h3>
+<div class="skill"><span>Chatbots IA <b>78%</b></span><div class="progress"><div class="progress-bar" data="78"></div></div></div>
+<div class="skill"><span>Automatisation <b>72%</b></span><div class="progress"><div class="progress-bar" data="72"></div></div></div>
+</div>
+
+<div class="skill-group">
+<h3><i class="fas fa-shield-halved"></i> VPN & Sécurité</h3>
+<div class="skill"><span>Fichiers VPN <b>88%</b></span><div class="progress"><div class="progress-bar" data="88"></div></div></div>
+<div class="skill"><span>Sécurité réseau <b>82%</b></span><div class="progress"><div class="progress-bar" data="82"></div></div></div>
+</div>
+
+<div class="skill-group">
+<h3><i class="fas fa-toolbox"></i> Outils</h3>
+<div class="skill"><span>Git & GitHub <b>48%</b></span><div class="progress"><div class="progress-bar" data="48"></div></div></div>
+<div class="skill"><span>Bases de données <b>45%</b></span><div class="progress"><div class="progress-bar" data="45"></div></div></div>
+</div>
+</section>
+
+<!-- ================= PROJETS (28) ================= -->
+<section id="projects">
+<h2>🚀 Mes 28 Projets</h2>
+<div class="projects-container">
+
+<!-- 1 -->
+<div class="project-card"><img src="https://i.imgur.com/L2SIlyw.jpeg"><div>Projet New<br><a href="service.html" class="btn">Voir</a></div></div>
+
+<!-- 2 -->
+<div class="project-card"><img src="https://i.imgur.com/naY3qiQ.jpeg"><div>Chatbot App<br><a href="https://web2apkpro.com/public_download.php?project_id=1135" class="btn">Voir</a></div></div>
+
+<!-- 3 -->
+<div class="project-card"><img src="https://i.imgur.com/AnFWx6c.jpeg"><div>Auto Bot<br><a href="https://davbot-10.onrender.com/" class="btn">Voir</a></div></div>
+
+<!-- 4 -->
+<div class="project-card"><img src="https://i.imgur.com/XuFiqd5.jpeg"><div>Chatbot Custom<br><a href="gpt.html" class="btn">Voir</a></div></div>
+
+<!-- 5 -->
+<div class="project-card"><img src="https://i.imgur.com/0ecAn0a.jpeg"><div>Chatbot Pro<br><a href="Gpt.html" class="btn">Voir</a></div></div>
+
+<!-- 6 -->
+<div class="project-card"><img src="https://i.imgur.com/mAojHRc.jpeg"><div>Traducteur<br><a href="tra.html" class="btn">Voir</a></div></div>
+
+<!-- 7 -->
+<div class="project-card"><img src="https://i.imgur.com/5T5rUjq.jpeg"><div>QR Code<br><a href="qr.html" class="btn">Voir</a></div></div>
+
+<!-- 8 -->
+<div class="project-card"><img src="https://i.imgur.com/hQ6u58p.jpeg"><div>Mini Google<br><a href="google.html" class="btn">Voir</a></div></div>
+
+<!-- 9 -->
+<div class="project-card"><img src="https://i.imgur.com/dmbjILZ.jpeg"><div>Bloc-notes<br><a href="not.html" class="btn">Voir</a></div></div>
+
+<!-- 10 -->
+<div class="project-card"><img src="https://i.imgur.com/YBJ27h0.jpeg"><div>Lecteur Audio<br><a href="audio.html" class="btn">Voir</a></div></div>
+
+<!-- 11 -->
+<div class="project-card"><img src="https://i.imgur.com/QzNdsNQ.jpeg"><div>VPN Gratuit<br><a href="vpn.html" class="btn">Voir</a></div></div>
+
+<!-- 12 -->
+<div class="project-card"><img src="https://i.imgur.com/kaGeiIt.jpeg"><div>FB Like<br><a href="li.html" class="btn">Voir</a></div></div>
+
+<!-- 13 -->
+<div class="project-card"><img src="https://i.imgur.com/z6xVC40.jpeg"><div>Carte Élève<br><a href="carte.html" class="btn">Voir</a></div></div>
+
+<!-- 14 -->
+<div class="project-card"><img src="https://i.imgur.com/cx54yn9.jpeg"><div>Météo<br><a href="calen.html" class="btn">Voir</a></div></div>
+
+<!-- 15 -->
+<div class="project-card"><img src="https://i.imgur.com/4Ge591Y.jpeg"><div>Citations<br><a href="cit.html" class="btn">Voir</a></div></div>
+
+<!-- 16 -->
+<div class="project-card"><img src="https://i.imgur.com/614J88W.jpeg"><div>Anniversaire<br><a href="joy.html" class="btn">Voir</a></div></div>
+
+<!-- 17 -->
+<div class="project-card"><img src="https://i.imgur.com/8XKK8uf.jpeg"><div>Billets<br><a href="T1.html" class="btn">Voir</a></div></div>
+
+<!-- 18 -->
+<div class="project-card"><img src="https://i.imgur.com/0JP1iBn.jpeg"><div>Monitoring<br><a href="up.html" class="btn">Voir</a></div></div>
+
+<!-- 19 -->
+<div class="project-card"><img src="https://i.imgur.com/evMmIF2.jpeg"><div>Éditeur Code<br><a href="web.html" class="btn">Voir</a></div></div>
+
+<!-- 20 -->
+<div class="project-card"><img src="https://i.imgur.com/YBJ27h0.jpeg"><div>Music Bot<br><a href="https://davbot-web-music.vercel.app/" class="btn">Voir</a></div></div>
+
+<!-- 21 -->
+<div class="project-card"><img src="https://i.imgur.com/NUI42B0.jpeg"><div>Quiz<br><a href="quiz.html" class="btn">Voir</a></div></div>
+
+<!-- 22 -->
+<div class="project-card"><img src="https://i.imgur.com/cmtHMq6.jpeg"><div>Calculatrice<br><a href="calculatrice.html" class="btn">Voir</a></div></div>
+
+<!-- 23 -->
+<div class="project-card"><img src="https://i.imgur.com/pg75clG.jpeg"><div>Horloge<br><a href="horloge.html" class="btn">Voir</a></div></div>
+
+<!-- 24 -->
+<div class="project-card"><img src="https://i.imgur.com/o5bHl17.jpeg"><div>Calcul Âge<br><a href="âge.html" class="btn">Voir</a></div></div>
+
+<!-- 25 -->
+<div class="project-card"><img src="https://i.imgur.com/nzsbNOg.jpeg"><div>Devinette<br><a href="dev.html" class="btn">Voir</a></div></div>
+
+<!-- 26 -->
+<div class="project-card"><img src="https://i.imgur.com/xW3cjdY.jpeg"><div>Jeu Mémoire<br><a href="memo.html" class="btn">Voir</a></div></div>
+
+<!-- 27 -->
+<div class="project-card"><img src="https://i.imgur.com/j5A7Jg0.jpeg"><div>Dames<br><a href="dame.html" class="btn">Voir</a></div></div>
+
+<!-- 28 -->
+<div class="project-card"><img src="https://i.imgur.com/x9LiiUX.jpeg"><div>Jeu Espace<br><a href="jeu1.html" class="btn">Voir</a></div></div>
+
+</div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section>
+<h2>Contactez-moi 📩</h2>
+<form onsubmit="sendMsg(event)">
+<input placeholder="Nom" required>
+<input type="email" placeholder="Adresse mail" required>
+<textarea placeholder="Message" required></textarea>
+<select>
+<option>WhatsApp +243 846084543</option>
+<option>Assistant +243 982697752</option>
+<option>Via Facebook</option>
+</select>
+<button class="btn">Envoyer</button>
+</form>
+</section>
+
+<footer>© 2025 David Mpongo – Tous droits réservés</footer>
+
 </div>
 
 <script>
-  const goBtn = document.getElementById('goBtn');
-const alertBox = document.getElementById('alertBox');
-  const mainContent = document.getElementById('mainContent');
-  const welcomeText = document.getElementById('welcomeText');
-  const clickSound = document.getElementById('clickSound');
+/* Theme */
+const t=document.getElementById("themeToggle"),i=t.querySelector("i");
+if(localStorage.theme==="light"){document.body.classList.add("light");i.className="fas fa-sun";}
+t.onclick=()=>{
+document.body.classList.toggle("light");
+localStorage.theme=document.body.classList.contains("light")?"light":"dark";
+i.className=document.body.classList.contains("light")?"fas fa-sun":"fas fa-moon";
+};
 
-  const message = `╭────•◈•────•◈•─────•◈•─────╮\nBienvenue sur mon portfolio\n╰───•◈•─────•◈•───────•◈•───╯\n╭─────•◈•─────╮\n🫶 Cliquez sur Go it pour continuer 🖤🤍♥️\n╰─────•◈•─────╯`;
+/* Followers */
+let f=localStorage.follow||423;
+document.getElementById("followCount").innerText=f;
+function addFollow(){f++;localStorage.follow=f;followCount.innerText=f}
 
-  let index = 0;
-  function typeWriter() {
-    if (index < message.length) {
-      welcomeText.textContent += message.charAt(index);
-      index++;
-      setTimeout(typeWriter, 30);
-    }
-  }
-  typeWriter();
+/* Status */
+setTimeout(()=>statusText.innerText="Hors ligne",4*60*60*1000);
 
-  goBtn.addEventListener('click', () => {
-    clickSound.play();
-    alertBox.classList.add('hide');
-    setTimeout(() => {
-      alertBox.style.display = 'none';
-      mainContent.style.display = 'flex';
-    }, 1000);
-  });
+/* Projects */
+function toggleProjects(){
+projects.style.display=projects.style.display==="block"?"none":"block";
+}
+
+/* Skills animation */
+document.querySelectorAll(".progress-bar").forEach(bar=>{
+new IntersectionObserver(e=>{
+e.forEach(x=>{
+if(x.isIntersecting){x.target.style.width=x.target.getAttribute("data")+"%";}
+});
+},{threshold:.5}).observe(bar);
+});
+
+function sendMsg(e){e.preventDefault();alert("Message prêt à être envoyé");}
 </script>
 
 </body>
-</html>
+  </html>
