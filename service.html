@@ -1,15 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Davbot service</title>
-  <link rel="icon" href="https://i.imgur.com/L2SIlyw.jpeg" type="image/ico">
-  <link rel="shortcut icon" href="https://i.imgur.com/L2SIlyw.jpeg">
-  <link rel="icon" href="https://i.imgur.com/L2SIlyw.jpeg" type="image/x-icon">
-  <link rel="icon" type="image/jpeg" href="https://i.imgur.com/L2SIlyw.jpeg">
-  
+  <title>Davbot Service - Solutions numériques</title>
+  <meta name="description"
+    content="Davbot Service : Votre partenaire pour la création d'applications, sites web, IA et formations numériques.">
+  <link rel="icon" href="https://i.imgur.com/L2SIlyw.jpeg" type="image/png">
+
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
   <!-- AOS animation library -->
@@ -23,202 +23,18 @@
       padding: 0;
       font-family: 'Georgia', serif;
     }
+
     body {
       background: #111;
       color: white;
       line-height: 1.6;
       scroll-behavior: smooth;
+      transition: all 0.5s ease;
     }
+
     a {
-      margin-top: 60px; /* height navbar */
-    }
-    header::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
-    }
-    header .content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-    }
-    header h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-      font-weight: bold;
-      color: #00bfff;
-    }
-    header p {
-      font-size: 20px;
-      margin-bottom: 30px;
-    }
-    header button {
-      background: none;
-      border: 2px solid #00bfff;
-      color: #00bfff;
-      padding: 12px 40px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-    }
-    header button:hover {
-      background: #00bfff;
-      color: #111;
-    }
-
-    /* Services */
-    .services-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
-      justify-content: center;
-    }
-    .service-box {
-      background: #222;
-      padding: 25px;
-      border-radius: 15px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0 0 10px #00bfff88;
-      transition: transform 0.3s ease;
-    }
-    .service-box:hover {
-      transform: translateY(-10px);
-    }
-    .service-box i {
-      font-size: 50px;
-      margin-bottom: 15px;
-      color: #00bfff;
-    }
-    .service-box h2 {
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
-    .service-box p {
-      margin-bottom: 20px;
-      font-size: 16px;
-      color: #ccc;
-      min-height: 60px;
-    }
-    .service-box button {
-      background: #00bfff;
-      border: none;
-      color: #111;
-      padding: 12px 25px;
-      font-weight: bold;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .service-box button:hover {
-      background: #0077b6;
-      color: white;
-    }
-
-    /* Testimonials */
-    #temoignages h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      color: #00bfff;
-    }
-    .testimonials-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-    }
-    .testimonial {
-      background: #222;
-      width: 280px;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #00bfff55;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .testimonial img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #00bfff;
-    }
-    .testimonial p {
-      font-style: italic;
-      color: #ddd;
-    }
-
-    /* Contact */
-    #contact {
-      background: url('https://i.imgur.com/ItbhQFq.jpeg') no-repeat center center/cover;
-      position: relative;
-      border-radius: 15px;
-      margin-bottom: 60px;
-    }
-    #contact::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      border-radius: 15px;
-      z-index: 0;
-    }
-    .contact-content {
-      position: relative;
-      max-width: 700px;
-      margin: auto;
-      padding: 60px 20px;
-      color: white;
-      z-index: 1;
-    }
-    .contact-content h2 {
-      margin-bottom: 30px;
-      text-align: center;
-      color: #00bfff;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    input, select, textarea {
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-    }
-    input, select {
-      background: #111;
-      color: #00bfff;
-    }
-    button[type="submit"] {
-      background: #00bfff;
-      border: none;
-      color: #111;
-      padding: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: background 0.3s ease;
-      margin-top: 10px;
-    }
-    button[type="submit"]:hover {
-      background: #0077b6;
-      color: white;
-    }
-    #confirmationMessage {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #00ff90;
-      text-align: center;
+      text-decoration: none;
+      color: inherit;
     }
 
     /* Navbar */
@@ -234,29 +50,46 @@
       padding: 15px 30px;
       z-index: 1000;
     }
+
     nav .logo {
       font-size: 24px;
       font-weight: bold;
       color: #00bfff;
     }
+
     nav ul {
       display: flex;
       list-style: none;
       gap: 25px;
     }
+
     nav ul li {
       cursor: pointer;
       font-weight: 600;
+      transition: 0.3s;
     }
+
     nav ul li:hover {
       color: #00bfff;
     }
-    /* Hamburger for mobile */
+
     #menuToggle {
       display: none;
       font-size: 28px;
       cursor: pointer;
       color: #00bfff;
+    }
+
+    #themeToggle {
+      cursor: pointer;
+      font-size: 20px;
+      color: #00bfff;
+      margin-left: 15px;
+      transition: 0.3s;
+    }
+
+    #themeToggle:hover {
+      color: #0077b6;
     }
 
     /* Header */
@@ -270,25 +103,341 @@
       text-align: center;
       padding: 20px;
       color: white;
-      border: 1px solid #00bfff;
+      border-bottom: 3px solid #00bfff;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    header .content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #00bfff;
+    }
+
+    header p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    header button {
+      background: none;
+      border: 2px solid #00bfff;
+      color: #00bfff;
+      padding: 12px 40px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    header button:hover {
+      background: #00bfff;
+      color: #111;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Sections Titles */
+    section h1 {
+      text-align: center;
+      margin: 40px 0 20px;
+      color: #00bfff;
+      font-size: 32px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s ease;
+    }
+
+    section[data-aos].aos-animate h1 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section p {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    /* About */
+    #about ul {
+      list-style: none;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-left: 20px;
+      color: #ccc;
+    }
+
+    #about li::before {
+      content: "✔ ";
+      color: #00bfff;
+    }
+
+    /* Services */
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .service-box {
+      background: #222;
+      padding: 25px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px #00bfff88;
+      transition: all 0.5s ease;
+    }
+
+    .service-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 191, 255, 0.5);
+    }
+
+    .service-box i {
+      font-size: 50px;
+      margin-bottom: 15px;
+      color: #00bfff;
+    }
+
+    .service-box h2 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .service-box p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #ccc;
+      min-height: 60px;
+    }
+
+    .service-box button {
+      background: #00bfff;
+      border: none;
+      color: #111;
+      padding: 12px 25px;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .service-box button:hover {
+      background: #0077b6;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Testimonials */
+    .testimonials-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .testimonial {
+      background: #222;
+      width: 280px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00bfff55;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .testimonial img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #00bfff;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      color: #ddd;
+    }
+
+    /* Contact */
+    #contact {
+      background: url('https://i.imgur.com/ItbhQFq.jpeg') no-repeat center center/cover;
+      position: relative;
+      border-radius: 15px;
+      margin-bottom: 60px;
+    }
+
+    #contact::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      z-index: 0;
+    }
+
+    .contact-content {
+      position: relative;
+      max-width: 700px;
+      margin: auto;
+      padding: 60px 20px;
+      color: white;
+      z-index: 1;
+    }
+
+    .contact-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: #111;
+      color: #00bfff;
+    }
+
+    button[type="submit"] {
+      background: #00bfff;
+      border: none;
+      color: #111;
+      padding: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+      background: #0077b6;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    #confirmationMessage {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00ff90;
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .contact-links a {
+      font-size: 18px;
+      color: #00bfff;
+      transition: 0.3s;
+    }
+
+    .contact-links a:hover {
+      color: #0077b6;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      border-top: 2px solid #00bfff;
+      color: #ccc;
+    }
+
+    /* Light Theme */
+    body.light {
+      background: #f4f4f4;
+      color: #111;
+    }
+
+    body.light header {
+      border-bottom: 3px solid #0077b6;
+    }
+
+    body.light .service-box,
+    body.light .testimonial,
+    body.light #contact .contact-content {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 0 10px #0077b688;
+    }
+
+    body.light a,
+    body.light .contact-links a {
+      color: #0077b6;
+    }
+
+    body.light header button,
+    body.light .service-box button,
+    body.light button[type="submit"] {
+      color: #fff;
+      background: #0077b6;
+    }
+
+    body.light header button:hover,
+    body.light .service-box button:hover,
+    body.light button[type="submit"]:hover {
+      background: #00bfff;
+      color: #111;
     }
 
     /* Responsive */
-    @media(max-width: 768px){
-      .services-container, .testimonials-container {
+    @media(max-width:768px) {
+      .services-container,
+      .testimonials-container {
         flex-direction: column;
         align-items: center;
       }
+
       nav ul {
         display: none;
       }
+
       #menuToggle {
         display: block;
       }
+
       nav.open ul {
         display: flex;
         flex-direction: column;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0, 0, 0, 0.95);
         position: fixed;
         top: 60px;
         right: 0;
@@ -298,85 +447,146 @@
         gap: 15px;
         z-index: 1100;
       }
+
       nav.open ul li {
         padding: 10px 20px;
       }
     }
-
   </style>
 </head>
 
 <body>
+  <!-- Navbar -->
   <nav>
-    <div class="logo">Davbot service</div>
-    <div id="menuToggle"><i class="fas fa-bars"></i></div>
+    <div class="logo">Davbot Service</div>
+    <div style="display:flex; align-items:center;">
+      <div id="menuToggle"><i class="fas fa-bars"></i></div>
+      <div id="themeToggle"><i class="fas fa-sun"></i></div>
+    </div>
     <ul id="menu">
       <li><a href="#accueil">Accueil</a></li>
       <li><a href="#about">À propos</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#team">Équipe</a></li>
+      <li><a href="#advantages">Avantages</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#temoignages">Témoignages</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
+  <!-- Header -->
   <header id="accueil" data-aos="fade-in">
     <div class="content">
       <h1>Bienvenue chez Davbot Service</h1>
-      <p>Votre assistant Davbot pour vos besoins informatiques et projets numériques.</p>
+      <p>Votre partenaire pour la création d'applications, sites web, IA et formations numériques.</p>
       <button onclick="window.location.href='#contact'">Contactez-nous</button>
     </div>
   </header>
-
+  <!-- À propos -->
   <section id="about" data-aos="fade-up">
     <h1>Notre entreprise</h1>
-    <p><strong>Notre entreprise est un service où vous pouvez nous contacter pour discuter de vos projets et besoins numériques.</strong></p>
-    <p><code>Voici ce que nous pouvons réaliser pour vous :</code></p>
+    <p>Davbot Service est votre partenaire numérique pour tous vos projets. Nous réalisons vos idées avec professionnalisme et créativité.</p>
     <ul>
-      <li>Création d'applications web 📱💻</li>
-      <li>Création de sites web professionnels</li>
-      <li>Création de logos 📿</li>
-      <li>Apprendre la programmation 📘</li>
-      <li>Création d'IA via WhatsApp, Facebook, Télégram 🤖🧠</li>
+      <li>Création d'applications web et mobiles 📱💻</li>
+      <li>Développement de sites web professionnels</li>
+      <li>Création de logos et identité visuelle 📿</li>
+      <li>Formations en programmation 📘</li>
+      <li>Création d'IA intégrées pour WhatsApp, Facebook, Telegram 🤖🧠</li>
     </ul>
-    <p>Vous êtes libre de proposer ce que vous souhaitez créer ou apprendre ! ✨</p>
+    <p>Vous pouvez proposer vos projets ou formations à créer, nous nous occupons du reste ! ✨</p>
   </section>
 
+  <!-- Services -->
   <section id="services" data-aos="fade-right">
     <h1>Nos Services</h1>
     <div class="services-container">
       <div class="service-box">
         <i class="fas fa-book"></i>
-        <h2>Apprendre HTML (70 balises)</h2>
-        <p>Formation gratuite pour maîtriser les bases du HTML.</p>
+        <h2>Apprendre HTML</h2>
+        <p>Formation gratuite pour maîtriser les bases du HTML (70 balises).</p>
         <a href="ser.html"><button onclick="alert('Voir service : Apprendre HTML')">Voir</button></a>
       </div>
-    </div>
-  </section>
-
-  <section id="premium" data-aos="fade-left">
-    <h1>Services Premium</h1>
-    <div class="services-container">
       <div class="service-box">
         <i class="fas fa-mobile-alt"></i>
         <h2>Créer une application web</h2>
-        <p>Service complet pour développer votre application web professionnelle.</p>
+        <p>Développement complet pour votre application web professionnelle.</p>
         <a href="#contact"><button onclick="alert('Acheter service : Créer une application web')">Acheter</button></a>
       </div>
       <div class="service-box">
         <i class="fas fa-chart-line"></i>
-        <h2>Créer un site web professionnel</h2>
+        <h2>Créer un site web pro</h2>
         <p>Formation complète pour créer un site web officiel et professionnel.</p>
         <a href="#contact"><button onclick="alert('Acheter service : Créer un site web')">Acheter</button></a>
       </div>
       <div class="service-box">
         <i class="fas fa-robot"></i>
         <h2>Création d'IA intégrées</h2>
-        <p>Création d'intelligences artificielles intégrées dans le web.</p>
+        <p>Développement d'intelligences artificielles intégrées dans le web.</p>
         <a href="#contact"><button onclick="alert('Acheter service : Création d\'IA')">Acheter</button></a>
       </div>
     </div>
   </section>
 
+  <!-- Équipe -->
+  <section id="team" data-aos="fade-left">
+    <h1>Notre Équipe</h1>
+    <div class="services-container">
+      <div class="service-box">
+        <i class="fas fa-user-tie"></i>
+        <h2>David Mpongo</h2>
+        <p>Fondateur & développeur principal. Expert en applications web et IA.</p>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-user-tie"></i>
+        <h2>Équipe Dev</h2>
+        <p>Une équipe dédiée à la réalisation de vos projets numériques.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avantages -->
+  <section id="advantages" data-aos="fade-up">
+    <h1>Pourquoi nous choisir ?</h1>
+    <div class="services-container">
+      <div class="service-box">
+        <i class="fas fa-clock"></i>
+        <h2>Rapide et fiable</h2>
+        <p>Nous respectons vos délais et livrons des projets de qualité.</p>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-handshake"></i>
+        <h2>Support complet</h2>
+        <p>Assistance et conseils tout au long de votre projet.</p>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-award"></i>
+        <h2>Expertise professionnelle</h2>
+        <p>Notre savoir-faire vous garantit un résultat professionnel.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" data-aos="fade-up">
+    <h1>Questions fréquentes</h1>
+    <div class="services-container">
+      <div class="service-box">
+        <h2>Comment nous contacter ?</h2>
+        <p>Via le formulaire de contact, WhatsApp, Facebook ou Gmail.</p>
+      </div>
+      <div class="service-box">
+        <h2>Quels services proposez-vous ?</h2>
+        <p>Applications web, sites web, IA, logos, formations et plus.</p>
+      </div>
+      <div class="service-box">
+        <h2>Quels sont vos tarifs ?</h2>
+        <p>Les tarifs dépendent de la complexité du projet, contactez-nous pour un devis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignages -->
   <section id="temoignages" data-aos="fade-up">
     <h1>Témoignages</h1>
     <div class="testimonials-container">
@@ -399,6 +609,7 @@
     </div>
   </section>
 
+  <!-- Contact -->
   <section id="contact" data-aos="fade-up">
     <div class="contact-content">
       <h2>Contactez-nous</h2>
@@ -414,9 +625,7 @@
         </select><br>
         <button type="submit">Envoyer</button>
       </form>
-
-      <p id="confirmationMessage" style="color: green; font-weight: bold;"></p>
-
+      <p id="confirmationMessage"></p>
       <div class="contact-links">
         <a href="https://wa.me/243846064543" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a href="https://www.facebook.com/david.mpongo.280361" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
@@ -425,24 +634,28 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Davbot Service. Tous droits réservés.</p>
   </footer>
 
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Contact form
     document.getElementById("contactForm").addEventListener("submit", function (e) {
       e.preventDefault();
-
       const nom = document.getElementById("nom").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
       const methode = document.getElementById("methode").value;
-
-      const msg = encodeURIComponent("Nom: " + nom + "\nEmail: " + email + "\nMessage: " + message);
+      const msg = encodeURIComponent(`Nom: ${nom}\nEmail: ${email}\nMessage: ${message}`);
       const confirmation = document.getElementById("confirmationMessage");
 
       if (methode === "whatsapp") {
-        window.open("https://wa.me/243846064543?text=" + msg, "_blank");
+        window.open(`https://wa.me/243846064543?text=${msg}`, "_blank");
         confirmation.textContent = "Message envoyé via WhatsApp.";
       } else if (methode === "facebook") {
         window.open("https://www.facebook.com/david.mpongo.280361", "_blank");
@@ -453,14 +666,6 @@
         confirmation.textContent = "Veuillez choisir une méthode d'envoi.";
       }
     });
-  </script>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
 
     // Toggle mobile menu
     const menuToggle = document.getElementById('menuToggle');
@@ -468,7 +673,21 @@
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('open');
     });
+
+    // Toggle light/dark mode
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const icon = themeToggle.querySelector('i');
+      if (document.body.classList.contains('light')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
+    });
   </script>
 </body>
 
-</html>
+  </html>
