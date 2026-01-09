@@ -1,218 +1,335 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Gestion Hébergement</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0d1117;
-      color: #c9d1d9;
-    }
+<meta charset="UTF-8">
+<title>Davbot Uptime Monitor PRO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header {
-      text-align: center;
-      padding: 20px;
-      background: #161b22;
-      color: #58a6ff;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 1px solid #30363d;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0d1117;
+  color:#c9d1d9;
+}
+header{
+  background:#161b22;
+  padding:15px;
+  text-align:center;
+  font-size:22px;
+  color:#58a6ff;
+  font-weight:bold;
+}
+#netStatus{
+  font-size:13px;
+  margin-top:5px;
+}
+nav{
+  display:flex;
+}
+nav button{
+  flex:1;
+  padding:12px;
+  background:#21262d;
+  border:none;
+  color:#58a6ff;
+  font-weight:bold;
+  cursor:pointer;
+}
+nav button.active{
+  background:#0d1117;
+  border-bottom:2px solid #58a6ff;
+}
+.container{padding:15px;}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #161b22;
-    }
+input,button{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:6px;
+  border:none;
+}
+input{
+  background:#21262d;
+  color:#c9d1d9;
+  border:1px solid #30363d;
+}
+button{
+  background:#238636;
+  color:white;
+  cursor:pointer;
+}
+button:hover{background:#2ea043}
 
-    nav button {
-      flex: 1;
-      padding: 12px;
-      background: #21262d;
-      color: #58a6ff;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      border-bottom: 2px solid transparent;
-    }
+.hidden{display:none}
 
-    nav button.active {
-      border-bottom: 2px solid #58a6ff;
-      background: #0d1117;
-    }
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:15px;
+}
+.stat{
+  background:#161b22;
+  padding:12px;
+  border-radius:6px;
+  text-align:center;
+  border:1px solid #30363d;
+}
 
-    .container {
-      padding: 20px;
- }
+/* SITE CARD */
+.site{
+  background:#161b22;
+  border:1px solid #30363d;
+  border-left:4px solid #58a6ff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:6px;
+  animation:fadeIn .5s;
+}
+.site.up{
+  box-shadow:0 0 12px rgba(63,185,80,.4);
+  animation:pulse 2s infinite;
+}
+.site.down{
+  box-shadow:0 0 12px rgba(248,81,73,.4);
+  animation:shake .4s;
+}
+.flex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.small{font-size:13px;opacity:.85}
+.upText{color:#3fb950}
+.downText{color:#f85149}
+.danger{
+  background:#f85149;
+}
+.danger:hover{background:#da3633}
 
-    input, button, label {
-      display: block;
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      font-size: 16px;
-    }
-
-    input {
-      background: #21262d;
-      color: #c9d1d9;
-      border: 2px solid #30363d;
-    }
-
-    input.valid {
-      border-color: #2ea043;
-    }
-
-    input.invalid {
-      border-color: #f85149;
-    }
-
-    button {
-      background: #238636;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #2ea043;
-    }
-
-    .site {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-left: 4px solid #58a6ff;
-      padding: 12px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-    }
-
-    .site p {
-      margin: 5px 0;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .danger {
-      background: #f85149;
-      border: none;
-      color: white;
-      padding: 10px;
-      margin-top: 10px;
-    }
-
-    .danger:hover {
-      background: #da3633;
-    }
-  </style>
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.02)}
+  100%{transform:scale(1)}
+}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  50%{transform:translateX(4px)}
+  100%{transform:translateX(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+</style>
 </head>
+
 <body>
-  <header>Davbot Hébergement</header>
 
-  <nav>
-    <button class="active" onclick="showTab('add')">Ajouter</button>
-    <button onclick="showTab('list')">Liste</button>
-  </nav>
+<header>
+📡 Davbot Uptime Monitor PRO
+<div id="netStatus"></div>
+</header>
 
-  <div class="container">
-    <div id="add" class="tab">
- <label for="name">Nom du site :</label>
-      <input type="text" id="name" placeholder="Ex: Mon Site">
+<nav>
+  <button class="active" onclick="switchTab('add',this)">Ajouter</button>
+  <button onclick="switchTab('dashboard',this)">Dashboard</button>
+</nav>
 
-      <label for="url">URL :</label>
-      <input type="text" id="url" placeholder="https://exemple.com">
+<div class="container">
 
-      <label for="port">Port :</label>
-      <input type="number" id="port" placeholder="Ex: 8080">
+<!-- AJOUT -->
+<div id="add">
+  <input id="siteName" placeholder="Nom du site">
+  <input id="siteUrl" placeholder="https://exemple.com">
+  <button onclick="addSite()">➕ Ajouter le site</button>
+</div>
 
-      <button onclick="addSite()">Ajouter</button>
-    </div>
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+  <div class="stats" id="stats"></div>
+  <div id="sites"></div>
+  <button onclick="checkAll()">🔄 Vérifier maintenant</button>
+</div>
 
-    <div id="list" class="tab hidden">
-      <div id="sitesContainer"></div>
-      <button class="danger" onclick="clearSites()">Vider le stockage</button>
-    </div>
-  </div>
+</div>
 
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.add('hidden'));
-      document.getElementById(tabId).classList.remove('hidden');
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      if (tabId === 'list') loadSites();
-    }
+<script>
+let sites = JSON.parse(localStorage.getItem("davbot_uptime") || "[]");
 
-    function isValidURL(url) {
-      try {
-        new URL(url);
-        return true;
-      } catch (e) {
-        return false;
-      }
-    }
+function save(){
+  localStorage.setItem("davbot_uptime", JSON.stringify(sites));
+}
 
-    function addSite() {
-      const name = document.getElementById("name").value.trim();
-      const url = document.getElementById("url").value.trim();
-      const port = document.getElementById("port").value.trim();
-      const urlInput = document.getElementById("url");
+/* TABS */
+function switchTab(id, btn){
+  document.querySelectorAll('.container > div').forEach(d=>d.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(id === "dashboard") render();
+}
 
-      if (!isValidURL(url)) {
-        urlInput.classList.add("invalid");
-        urlInput.classList.remove("valid");
-        alert("URL invalide !");
-        return;
-      } else {
-        urlInput.classList.remove("invalid");
-        urlInput.classList.add("valid");
-      }
+/* ADD SITE */
+function addSite(){
+  const siteName = document.getElementById("siteName").value.trim();
+  const siteUrl  = document.getElementById("siteUrl").value.trim();
 
-      const site = { name, url, port };
-      const existing = JSON.parse(localStorage.getItem("hebergements")) || [];
-      existing.push(site);
-      localStorage.setItem("hebergements", JSON.stringify(existing));
+  if(siteName === "" || siteUrl === ""){
+    alert("Veuillez remplir tous les champs");
+    return;
+  }
 
-      document.getElementById("name").value = "";
-      document.getElementById("url").value = "";
-      document.getElementById("port").value = "";
-      urlInput.classList.remove("valid");
+  sites.push({
+    name: siteName,
+    url: siteUrl,
+    up: 0,
+    down: 0,
+    ms: [],
+    last: "Jamais"
+  });
 
-      alert("Hébergement enregistré !");
-    }
+  save();
+  document.getElementById("siteName").value = "";
+  document.getElementById("siteUrl").value = "";
 
-    function loadSites() {
-      const container = document.getElementById("sitesContainer");
-      container.innerHTML = "";
-      const sites = JSON.parse(localStorage.getItem("hebergements")) || [];
+  alert("Site ajouté avec succès ✅");
+}
 
-      if (sites.length === 0) {
-        container.innerHTML = "<p>Aucun hébergement enregistré.</p>";
-        return;
-      }
+/* RENDER */
+function render(){
+  updateStats();
+  const box = document.getElementById("sites");
+  box.innerHTML = "";
 
-      sites.forEach(site => {
-        const el = document.createElement("div");
-        el.className = "site";
-        el.innerHTML = `<p><strong>Nom :</strong> ${site.name}</p>
-          <p><strong>URL :</strong> <a href="{site.url}" target="_blank" style="color:#3fb950;">${site.url}</a></p>
-          <p><strong>Port :</strong>${site.port}</p>
-        `;
-        container.appendChild(el);
-      });
-    }
+  if(!sites.length){
+    box.innerHTML = "<p>Aucun site surveillé.</p>";
+    return;
+  }
 
-    function clearSites() {
-      localStorage.removeItem("hebergements");
-      loadSites();
-    }
-  </script>
+  sites.forEach((s,i)=>{
+    const div = document.createElement("div");
+    div.className = "site";
+    div.innerHTML = `
+      <div class="flex">
+        <strong>${s.name}</strong>
+        <button class="danger" onclick="removeSite(${i})">✖</button>
+      </div>
+      <a href="${s.url}" target="_blank" style="color:#58a6ff">${s.url}</a>
+      <p id="status${i}" class="small">⏳ Vérification...</p>
+      <p class="small">🕒 ${s.last}</p>
+    `;
+    box.appendChild(div);
+    checkSite(i, div);
+  });
+}
+
+/* CHECK SITE – DÉTECTION RÉELLE */
+function checkSite(i, div){
+  const s = sites[i];
+  const status = document.getElementById("status"+i);
+
+  if(!navigator.onLine){
+    div.classList.add("down");
+    status.innerHTML = "🔴 Hors ligne (pas d'internet)";
+    status.className = "small downText";
+    return;
+  }
+
+  const start = performance.now();
+  const img = new Image();
+
+  const timeout = setTimeout(()=>{
+    img.src = "";
+    s.down++;
+    div.classList.add("down");
+    status.innerHTML = "🔴 Inaccessible / introuvable";
+    status.className = "small downText";
+    s.last = new Date().toLocaleString();
+    save();
+    updateStats();
+  },8000);
+
+  img.onload = ()=>{
+    clearTimeout(timeout);
+    const ms = Math.round(performance.now() - start);
+    s.up++;
+    s.ms.push(ms);
+    div.classList.add("up");
+    status.innerHTML = `🟢 EN LIGNE — ${ms} ms`;
+    status.className = "small upText";
+    s.last = new Date().toLocaleString();
+    save();
+    updateStats();
+  };
+
+  img.onerror = ()=>{
+    clearTimeout(timeout);
+    s.down++;
+    div.classList.add("down");
+    status.innerHTML = "🔴 Hors ligne / domaine invalide";
+    status.className = "small downText";
+    s.last = new Date().toLocaleString();
+    save();
+    updateStats();
+  };
+
+  img.src = s.url.replace(/\/$/,"") + "/favicon.ico?" + Date.now();
+}
+
+/* STATS */
+function updateStats(){
+  let total = sites.length, up = 0, down = 0, avg = 0, count = 0;
+  sites.forEach(s=>{
+    up += s.up;
+    down += s.down;
+    s.ms.forEach(m=>{avg+=m;count++;});
+  });
+  avg = count ? Math.round(avg/count) : 0;
+
+  document.getElementById("stats").innerHTML = `
+    <div class="stat">🌍 Sites<br><strong>${total}</strong></div>
+    <div class="stat upText">🟢 UP<br><strong>${up}</strong></div>
+    <div class="stat downText">🔴 DOWN<br><strong>${down}</strong></div>
+    <div class="stat">⚡ Moyenne<br><strong>${avg} ms</strong></div>
+  `;
+}
+
+/* UTIL */
+function checkAll(){ render(); }
+function removeSite(i){
+  if(confirm("Supprimer ce site ?")){
+    sites.splice(i,1);
+    save();
+    render();
+  }
+}
+
+/* INTERNET STATUS */
+function netStatusUpdate(){
+  const el = document.getElementById("netStatus");
+  if(navigator.onLine){
+    el.innerHTML = "🟢 Connexion Internet active";
+    el.style.color = "#3fb950";
+  }else{
+    el.innerHTML = "🔴 Hors ligne – Monitoring suspendu";
+    el.style.color = "#f85149";
+  }
+}
+window.addEventListener("online", netStatusUpdate);
+window.addEventListener("offline", netStatusUpdate);
+netStatusUpdate();
+
+/* AUTO CHECK */
+setInterval(()=>{
+  if(!document.getElementById("dashboard").classList.contains("hidden")){
+    render();
+  }
+},30000);
+</script>
+
 </body>
 </html>
