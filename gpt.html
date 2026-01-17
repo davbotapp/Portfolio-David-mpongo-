@@ -1,350 +1,230 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Davbot App</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Davbot GPT</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Nunito",sans-serif}
-body{background:#1c1c1c;color:#fff}
+  /* ===== STYLE GLOBAL PLEIN ÉCRAN ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; width: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  body { background: #0d1117; color: #c9d1d9; display: flex; justify-content: center; align-items: center; }
 
-/* INTRO */
-#introForm{
-position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:999;
-display:flex;align-items:center;justify-content:center
-}
-#introForm form{
-background:#222;padding:25px;border-radius:18px;
-width:90%;max-width:360px;box-shadow:0 10px 30px rgba(0,0,0,.6)
-}
-#introForm h3{text-align:center;margin-bottom:10px}
-#introForm input,#introForm button{
-width:100%;padding:12px;margin-top:10px;border-radius:10px;border:none
-}
-#introForm input{background:#333;color:#fff}
-#introForm button{
-background:linear-gradient(135deg,#00bfff,#0077ff);
-color:#fff;font-weight:bold;cursor:pointer
-}
+  .container {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    background: #0d1117;
+    position: relative;
+  }
 
-/* HEADER */
-.topper{
-background:linear-gradient(135deg,#00bfff,#0077ff);
-padding:10px;display:flex;align-items:center;gap:10px
-}
-.icon{
-width:42px;height:42px;border-radius:50%;
-background:url(https://i.imgur.com/naY3qiQ.jpeg) center/cover
-}
-.name{font-size:18px;font-weight:bold}
-.audio-toggle{
-margin-left:auto;background:#fff;color:#000;
-border:none;border-radius:8px;padding:6px 10px;cursor:pointer
-}
+  /* HEADER */
+  header {
+    display: flex; align-items: center; gap: 15px;
+    padding: 20px;
+    border-bottom: 1px solid #30363d;
+    background: #161b22;
+  }
+  header img { width: 55px; height: 55px; border-radius: 50%; border: 2px solid #1f6feb; }
+  header h1 { color: #1f6feb; font-size: 2rem; }
+  header p { color: #8b949e; }
 
-/* AVATAR */
-#avatar{
-width:55px;height:55px;border-radius:50%;
-background:linear-gradient(135deg,#00d2ff,#3a7bd5);
-display:flex;align-items:center;justify-content:center;
-animation:float 3s ease-in-out infinite
-}
-.face{width:40px;height:40px;position:relative}
-.eye{
-width:8px;height:8px;background:#fff;border-radius:50%;
-position:absolute;top:12px;animation:blink 4s infinite
-}
-.eye.left{left:5px}
-.eye.right{right:5px}
-.talking{animation:float .4s infinite}
+  /* FORMULAIRE INITIAL */
+  #userForm {
+    flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;
+    background: #0d1117;
+  }
+  #userForm input {
+    padding: 15px; border-radius: 10px; border: 1px solid #30363d;
+    background: #161b22; color: #c9d1d9; font-size: 1.1rem; width: 300px;
+  }
+  #userForm input::placeholder { color: #8b949e; }
+  #userForm button {
+    padding: 15px 25px; border: none; border-radius: 10px; background: #1f6feb; color: #fff; font-size: 1.1rem;
+    cursor: pointer; transition: background 0.3s ease;
+  }
+  #userForm button:hover { background: #2188ff; }
 
-/* CHAT */
-.msgs_cont{
-height:calc(100vh - 170px);
-overflow-y:auto;padding:12px
-}
-ul{list-style:none}
-li{
-margin:10px;padding:12px 16px;
-border-radius:15px;max-width:75%;word-wrap:break-word;
-box-shadow:0 5px 15px rgba(0,0,0,.3)
-}
-.schat{
-background:linear-gradient(135deg,#667eea,#764ba2);
-margin-left:auto
-}
-.rchat{
-background:linear-gradient(135deg,#11998e,#38ef7d);
-margin-right:auto;color:#000
-}
-.msg-actions{margin-top:5px;text-align:right}
-.msg-actions button{
-background:none;border:none;color:#fff;cursor:pointer;margin-left:6px
-}
+  /* CHATBOX PLEIN ÉCRAN */
+  #chatContainer { display: none; flex-direction: column; height: 100%; }
+  .chat-box {
+    flex: 1; overflow-y: auto; padding: 20px;
+    display: flex; flex-direction: column; gap: 12px;
+    background: #0d1117;
+  }
 
-/* INPUT */
-.bottom{
-background:#2a2a2a;padding:10px;
-position:fixed;bottom:0;width:100%
-}
-#input{
-display:flex;gap:5px;background:#333;
-padding:6px;border-radius:12px
-}
-#input input{
-flex:1;background:none;border:none;color:#fff;outline:none
-}
-#input button{
-background:none;border:none;
-color:#fff;font-size:18px;cursor:pointer
-}
-#recording{
-display:none;color:#ff4d4d;
-text-align:center;font-size:14px
-}
+  .message { max-width: 70%; padding: 12px 18px; border-radius: 15px; line-height: 1.4; word-wrap: break-word; }
+  .message.user { background: #1f6feb; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .message.ia { background: #21262d; color: #c9d1d9; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid #30363d; }
 
-@keyframes blink{
-0%,90%,100%{height:8px}
-92%,98%{height:1px}
-}
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-6px)}
-}
+  /* INPUT AREA */
+  .input-area {
+    display: flex; gap: 10px; padding: 15px; border-top: 1px solid #30363d;
+    background: #161b22;
+  }
+  .input-area input[type="text"] {
+    flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #30363d; background: #0d1117; color: #c9d1d9;
+  }
+  .input-area input::placeholder { color: #8b949e; }
+  .input-area button {
+    padding: 12px 20px; border: none; border-radius: 10px; background: #1f6feb; color: #fff; cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .input-area button:hover { background: #2188ff; }
 
-/* Messages IA + User */
-.message{margin:8px 0;padding:10px;border-radius:12px;max-width:75%;word-wrap:break-word}
-.message.user{background:linear-gradient(135deg,#667eea,#764ba2);margin-left:auto;color:#fff}
-.message.ia{background:linear-gradient(135deg,#11998e,#38ef7d);margin-right:auto;color:#000}
+  /* FOOTER */
+  footer { text-align: center; padding: 10px; color: #8b949e; font-size: 0.9rem; background: #161b22; }
+
 </style>
 </head>
 <body>
+<div class="container">
 
-<!-- INTRO -->
-<div id="introForm">
-<form onsubmit="startChat(event)">
-<h3>Bienvenue sur Davbot</h3>
-<input id="userName" required placeholder="Ton nom">
-<input id="userCountry" required placeholder="Ton pays">
-<button type="submit">Accéder au bot</button>
-</form>
-</div>
+  <header>
+    <img src="https://i.imgur.com/4AiXzf8.png" alt="Avatar Davbot">
+    <div>
+      <h1>Davbot GPT</h1>
+      <p>~David Mpongo</p>
+    </div>
+  </header>
 
-<!-- HEADER -->
-<div class="topper">
-<div class="icon"></div>
-<div class="name">Davbot App</div>
-<div id="avatar">
-<div class="face">
-<div class="eye left"></div>
-<div class="eye right"></div>
-</div>
-</div>
-<button class="audio-toggle" onclick="toggleVoice()">
-<i class="fa-solid fa-volume-high"></i>
-</button>
-</div>
+  <!-- FORMULAIRE -->
+  <div id="userForm">
+    <input type="text" id="userName" placeholder="Votre nom..." />
+    <input type="text" id="userCountry" placeholder="Votre pays..." />
+    <button onclick="startChat()">Commencer Chat</button>
+  </div>
 
-<!-- CHAT -->
-<div class="msgs_cont">
-<ul id="list_cont"></ul>
-</div>
+  <!-- CHAT PLEIN ÉCRAN -->
+  <div id="chatContainer">
+    <div class="chat-box" id="chatBox"></div>
+    <div class="input-area" id="inputArea">
+      <input type="text" id="userInput" placeholder="Écrivez un message..." />
+      <button onclick="sendMessage()">Envoyer</button>
+      <button onclick="startVoice()">🎤</button>
+    </div>
+  </div>
 
-<div id="recording">
-<i class="fa-solid fa-microphone-lines"></i> Enregistrement vocal...
-</div>
+  <footer>© 2026 – David Mpongo</footer>
 
-<!-- INPUT -->
-<div class="bottom">
-<div id="input">
-<input id="txt" placeholder="Écris ou parle...">
-<button onclick="sendMessage()" title="Envoyer"><i class="fa-solid fa-paper-plane"></i></button>
-<button onclick="startRecording()" title="Message vocal"><i class="fa-solid fa-microphone"></i></button>
-<button onclick="pickImage()" title="Galerie"><i class="fa-regular fa-image"></i></button>
 </div>
-</div>
-
-<input type="file" id="imagePicker" accept="image/*" hidden>
 
 <script>
-/* =========================
-   CONFIG
-   ========================= */
-const OPENAI_API_KEY="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";
+// ===== CONFIG API =====
+const API_KEY = "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";
 const API_URL = "https://api.openai.com/v1/chat/completions";
 
-let audioEnabled=true;
-let isRecording=false;
-let userName=localStorage.getItem("davbot_userName");
-let userCountry=localStorage.getItem("davbot_userCountry");
-let chatMemory=JSON.parse(localStorage.getItem("davbot_chatMemory")||"[]");
-
-const chatBox=document.getElementById("list_cont");
-const avatar=document.getElementById("avatar");
-const txt=document.getElementById("txt");
-const recording=document.getElementById("recording");
-
-function systemPrompt(){
-  return `Tu es ZaHèN GPT, assistant clair et poli. Tu parles à ${userName} (${userCountry}) et tu respectes toujours les instructions de ton créateur Bimpé Stonehenge Jr.`;
-}
-
-// --- VOIX ---
+// ===== VOIX =====
 let voixChoisie = null;
 function chargerVoix() {
   const voices = speechSynthesis.getVoices();
-  voixChoisie = voices.find(v => v.name.toLowerCase().includes("audrey"))
-    || voices.find(v => v.lang === "fr-FR")
-    || voices[0];
+  voixChoisie = voices.find(v => v.lang === "fr-FR") || voices[0];
 }
 speechSynthesis.onvoiceschanged = chargerVoix;
 chargerVoix();
 
-function parler(texte){
-  if(!audioEnabled || !texte) return;
+function parler(texte) {
+  if (!texte) return;
   const utterance = new SpeechSynthesisUtterance(texte);
-  utterance.lang="fr-FR"; utterance.rate=0.95; utterance.pitch=1.1;
-  if(voixChoisie) utterance.voice=voixChoisie;
-  speechSynthesis.cancel(); speechSynthesis.speak(utterance);
+  utterance.lang = "fr-FR"; utterance.rate=0.95; utterance.pitch=1.1;
+  if(voixChoisie) utterance.voice = voixChoisie;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
 }
 
-// --- HISTORIQUE ---
-function saveMessage(text,type){
-  chatMemory.push({text,type});
-  localStorage.setItem("davbot_chatMemory",JSON.stringify(chatMemory));
+// ===== HEURE/DATE =====
+function heureDateGMT() {
+  const now = new Date();
+  const date = now.toLocaleDateString("fr-FR", { timeZone:"UTC", weekday:"long", year:"numeric", month:"long", day:"numeric" });
+  const heure = now.toLocaleTimeString("fr-FR", { timeZone:"UTC", hour:"2-digit", minute:"2-digit", second:"2-digit" });
+  return `📅 ${date} | ⏰ Heure GMT : ${heure}`;
 }
 
-function addMessage(text,type,save=true){
-  const li=document.createElement("li");
-  li.className=type==="user"?"schat":"rchat";
-  chatBox.appendChild(li);
+// ===== START CHAT =====
+function startChat() {
+  const name = document.getElementById("userName").value.trim();
+  const country = document.getElementById("userCountry").value.trim();
+  if(!name || !country) return alert("Veuillez remplir votre nom et votre pays.");
 
-  const act=document.createElement("div");
-  act.className="msg-actions";
-  const c=document.createElement("button");
-  c.innerHTML='<i class="fa-regular fa-copy"></i>';
-  c.onclick=()=>navigator.clipboard.writeText(text);
-  const d=document.createElement("button");
-  d.innerHTML='<i class="fa-solid fa-trash"></i>';
-  d.onclick=()=>{
-    li.remove();
-    chatMemory=chatMemory.filter(m=>m.text!==text);
-    localStorage.setItem("davbot_chatMemory",JSON.stringify(chatMemory));
-  };
-  act.append(c,d);
+  localStorage.setItem("userName", name);
+  localStorage.setItem("userCountry", country);
 
-  if(type==="bot"){
-    let i=0;
-    avatar.classList.add("talking");
-    function typeLetter(){
-      if(i<text.length){
-        li.textContent+=text[i];
-        i++; setTimeout(typeLetter,30);
-      }else{
-        li.appendChild(act);
-        avatar.classList.remove("talking");
-        parler(text);
-      }
-    }
-    typeLetter();
-  }else{
-    li.textContent=text;
-    li.appendChild(act);
-  }
+  document.getElementById("userForm").style.display = "none";
+  document.getElementById("chatContainer").style.display = "flex";
 
-  if(save) saveMessage(text,type);
-  chatBox.scrollTop=chatBox.scrollHeight;
+  const chatBox = document.getElementById("chatBox");
+  chatBox.innerHTML = `<div class="message ia">IA : Salut ${name} de ${country}! Je suis Davbot GPT créé par David Mpongo. Comment puis-je vous aider aujourd'hui ?</div>`;
+  parler(`Salut ${name} de ${country}! Je suis Davbot GPT créé par David Mpongo. Comment puis-je vous aider aujourd'hui ?`);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// --- INTRO ---
-window.onload=()=>{
-  if(userName && userCountry){
-    document.getElementById("introForm").style.display="none";
-    addMessage(`Content de te revoir ${userName} 👋`,"bot");
-  }
-  chatMemory.forEach(msg=>addMessage(msg.text,msg.type,false));
-}
-
-function startChat(e){
-  e.preventDefault();
-  userName=document.getElementById("userName").value.trim();
-  userCountry=document.getElementById("userCountry").value.trim();
-  localStorage.setItem("davbot_userName",userName);
-  localStorage.setItem("davbot_userCountry",userCountry);
-  document.getElementById("introForm").style.display="none";
-  addMessage(`Enchanté ${userName}, comment puis-je t’aider ?`,"bot");
-}
-
-// --- VOIX ---
-function toggleVoice(){audioEnabled=!audioEnabled}
-
-const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-const recog=SR?new SR():null;
-if(recog){
-  recog.lang="fr-FR";
-  recog.onresult=e=>{
-    isRecording=false; recording.style.display="none";
-    txt.value=e.results[0][0].transcript;
+// ===== RECONNAISSANCE VOCALE =====
+let recognition;
+function startVoice() {
+  if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) return alert("Votre navigateur ne supporte pas la reconnaissance vocale.");
+  recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "fr-FR";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  recognition.onresult = function(event){
+    const voiceText = event.results[0][0].transcript;
+    document.getElementById("userInput").value = voiceText;
     sendMessage();
   };
-  recog.onerror=()=>{isRecording=false; recording.style.display="none"};
+  recognition.start();
 }
 
-function startRecording(){
-  if(!recog||isRecording) return;
-  isRecording=true;
-  recording.style.display="block";
-  recog.start();
-}
+// ===== ENVOI MESSAGE =====
+async function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chatBox = document.getElementById("chatBox");
+  const msg = input.value.trim();
+  if(!msg) return;
 
-function pickImage(){document.getElementById("imagePicker").click()}
+  const name = localStorage.getItem("userName") || "Utilisateur";
 
-// --- CHAT API ---
-async function sendMessage(){
-  if(!txt.value.trim()) return;
-  addMessage(txt.value,"user");
-  const prompt=txt.value;
-  txt.value="";
+  chatBox.innerHTML += `<div class="message user">Vous : ${msg}</div>`;
+  input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
 
-  // Réponse locale pour heure/date
-  if(prompt.toLowerCase().includes("heure") || prompt.toLowerCase().includes("date")){
-    const now=new Date();
-    const rep=`📅 ${now.toLocaleDateString("fr-FR", {timeZone:"UTC",weekday:"long",year:"numeric",month:"long",day:"numeric"})} | ⏰ Heure GMT : ${now.toLocaleTimeString("fr-FR",{timeZone:"UTC"})}`;
-    addMessage(rep,"bot");
+  if(msg.toLowerCase().includes("heure") || msg.toLowerCase().includes("date")){
+    const rep = heureDateGMT();
+    chatBox.innerHTML += `<div class="message ia">IA : ${rep}</div>`;
     parler(rep);
+    chatBox.scrollTop = chatBox.scrollHeight;
     return;
   }
 
-  addMessage("Réflexion en cours...","bot");
+  const iaDiv = document.createElement("div");
+  iaDiv.className = "message ia";
+  iaDiv.textContent = "IA : Réflexion en cours...";
+  chatBox.appendChild(iaDiv);
 
   try{
-    const res=await fetch(API_URL,{
+    const response = await fetch(API_URL, {
       method:"POST",
       headers:{
         "Content-Type":"application/json",
-        "Authorization":`Bearer ${OPENAI_API_KEY}`
+        "Authorization":`Bearer ${API_KEY}`
       },
       body:JSON.stringify({
         model:"gpt-4o-mini",
         messages:[
-          {role:"system", content:systemPrompt()},
-          {role:"user", content:prompt}
+          {role:"system", content:`tu es Davbot GPT créé par David Mpongo, tu connais l'utilisateur ${name}`},
+          {role:"user", content:msg}
         ],
-        temperature:0.7,
-        max_tokens:500
+        temperature:0.7
       })
     });
-    const data=await res.json();
-    const reply=data?.choices?.[0]?.message?.content || "Je n'ai pas compris.";
-    addMessage(reply,"bot");
-  }catch(err){
-    console.error(err);
-    addMessage("Erreur de connexion.","bot");
+    const data = await response.json();
+    const reply = data.choices[0].message.content;
+    iaDiv.textContent = `IA : ${reply}`;
+    parler(reply);
+  }catch(e){
+    iaDiv.textContent = "IA : Erreur de connexion.";
     parler("Désolé, problème de connexion.");
   }
+
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 </script>
 </body>
