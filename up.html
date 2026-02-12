@@ -2,333 +2,317 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Davbot Uptime Monitor PRO</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAVBOT Uptime - Monitoring Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#0d1117;
-  color:#c9d1d9;
+    margin:0;
+    font-family:'Orbitron',sans-serif;
+    background:#0f172a;
+    color:white;
 }
 header{
-  background:#161b22;
-  padding:15px;
-  text-align:center;
-  font-size:22px;
-  color:#58a6ff;
-  font-weight:bold;
+    background:#020617;
+    padding:20px;
+    text-align:center;
+    font-size:26px;
+    color:#00f7ff;
+    letter-spacing:2px;
 }
-#netStatus{
-  font-size:13px;
-  margin-top:5px;
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
 }
-nav{
-  display:flex;
-}
-nav button{
-  flex:1;
-  padding:12px;
-  background:#21262d;
-  border:none;
-  color:#58a6ff;
-  font-weight:bold;
-  cursor:pointer;
-}
-nav button.active{
-  background:#0d1117;
-  border-bottom:2px solid #58a6ff;
-}
-.container{padding:15px;}
-
-input,button{
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-  border-radius:6px;
-  border:none;
+.card{
+    background:#1e293b;
+    padding:15px;
+    margin:10px 0;
+    border-radius:10px;
 }
 input{
-  background:#21262d;
-  color:#c9d1d9;
-  border:1px solid #30363d;
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:6px;
+    border:none;
+    background:#0f172a;
+    color:white;
 }
 button{
-  background:#238636;
-  color:white;
-  cursor:pointer;
+    padding:10px 15px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+    background:#00f7ff;
+    color:black;
 }
-button:hover{background:#2ea043}
-
-.hidden{display:none}
-
-/* STATS */
+button:hover{
+    opacity:0.8;
+}
+.online{ color:#00ff88;font-weight:bold; }
+.offline{ color:#ff3b3b;font-weight:bold; }
 .stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-bottom:15px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
 }
-.stat{
-  background:#161b22;
-  padding:12px;
-  border-radius:6px;
-  text-align:center;
-  border:1px solid #30363d;
+.stat-box{
+    flex:1;
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
 }
-
-/* SITE CARD */
-.site{
-  background:#161b22;
-  border:1px solid #30363d;
-  border-left:4px solid #58a6ff;
-  padding:12px;
-  margin-bottom:12px;
-  border-radius:6px;
-  animation:fadeIn .5s;
+.hidden{ display:none; }
+canvas{
+    margin-top:30px;
+    background:#1e293b;
+    padding:10px;
+    border-radius:10px;
 }
-.site.up{
-  box-shadow:0 0 12px rgba(63,185,80,.4);
-  animation:pulse 2s infinite;
-}
-.site.down{
-  box-shadow:0 0 12px rgba(248,81,73,.4);
-  animation:shake .4s;
-}
-.flex{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.small{font-size:13px;opacity:.85}
-.upText{color:#3fb950}
-.downText{color:#f85149}
-.danger{
-  background:#f85149;
-}
-.danger:hover{background:#da3633}
-
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.02)}
-  100%{transform:scale(1)}
-}
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-4px)}
-  50%{transform:translateX(4px)}
-  100%{transform:translateX(0)}
-}
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:none}
+footer{
+    text-align:center;
+    padding:20px;
+    background:#020617;
+    margin-top:40px;
+    font-size:14px;
+    color:#94a3b8;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-📡 Davbot Uptime Monitor PRO
-<div id="netStatus"></div>
-</header>
-
-<nav>
-  <button class="active" onclick="switchTab('add',this)">Ajouter</button>
-  <button onclick="switchTab('dashboard',this)">Dashboard</button>
-</nav>
+<header>🚀 DAVBOT UPTIME</header>
 
 <div class="container">
 
-<!-- AJOUT -->
-<div id="add">
-  <input id="siteName" placeholder="Nom du site">
-  <input id="siteUrl" placeholder="https://exemple.com">
-  <button onclick="addSite()">➕ Ajouter le site</button>
+<!-- INSCRIPTION -->
+<div id="registerBox" class="card">
+<h2>Créer un compte DAVBOT</h2>
+<input type="text" id="regName" placeholder="Nom utilisateur">
+<input type="password" id="regPass" placeholder="Mot de passe">
+<button onclick="register()">S'inscrire</button>
 </div>
 
 <!-- DASHBOARD -->
 <div id="dashboard" class="hidden">
-  <div class="stats" id="stats"></div>
-  <div id="sites"></div>
-  <button onclick="checkAll()">🔄 Vérifier maintenant</button>
+
+<div class="card">
+<h2>Ajouter un site à surveiller</h2>
+<input type="text" id="siteName" placeholder="Nom du site">
+<input type="text" id="siteURL" placeholder="https://example.com">
+<button onclick="addSite()">Ajouter</button>
 </div>
 
+<div class="stats">
+<div class="stat-box">Sites surveillés<br><span id="totalSites">0</span></div>
+<div class="stat-box">En ligne<br><span id="onlineCount">0</span></div>
+<div class="stat-box">Disponibilité<br><span id="uptime">0%</span></div>
 </div>
+
+<div id="sites"></div>
+
+<canvas id="chart"></canvas>
+
+</div>
+</div>
+
+<footer>
+© 2026 DAVBOT Uptime • Monitoring Intelligent • Version Web
+</footer>
 
 <script>
-let sites = JSON.parse(localStorage.getItem("davbot_uptime") || "[]");
 
-function save(){
-  localStorage.setItem("davbot_uptime", JSON.stringify(sites));
+/* ================= AUTH ================= */
+
+if(localStorage.getItem("davbot_user")){
+    document.getElementById("registerBox").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
 }
 
-/* TABS */
-function switchTab(id, btn){
-  document.querySelectorAll('.container > div').forEach(d=>d.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  if(id === "dashboard") render();
+function register(){
+    const name=document.getElementById("regName").value;
+    const pass=document.getElementById("regPass").value;
+
+    if(!name || !pass){
+        alert("Remplissez tous les champs");
+        return;
+    }
+
+    localStorage.setItem("davbot_user",JSON.stringify({name,pass}));
+    document.getElementById("registerBox").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
 }
 
-/* ADD SITE */
+/* ================= STORAGE ================= */
+
+let sites = JSON.parse(localStorage.getItem("davbot_sites")) || [];
+
+function saveSites(){
+    localStorage.setItem("davbot_sites",JSON.stringify(sites));
+}
+
+/* ================= SAFE NOTIFICATION ================= */
+
+function notify(title,msg){
+    if("Notification" in window){
+        if(Notification.permission==="granted"){
+            new Notification(title,{body:msg});
+        }else if(Notification.permission!=="denied"){
+            Notification.requestPermission();
+        }
+    }
+}
+
+/* ================= VALIDATION ================= */
+
+function isValidURL(url){
+    try{
+        new URL(url);
+        return true;
+    }catch{
+        return false;
+    }
+}
+
+/* ================= ADD SITE ================= */
+
 function addSite(){
-  const siteName = document.getElementById("siteName").value.trim();
-  const siteUrl  = document.getElementById("siteUrl").value.trim();
 
-  if(siteName === "" || siteUrl === ""){
-    alert("Veuillez remplir tous les champs");
-    return;
-  }
+    const name=document.getElementById("siteName").value;
+    const url=document.getElementById("siteURL").value;
 
-  sites.push({
-    name: siteName,
-    url: siteUrl,
-    up: 0,
-    down: 0,
-    ms: [],
-    last: "Jamais"
-  });
+    if(!name||!url){
+        alert("Tous les champs requis");
+        return;
+    }
 
-  save();
-  document.getElementById("siteName").value = "";
-  document.getElementById("siteUrl").value = "";
+    if(!isValidURL(url)){
+        alert("URL invalide");
+        return;
+    }
 
-  alert("Site ajouté avec succès ✅");
+    const site={name,url,status:"checking"};
+    sites.push(site);
+    saveSites();
+    checkSite(site);
+    renderSites();
 }
 
-/* RENDER */
-function render(){
-  updateStats();
-  const box = document.getElementById("sites");
-  box.innerHTML = "";
+/* ================= CHECK SITE ================= */
 
-  if(!sites.length){
-    box.innerHTML = "<p>Aucun site surveillé.</p>";
-    return;
-  }
+function checkSite(site){
 
-  sites.forEach((s,i)=>{
-    const div = document.createElement("div");
-    div.className = "site";
-    div.innerHTML = `
-      <div class="flex">
-        <strong>${s.name}</strong>
-        <button class="danger" onclick="removeSite(${i})">✖</button>
-      </div>
-      <a href="${s.url}" target="_blank" style="color:#58a6ff">${s.url}</a>
-      <p id="status${i}" class="small">⏳ Vérification...</p>
-      <p class="small">🕒 ${s.last}</p>
-    `;
-    box.appendChild(div);
-    checkSite(i, div);
-  });
+    fetch(site.url,{mode:"no-cors"})
+    .then(()=>{
+        if(site.status!=="online"){
+            notify("DAVBOT : Site Online",site.name+" est en ligne");
+        }
+        site.status="online";
+        saveSites();
+        renderSites();
+    })
+    .catch(()=>{
+        if(site.status!=="offline"){
+            notify("DAVBOT : Site Offline",site.name+" est hors ligne");
+        }
+        site.status="offline";
+        saveSites();
+        renderSites();
+    });
 }
 
-/* CHECK SITE – DÉTECTION RÉELLE */
-function checkSite(i, div){
-  const s = sites[i];
-  const status = document.getElementById("status"+i);
+/* ================= GRAPH ================= */
 
-  if(!navigator.onLine){
-    div.classList.add("down");
-    status.innerHTML = "🔴 Hors ligne (pas d'internet)";
-    status.className = "small downText";
-    return;
-  }
+const ctx=document.getElementById("chart").getContext("2d");
 
-  const start = performance.now();
-  const img = new Image();
+let chart=new Chart(ctx,{
+type:"line",
+data:{
+labels:[],
+datasets:[{
+label:"Disponibilité %",
+data:[],
+borderColor:"#00f7ff",
+backgroundColor:"rgba(0,247,255,0.2)",
+tension:0.3
+}]
+},
+options:{
+scales:{ y:{min:0,max:100} }
+}
+});
 
-  const timeout = setTimeout(()=>{
-    img.src = "";
-    s.down++;
-    div.classList.add("down");
-    status.innerHTML = "🔴 Inaccessible / introuvable";
-    status.className = "small downText";
-    s.last = new Date().toLocaleString();
-    save();
-    updateStats();
-  },8000);
+/* ================= UPDATE GRAPH ================= */
 
-  img.onload = ()=>{
-    clearTimeout(timeout);
-    const ms = Math.round(performance.now() - start);
-    s.up++;
-    s.ms.push(ms);
-    div.classList.add("up");
-    status.innerHTML = `🟢 EN LIGNE — ${ms} ms`;
-    status.className = "small upText";
-    s.last = new Date().toLocaleString();
-    save();
-    updateStats();
-  };
+function updateChart(percent){
 
-  img.onerror = ()=>{
-    clearTimeout(timeout);
-    s.down++;
-    div.classList.add("down");
-    status.innerHTML = "🔴 Hors ligne / domaine invalide";
-    status.className = "small downText";
-    s.last = new Date().toLocaleString();
-    save();
-    updateStats();
-  };
+    const time=new Date().toLocaleTimeString();
 
-  img.src = s.url.replace(/\/$/,"") + "/favicon.ico?" + Date.now();
+    chart.data.labels.push(time);
+    chart.data.datasets[0].data.push(percent);
+
+    if(chart.data.labels.length>10){
+        chart.data.labels.shift();
+        chart.data.datasets[0].data.shift();
+    }
+
+    chart.update();
 }
 
-/* STATS */
-function updateStats(){
-  let total = sites.length, up = 0, down = 0, avg = 0, count = 0;
-  sites.forEach(s=>{
-    up += s.up;
-    down += s.down;
-    s.ms.forEach(m=>{avg+=m;count++;});
-  });
-  avg = count ? Math.round(avg/count) : 0;
+/* ================= RENDER ================= */
 
-  document.getElementById("stats").innerHTML = `
-    <div class="stat">🌍 Sites<br><strong>${total}</strong></div>
-    <div class="stat upText">🟢 UP<br><strong>${up}</strong></div>
-    <div class="stat downText">🔴 DOWN<br><strong>${down}</strong></div>
-    <div class="stat">⚡ Moyenne<br><strong>${avg} ms</strong></div>
-  `;
+function renderSites(){
+
+const container=document.getElementById("sites");
+container.innerHTML="";
+
+let onlineCount=0;
+
+sites.forEach(site=>{
+
+if(site.status==="online") onlineCount++;
+
+const div=document.createElement("div");
+div.className="card";
+
+div.innerHTML=`
+<h3>${site.name}</h3>
+<p>${site.url}</p>
+<span class="${site.status==="online"?"online":"offline"}">
+${site.status==="online"?"EN LIGNE":"HORS LIGNE"}
+</span>
+`;
+
+container.appendChild(div);
+
+});
+
+document.getElementById("totalSites").innerText=sites.length;
+document.getElementById("onlineCount").innerText=onlineCount;
+
+let percent=sites.length?Math.round((onlineCount/sites.length)*100):0;
+document.getElementById("uptime").innerText=percent+"%";
+
+updateChart(percent);
+
 }
 
-/* UTIL */
-function checkAll(){ render(); }
-function removeSite(i){
-  if(confirm("Supprimer ce site ?")){
-    sites.splice(i,1);
-    save();
-    render();
-  }
-}
+/* ================= AUTO CHECK 5 MIN ================= */
 
-/* INTERNET STATUS */
-function netStatusUpdate(){
-  const el = document.getElementById("netStatus");
-  if(navigator.onLine){
-    el.innerHTML = "🟢 Connexion Internet active";
-    el.style.color = "#3fb950";
-  }else{
-    el.innerHTML = "🔴 Hors ligne – Monitoring suspendu";
-    el.style.color = "#f85149";
-  }
-}
-window.addEventListener("online", netStatusUpdate);
-window.addEventListener("offline", netStatusUpdate);
-netStatusUpdate();
-
-/* AUTO CHECK */
 setInterval(()=>{
-  if(!document.getElementById("dashboard").classList.contains("hidden")){
-    render();
-  }
-},30000);
+    sites.forEach(site=>checkSite(site));
+},300000);
+
+renderSites();
+
 </script>
 
 </body>
