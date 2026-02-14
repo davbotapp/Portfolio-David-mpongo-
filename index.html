@@ -11,26 +11,73 @@
 <meta name="description" content="David Mpongo – Développeur Web, Mobile, IA, APK Android et Chatbots professionnels en RDC">
 <meta name="keywords" content="Développeur RDC, Chatbot IA, APK Android, VPN, Web Developer Congo">
 <meta name="author" content="David Mpongo">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#0d1117;color:#fff;transition:.4s}
-body.light{background:#f5f5f5;color:#111}
-.container{max-width:1320px;margin:auto;padding:30px;text-align:center;margin-top:80px;font-size:20px}
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
 
-/* Theme */
+body{
+  background:#0d1117;
+  color:#fff;
+  transition:.4s;
+}
+
+/* ===== HALO GLOBAL ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at 50% 20%,rgba(0,191,255,.15),transparent 60%);
+  pointer-events:none;
+}
+
+body.light{background:#f5f5f5;color:#111}
+
+.container{
+  max-width:1320px;
+  margin:auto;
+  padding:30px;
+  text-align:center;
+  margin-top:80px;
+  font-size:20px
+}
+
+/* ===== THEME BUTTON ===== */
 #themeToggle{
 position:fixed;top:15px;right:15px;
 background:#00bfff;border:none;color:#fff;
-padding:10px;border-radius:50%;cursor:pointer;z-index:1000}
+padding:10px;border-radius:50%;cursor:pointer;z-index:1000;
+box-shadow:0 0 12px #00bfff;
+}
 
-/* Avatar */
-.avatar{width:130px;height:130px;border-radius:50%;border:7px solid #00bfff;margin-bottom:10px}
-h1{color:#00bfff;margin-top:2px}
+/* ===== AVATAR NEON ===== */
+.avatar{
+  width:130px;height:130px;border-radius:50%;
+  border:7px solid #00bfff;
+  margin-bottom:10px;
+  box-shadow:0 0 25px #00bfff;
+}
+
+/* ===== TITRE NEON ===== */
+h1{
+  color:#00bfff;
+  margin-top:2px;
+  text-shadow:
+    0 0 5px #00bfff,
+    0 0 15px #00bfff,
+    0 0 30px rgba(0,191,255,.6);
+}
+
+/* ===== TEXTE DEV NEON ===== */
+.container p{
+  text-shadow:
+    0 0 5px rgba(0,191,255,.6),
+    0 0 10px rgba(0,191,255,.5);
+}
+
+/* ===== STATUS ===== */
 .status{margin:10px;font-size:16px}
 .status span{animation:pulse 1.5s infinite}
 @keyframes pulse{0%{opacity:.3}50%{opacity:1}100%{opacity:.3}}
 
-/* Followers */
+/* ===== FOLLOWERS ===== */
 .followers{margin:15px 0;font-size:18px}
 .followers button{
 background:#00ff6a;border-radius:50%;padding:10px;
@@ -39,45 +86,92 @@ animation:likePulse 1.5s infinite;
 border:none;font-size:20px;color:#000;cursor:pointer}
 @keyframes likePulse{0%{box-shadow:0 0 5px #00ff6a}50%{box-shadow:0 0 20px #00ff6a}100%{box-shadow:0 0 5px #00ff6a}}
 
-/* Buttons */
-.btn{display:inline-block;margin:10px;padding:12px 25px;border-radius:25px;background:#00bfff;color:#fff;border:none;font-weight:bold;cursor:pointer;transition:.3s}
-.btn:hover{background:#00ff6a;color:#000}
+/* ===== BOUTONS NEON ===== */
+.btn{
+display:inline-block;
+margin:10px;
+padding:12px 25px;
+border-radius:25px;
+background:#00bfff;
+color:#fff;
+border:none;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 0 10px #00bfff;
+}
 
-/* Skills */
+.btn:hover{
+background:#00ff6a;
+color:#000;
+box-shadow:0 0 20px #00ff6a;
+}
+
+/* ===== SKILLS ===== */
 .skill-group{text-align:left;margin:25px 0}
 .skill-group h3{color:#00bfff;margin-bottom:10px}
 .skill span{display:flex;justify-content:space-between;font-size:14px}
-.progress{background:#222;height:10px;border-radius:10px;overflow:hidden}
-.progress-bar{height:100%;width:0;background:linear-gradient(90deg,#00bfff,#00ff6a);transition:1.5s}
 
-/* Projects */
-#filters{margin:18px 0; display:flex; flex-wrap:wrap; justify-content:center; gap:08px;}
-#projects{display: none; flex-wrap: wrap; justify-content:center; gap:20px;} /* Masqué par défaut */
-.project-card{width:260px;border:1px solid #00bfff;border-radius:10px;overflow:hidden;transition:.3s;display:flex;flex-direction:column;}
-.project-card:hover{transform:scale(1.05);box-shadow:0 0 25px #00bfff}
-.project-card img{width:100%;height:140px;object-fit:cover;border-radius:4px;} /* Plus carré */
+.progress{
+background:#222;
+height:10px;
+border-radius:10px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0;
+background:linear-gradient(90deg,#00bfff,#00ff6a);
+box-shadow:0 0 10px #00bfff;
+transition:1.5s;
+}
+
+/* ===== PROJECTS ===== */
+#filters{margin:18px 0; display:flex; flex-wrap:wrap; justify-content:center; gap:8px;}
+#projects{display:none; flex-wrap:wrap; justify-content:center; gap:20px;}
+
+.project-card{
+width:260px;
+border:1px solid #00bfff;
+border-radius:10px;
+overflow:hidden;
+transition:.3s;
+display:flex;
+flex-direction:column;
+background:#0b1320;
+box-shadow:0 0 10px rgba(0,191,255,.2);
+}
+
+.project-card:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px #00bfff;
+}
+
+.project-card img{width:100%;height:140px;object-fit:cover}
+
 .project-card div{padding:10px}
 .project-card a{display:block;margin-top:8px;text-decoration:none;color:#fff;text-align:center}
-.project-card a:hover{background:#e60000;color:#fff;padding:8px;border-radius:5px;}
+.project-card a:hover{background:#e60000;color:#fff;padding:8px;border-radius:5px}
 
-/* Contact */
+/* ===== CONTACT ===== */
 form{max-width:500px;margin:auto;display:flex;flex-direction:column;gap:10px}
 input,textarea,select{padding:10px;border-radius:8px;border:none}
 
-/* Footer */
-footer{margin:40px 0;color:#888;}
+/* ===== FOOTER ===== */
+footer{margin:40px 0;color:#888}
 
-/* Responsive */
+/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .project-card{width:45%;}
-  .btn{padding:10px 20px;font-size:14px;}
+.project-card{width:45%}
+.btn{padding:10px 20px;font-size:14px}
 }
 @media(max-width:480px){
-  .project-card{width:90%;}
-  .avatar{width:150px;height:150px;}
-  h1{font-size:30px;}
-}
-</style>
+.project-card{width:90%}
+.avatar{width:150px;height:150px}
+h1{font-size:30px}
+}</style>
+
 </head>
 <body>
 
@@ -296,4 +390,5 @@ function sendMsg(e) {
 
 </body>
       </html>
-      
+
+    
