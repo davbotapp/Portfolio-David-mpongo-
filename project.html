@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Projets | David Mpongo</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#020617,#0f172a);
+color:white;
+}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:#020617;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav h1{color:#38bdf8;}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+transition:0.3s;
+}
+
+nav a:hover{color:#38bdf8;}
+
+/* TITLE */
+.title{
+text-align:center;
+padding:60px 20px 20px;
+}
+
+.title h2{
+font-size:35px;
+margin-bottom:10px;
+}
+
+.title p{
+color:#cbd5e1;
+max-width:600px;
+margin:auto;
+}
+
+/* PROJECTS */
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+padding:40px;
+}
+
+.card{
+background:#111827;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 0 15px rgba(56,189,248,0.2);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px rgba(56,189,248,0.5);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card-content{
+padding:20px;
+}
+
+.card h3{
+color:#38bdf8;
+margin-top:0;
+}
+
+.card p{
+color:#cbd5e1;
+line-height:1.6;
+font-size:15px;
+}
+
+.card ul{
+padding-left:18px;
+color:#94a3b8;
+}
+
+.card li{
+margin:6px 0;
+}
+
+.btn{
+display:inline-block;
+margin-top:15px;
+padding:12px 20px;
+background:#38bdf8;
+color:black;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px #38bdf8;
+}
+
+/* FACEBOOK */
+.facebook{
+margin:40px;
+padding:30px;
+background:#111827;
+border-radius:15px;
+text-align:center;
+box-shadow:0 0 15px rgba(56,189,248,0.2);
+}
+
+.facebook i{
+font-size:50px;
+color:#38bdf8;
+margin-bottom:15px;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:20px;
+background:#020617;
+color:#94a3b8;
+margin-top:30px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<h1>DAVBOT</h1>
+
+<div>
+<a href="index.html">Accueil</a>
+<a href="propos.html">À-propos</a>
+<a href="projet.html">Projets</a>
+<a href="contact.html">Contact</a>
+</div>
+</nav>
+
+<!-- TITLE -->
+<section class="title">
+
+<h2>🚀 Mes Projets</h2>
+
+<p>
+Découvrez des solutions digitales modernes conçues pour le web, l’intelligence artificielle et le business en ligne.
+</p>
+
+</section>
+
+<!-- PROJECTS -->
+<section class="projects">
+
+<!-- PROJECT 1 -->
+<div class="card">
+
+<img src="https://i.ibb.co/F4fTpSRX/file-000000000fd071f5a29e53c231d696f1.png">
+
+<div class="card-content">
+
+<h3>💰 DAVBOT INVESTISSEMENT</h3>
+
+<p>
+Plateforme digitale complète regroupant plusieurs services technologiques pour accompagner le développement des projets en ligne.
+</p>
+
+<ul>
+<li>💻 Création de sites web professionnels</li>
+<li>📱 Développement d’applications</li>
+<li>🤖 Solutions d’intelligence artificielle</li>
+<li>📈 Outils digitaux modernes</li>
+<li>📡 Création de fichier vpn pour connexion internet gratuit</li>
+<li>🎮 création de mini jeux vidéo</li>
+</ul>
+
+<a href="https://davbot-investissement.vercel.app/" class="btn" target="_blank">
+Voir le projet
+</a>
+
+</div>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="card">
+
+<img src="https://i.imgur.com/XuFiqd5.jpeg">
+
+<div class="card-content">
+
+<h3>🤖 Chatbot IA</h3>
+
+<p>
+Assistant intelligent conçu pour automatiser les réponses et améliorer le support client en ligne.
+</p>
+
+<ul>
+<li>🧠 Réponses automatiques intelligentes</li>
+<li>⚡ Assistance rapide 24/7</li>
+<li>💬 Support client automatisé</li>
+</ul>
+
+<a href="#" class="btn">
+Voir le projet
+</a>
+
+</div>
+</div>
+
+<!-- PROJECT 3 -->
+<div class="card">
+
+<img src="https://i.imgur.com/zxYUSx2.jpeg ">
+
+<div class="card-content">
+
+<h3>📱 DAVBOT PREMIUM STORE</h3>
+
+<p>
+Mini store moderne permettant de télécharger des applications utiles, rapides et optimisées pour Android.
+</p>
+
+<ul>
+<li>📥 Téléchargement rapide et sécurisé</li>
+<li>🚀 Interface fluide et moderne</li>
+<li>📱 Applications Android optimisées</li>
+<li>⚡ Expérience utilisateur améliorée</li>
+</ul>
+
+<a href="https://davbot-premium.vercel.app/" class="btn" target="_blank">
+Voir le projet
+</a>
+
+</div>
+</div>
+
+<!-- PROJECT 4 -->
+<div class="card">
+
+<img src="https://i.imgur.com/zxYUSx2.jpeg">
+
+<div class="card-content">
+
+<h3>🎮 Mini jeux</h3>
+
+<p>
+Plateforme de mini jeux vidéo interactifs conçus pour divertir les utilisateurs avec une expérience simple, rapide et amusante.
+</p>
+
+<ul>
+<li>🎮 Jeux simples et rapides</li>
+<li>⚡ Chargement instantané</li>
+<li>📱 Compatible mobile et PC</li>
+<li>🏆 Expérience ludique et interactive</li>
+</ul>
+
+<a href="game.html" class="btn" target="_blank">
+Voir le projet
+</a>
+
+</div>
+</div>
+
+</section>
+
+<!-- FACEBOOK -->
+<section class="facebook">
+
+<i class="fab fa-facebook"></i>
+
+<h2>📘 Intelligence Artificielle Officiel</h2>
+
+<p>
+Rejoignez notre communauté pour suivre les actualités, innovations et contenus sur l’intelligence artificielle et le digital.
+</p>
+
+<a href="https://www.facebook.com/profile.php?id=61574231859267" class="btn">
+Suivre la page
+</a>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+© 2026 David Mpongo — Tous droits réservés
+
+</footer>
+
+</body>
+</html>
