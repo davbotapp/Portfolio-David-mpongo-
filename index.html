@@ -1,293 +1,568 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta name="google-site-verification" content="YvfIvLYwUp-8q6YSySsEBCG2iuqVcRpz8kEAY4XLDfM" />
-    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> David Mpongo| portfolio</title>
+<title>David Mpongo | Développeur Web & Mobile</title>
 
-<link rel="icon" href="https://i.ibb.co/bRRCSJ45/mysterious-hacker-figure-sitting-dark-260nw-2675788995.webp">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<meta name="description" content="David Mpongo – Développeur Web, Mobile, IA, APK Android et Chatbots professionnels en RDC">
-<meta name="keywords" content="Développeur RDC, Chatbot IA, APK Android, VPN, Web Developer Congo">
-<meta name="author" content="David Mpongo">
+
 <style>
-body{
+
+*{
 margin:0;
-font-family:Arial, sans-serif;
-background:linear-gradient(135deg,#020617,#0f172a);
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#000814;
 color:white;
-text-align:center;
 overflow-x:hidden;
 }
-.presentation{
-padding:40px;
-background:#0f172a;
-color:white;
-text-align:center;
-}
 
-.presentation ul{
-list-style:none;
-padding:0;
-}
-
-.presentation li{
-margin:10px 0;
-font-size:16px;
-}
-/* ANIMATION */
-.reveal{
-opacity:0;
-transform:translateY(30px);
-transition:0.8s;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-/* POPUP */
-.popup{
+/* BACKGROUND */
+body::before{
+content:"";
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.9);
+background:radial-gradient(circle,#00b4ff20 0%, transparent 70%);
+z-index:-1;
+}
+
+/* HEADER ICONS */
+.top-icons{
 display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-animation:fadeIn 1s;
-}
-
-.popup-box{
-background:#020617;
-padding:30px;
-border-radius:12px;
-width:90%;
-max-width:400px;
-box-shadow:0 0 20px #38bdf8;
-animation:scaleIn 0.5s;
-}
-
-.popup button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-background:#38bdf8;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-}
-
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-@keyframes scaleIn{
-from{transform:scale(0.8);}
-to{transform:scale(1);}
+justify-content:space-between;
+padding:25px;
+font-size:28px;
+color:#38bdf8;
 }
 
 /* PROFILE */
 .profile{
-margin-top:80px;
+text-align:center;
+padding:10px 20px;
 }
 
-.profile img{
-width:130px;
-height:130px;
+.circle{
+width:220px;
+height:220px;
+margin:auto;
 border-radius:50%;
-border:3px solid #38bdf8;
-box-shadow:0 0 20px #38bdf8;
+border:5px solid #38bdf8;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 40px #38bdf8;
+}
+
+.circle img{
+width:190px;
+height:190px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.profile h1{
+font-size:55px;
+margin-top:25px;
+font-weight:bold;
+}
+
+.profile h1 span{
+color:#38bdf8;
+}
+
+.subtitle{
+margin-top:12px;
+font-size:22px;
+color:#cbd5e1;
+}
+
+.description{
+max-width:750px;
+margin:25px auto;
+font-size:18px;
+line-height:1.8;
+color:#94a3b8;
+padding:0 10px;
+}
+
+/* SECTION TITLE */
+.section-title{
+text-align:center;
+margin:55px 0 25px;
+font-size:35px;
+font-weight:bold;
+color:#38bdf8;
+}
+
+/* EXPERTISE */
+
+.expertise-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+padding:0 20px;
+}
+
+.expertise-card{
+background:#071426;
+border:1px solid #0ea5e9;
+border-radius:22px;
+padding:25px 10px;
+text-align:center;
 transition:0.4s;
 }
 
-.profile img:hover{
-transform:scale(1.1);
+.expertise-card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 25px #38bdf8;
 }
 
-h1{
-margin-top:15px;
+.expertise-card i{
+font-size:38px;
+margin-bottom:15px;
+color:#38bdf8;
+}
+
+.expertise-card h3{
+font-size:16px;
+line-height:1.4;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.expertise-grid{
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.expertise-card{
+padding:20px 5px;
+}
+
+.expertise-card i{
 font-size:28px;
 }
 
-.desc{
-max-width:500px;
+.expertise-card h3{
+font-size:13px;
+}
+
+}
+/* SOCIAL */
+.social-grid{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+padding:20px;
+}
+
+.social-item{
+text-align:center;
+}
+
+.social-circle{
+width:90px;
+height:90px;
+border-radius:50%;
+border:2px solid #38bdf8;
+display:flex;
+align-items:center;
+justify-content:center;
 margin:auto;
-padding:10px;
-color:#cbd5f5;
-}
-
-/* ICONS */
-.icons{
-margin-top:15px;
-}
-
-.icons i{
-font-size:22px;
-margin:10px;
+font-size:40px;
 color:#38bdf8;
-transition:0.3s;
+box-shadow:0 0 15px #38bdf8;
+transition:0.4s;
 }
 
-.icons i:hover{
-transform:scale(1.3);
-color:white;
+.social-circle:hover{
+background:#38bdf8;
+color:black;
+transform:scale(1.1);
+}
+
+.social-item p{
+margin-top:12px;
+font-size:17px;
+}
+
+/* SERVICES */
+.services-box{
+margin:30px 20px;
+background:#071426;
+border:1px solid #0ea5e9;
+border-radius:25px;
+padding:35px 25px;
+}
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.services-grid div{
+font-size:18px;
+padding:10px;
+}
+
+.services-grid i{
+color:#38bdf8;
+margin-right:12px;
 }
 
 /* BUTTONS */
-.btn{
-display:block;
-width:220px;
-margin:15px auto;
-padding:14px;
-background:#38bdf8;
-color:black;
-text-decoration:none;
-border-radius:10px;
-font-weight:bold;
-transition:0.3s;
+.menu-buttons{
+padding:0 20px;
+margin-top:30px;
 }
 
-.btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 15px #38bdf8;
+.menu-btn{
+background:linear-gradient(90deg,#0ea5e9,#2563eb);
+padding:24px;
+border-radius:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:22px;
+font-size:22px;
+font-weight:bold;
+box-shadow:0 0 20px #0ea5e950;
+}
+
+.menu-btn.dark{
+background:#071426;
+border:1px solid #0ea5e9;
+}
+
+.menu-btn i{
+font-size:28px;
+}
+
+/* STATS */
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:15px;
+padding:25px 20px;
+margin-top:20px;
+}
+
+.stat{
+background:#071426;
+border:1px solid #0ea5e9;
+border-radius:20px;
+padding:25px;
+text-align:center;
+}
+
+.stat i{
+font-size:35px;
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+.stat h2{
+font-size:35px;
+margin-bottom:8px;
+}
+
+.stat p{
+color:#94a3b8;
 }
 
 /* FOOTER */
 footer{
-margin-top:40px;
-padding:20px;
-color:#94a3b8;
-font-size:14px;
+text-align:center;
+padding:30px;
+color:#64748b;
+font-size:16px;
 }
-</style>
 
+/* RESPONSIVE */
+@media(max-width:768px){
+
+.profile h1{
+font-size:42px;
+}
+
+.circle{
+width:180px;
+height:180px;
+}
+
+.circle img{
+width:150px;
+height:150px;
+}
+
+.section-title{
+font-size:28px;
+}
+
+.menu-btn{
+font-size:18px;
+padding:20px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-<div class="popup-box">
+<!-- TOP -->
+<div class="top-icons">
 
-<h2>Bienvenue 👋</h2>
+<i class="fas fa-bars"></i>
 
-<p>
-Bienvenue sur le portfolio de <b>Ir David Mpongo</b><br><br>
-Clique sur <b>Go it</b> pour continuer
-</p>
+<i class="fas fa-moon"></i>
 
-<button onclick="closePopup()">Go it 🚀</button>
-
-</div>
 </div>
 
 <!-- PROFILE -->
-<div class="profile reveal">
+
+<section class="profile">
+
+<div class="circle">
 
 <img src="https://i.imgur.com/N17wixs.jpeg">
 
-<h1>David Mpongo</h1>
+</div>
 
-<p class="desc">
-Développeur d'origine congolaise 🇨🇩 spécialisé en création de sites web, applications, IA et solutions digitales modernes.
+<h1>David <span>Mpongo</span></h1>
+
+<p class="subtitle">
+— Développeur Web & Mobile —
 </p>
+
+<p class="description">
+
+Développeur web et mobile spécialisé dans la création 
+de sites modernes, applications Android, intelligence artificielle , Boostage de réseaux sociaux like followers vue , configuration VPN 
+et solutions digitales professionnelles.
+
+</p>
+
+</section>
+
+<!-- EXPERTISE -->
+
+<h2 class="section-title">
+MES EXPERTISES
+</h2>
+
+<div class="expertise-grid">
+
+<div class="expertise-card">
+<i class="fas fa-mobile-alt"></i>
+<h3>Applications</h3>
+</div>
+
+<div class="expertise-card">
+<i class="fas fa-globe"></i>
+<h3>Sites Web</h3>
+</div>
+
+<div class="expertise-card">
+<i class="fas fa-shield-alt"></i>
+<h3>VPN</h3>
+</div>
+
+<div class="expertise-card">
+<i class="fas fa-robot"></i>
+<h3>AI</h3>
+</div>
+
+<div class="expertise-card">
+<i class="fas fa-gamepad"></i>
+<h3>Jeux</h3>
+</div>
+
+<div class="expertise-card">
+<i class="fas fa-paint-brush"></i>
+<h3>Design</h3>
+</div>
+
+</div>
+
+<!-- SOCIAL -->
+
+<h2 class="section-title">
+RÉSEAUX SOCIAUX
+</h2>
+
+<div class="social-grid">
+
+<div class="social-item">
+<div class="social-circle">
+<i class="fab fa-facebook-f"></i>
+</div>
+<p>Facebook</p>
+</div>
+
+<div class="social-item">
+<div class="social-circle">
+<i class="fab fa-tiktok"></i>
+</div>
+<p>TikTok</p>
+</div>
+
+<div class="social-item">
+<div class="social-circle">
+<i class="fab fa-instagram"></i>
+</div>
+<p>Instagram</p>
+</div>
+
+<div class="social-item">
+<div class="social-circle">
+<i class="fab fa-youtube"></i>
+</div>
+<p>YouTube</p>
+</div>
 
 </div>
 
 <!-- SERVICES -->
-<div class="reveal">
 
-<h3>Créateur de solutions digitales :</h3>
+<h2 class="section-title">
+MES SERVICES
+</h2>
 
-<div class="icons">
-<i class="fas fa-globe"></i>
-<i class="fas fa-mobile-alt"></i>
-<i class="fas fa-gamepad"></i>
+<div class="services-box">
+
+<div class="services-grid">
+
+<div>
+<i class="fas fa-check-circle"></i>
+Création de sites web
+</div>
+
+<div>
+<i class="fas fa-check-circle"></i>
+Applications Android
+</div>
+
+<div>
+<i class="fas fa-check-circle"></i>
+Développement IA
+</div>
+
+<div>
+<i class="fas fa-check-circle"></i>
+UI / UX Design
+</div>
+
+<div>
+<i class="fas fa-check-circle"></i>
+Portfolio professionnel
+</div>
+
+<div>
+<i class="fas fa-check-circle"></i>
+SEO & optimisation
+</div>
+
+<div>
+<i class="fas fa-check-circle"></i>
+Maintenance web
+</div>
+
+<div>
+<i class="fas fa-check-circle"></i>
+Hébergement & déploiement
+</div>
+
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+
+<div class="menu-buttons">
+
+<div class="menu-btn">
+
+<div>
+<i class="fas fa-user"></i>
+&nbsp;&nbsp; À-PROPOS
+</div>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="menu-btn dark">
+
+<div>
+<i class="fas fa-briefcase"></i>
+&nbsp;&nbsp; MES PROJETS
+</div>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+<div class="menu-btn">
+
+<div>
+<i class="fas fa-envelope"></i>
+&nbsp;&nbsp; CONTACTEZ-MOI
+</div>
+
+<i class="fas fa-chevron-right"></i>
+
+</div>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+<i class="fas fa-trophy"></i>
+<h2>50+</h2>
+<p>Projets réalisés</p>
+</div>
+
+<div class="stat">
+<i class="fas fa-users"></i>
+<h2>30+</h2>
+<p>Clients satisfaits</p>
+</div>
+
+<div class="stat">
+<i class="fas fa-calendar"></i>
+<h2>5+</h2>
+<p>Années d'expérience</p>
+</div>
+
+<div class="stat">
 <i class="fas fa-shield-alt"></i>
-<i class="fab fa-facebook"></i>
-<i class="fab fa-tiktok"></i>
-<i class="fab fa-instagram"></i>
-<i class="fab fa-whatsapp"></i>
-<i class="fab fa-youtube"></i>
-<i class="fab fa-github"></i>
+<h2>100%</h2>
+<p>Professionnel</p>
 </div>
-
-<p class="desc">
-Sites web • Applications • Jeux vidéo • VPN • Boost réseaux sociaux
-</p>
 
 </div>
 
-<!-- NAV BUTTONS -->
-<div class="reveal">
-
-<a href="propos.html" class="btn">👤 À-propos</a>
-
-<a href="projet.html" class="btn">🚀 Les projets</a>
-
-<a href="contact.html" class="btn">📩 Contacter nous</a>
-
-</div>
-<section class="davbot">
-
-<h2>🚀 DAVBOT INVESTISSEMENT est officiellement lancé !</h2>
-
-<p>Une plateforme moderne dédiée aux solutions digitales :</p>
-
-<ul>
-  <li>💻 Création d’applications mobiles et web</li>
-  <li>🌐 Sites web professionnels</li>
-  <li>🤖 Solutions d’intelligence artificielle</li>
-  <li>📈 Marketing digital et boost de visibilité</li>
-  <li>🎮 Services numériques innovants</li>
-</ul>
-
-<h3>💡 Notre objectif :</h3>
-
-<p>
-Fournir des solutions digitales modernes pour accompagner les entrepreneurs et particuliers dans leurs projets.
-</p>
-
-<h3>🔗 Accédez à la plateforme :</h3>
-
-<a href="https://davbot-investissement.vercel.app/" target="_blank">
-👉 https://davbot-investissement.vercel.app/
-</a>
-
-<p>⚡ Interface simple • Expérience rapide • Solutions digitales modernes</p>
-
-</section>
 <footer>
-© 2026 David Mpongo - Tous droits réservés
+
+© 2026 David Mpongo — Tous droits réservés.
+
 </footer>
 
-<!-- SCRIPT -->
-<script>
-function closePopup(){
-document.getElementById("popup").style.display="none";
-}
-
-/* SCROLL ANIMATION */
-const reveals = document.querySelectorAll(".reveal");
-
-window.addEventListener("scroll", ()=>{
-reveals.forEach(el=>{
-let top = el.getBoundingClientRect().top;
-if(top < window.innerHeight - 50){
-el.classList.add("active");
-}
-});
-});
-</script>
-
 </body>
-    </html>
+</html>
